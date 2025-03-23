@@ -1,0 +1,21 @@
+
+Developer + Operations =  DevOps
+Dev = Plan, Create, Test, Bundle - For Every Requirement in Development
+Ops = Release, configuration, monitor
+DevOps is a methodology that integrates software development (Dev) and IT operations (Ops) to enhance collaboration, streamline processes, and improve the efficiency of software delivery.
+This approach aims to improve and shorten the systems development lifecycle, fostering a culture of collaboration between traditionally siloed teams
+
+DevOps lifecycle
+1. continious development
+2. continuous integration
+3. continuous testing
+4. continuous deployment
+5. continuous monitoring
+6. continuous feedback
+7. continuous feedback
+
+These 7 steps are iterative process for rapid delivery of high quality software
+
+The DevOps lifecycle is a series of automated development workflows that operate within an iterative cycle to optimize rapid delivery of quality software.
+
+The DevOps lifecycle (sometimes called the continuous delivery pipeline, when portrayed in a linear fashion) is a series of iterative, automated development processes, or workflows, run within a larger, automated and iterative development lifecycle, designed to optimize the rapid delivery of high-quality software.
