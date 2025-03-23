@@ -1,0 +1,17 @@
+
+Serves as a bridge between Development team and Operations team by uniting people , processes and technology 
+
+Primary purposes are:
+
+1. Collaboration
+2. automation
+3. continuous delivery
+4. improved quality
+5. faster time to market
+
+DevOps Goals:
+
+1. Faster Delivery:
+It emphasizes rapid software delivery using CI/CD practices, these practices allows teams to release updates more frequently and reliably thus maintaing a competitive edge and by synchronizing build-test-deploy cycle teams can minimise the delays.
+2. Automation:
+practice of automating tasks that would otherwise be done manually, such as building, testing, deploying, and monitoring software and infrastructure
