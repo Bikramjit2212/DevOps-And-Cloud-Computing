@@ -1,0 +1,30 @@
+methodology that integrates dev&ops teams to improve software delivery and operations efficiently.
+
+3 fundamental principles:
+-Continious integration & continious deployment [CI/CD]
+-collaboration
+-automation
+
+1.CI/CD:
+a. CI:
+practice of frequantly merging code changes into a shared repo: involves: 
+-automating integration
+-automatic build
+-rapid test to understand the integration issues
+-continious feedback
+-ci server
+To catch integration bugs early and ensure that the codebase is always in a working state
+b. CD:
+takes CI a step further by automating the release process. includes:
+-automation
+-reliability and stability
+-feedback and monitoring
+-efficiency and speed
+To ensure that software can be released to production quickly and reliably.
+CD builds upon CI by automating the deployment of the tested code to the target environment
+
+2.COLLABORATION:
+heart of DevOps emphasizing need for seamless communication between dev & ops team.
+promotes a culture where development and operations teams work together throughout the entrire software life cycle fostering communication and shared responsibility for outcomes.
+
+3. AUTOMATION:
