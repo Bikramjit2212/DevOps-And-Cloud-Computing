@@ -1,0 +1,93 @@
+AGILE METHODOLOGIES:
+prject management framework that breaks into smaller, manageable phases known as sprints. this iterative approach allows teams to adapt changes quickly & continious improvements
+=Agile Manifesto Values:
+Individuals and interactions over processes and tools
+working software over comprehensive documentation
+Customer collaboration over contact negotiation
+responding to change over a following plan
+these values promote a collaborative environment where teams can respond effectiely to changes and deliver values effectively.
+
+SCRUM FRAMEWORK:
+one of the most popular agile frameworks, particularly suited for projects with rapid changes
+=roles:
+product owner
+scrum master
+development team
+=ceremonies:
+sprint planning
+daily scrum
+sprint review
+sprint retrospective
+=Benefits of SCRUM:
+encourages regular feedback from stakeholders
+increases transparency and accountability among team
+facilitates continious improvement through retrospectives
+
+KANBAN FRAMEWORK:
+another method focusing on visualizing and managing workflow efficiently.
+-visual management
+-work in progress(WIP)
+-limits continious delivery
+=benefits:
+-enhances visibility of work processes and bottlenecks
+improves efficiency by limiting WIP and focusing on task completion.
+offers flexibility in prioritizing tasks without fixed iterations.
+
+CASE STUDY TO COMPARE WATERFALL AND AGILE OUTCOMES:
+SOFTWARE DEVELOPMENT PROJECT:
+Project Background: A software development company was tasked with
+creating a new customer relationship management (CRM) system. The
+project was initially planned using the Waterfall methodology, but after
+encountering significant challenges, the team transitioned to Agile.
+
+Waterfall Approach
+Process: The project followed a linear sequence: requirements gathering,
+design, implementation, testing, and deployment.
+Outcomes:
+  ● Missed Deadlines
+  ● User Dissatisfaction
+  ● Limited Flexibility
+
+Agile Approach
+Process: After recognizing the limitations of Waterfall, the team adopted
+Agile practices, working in iterative sprints with continuous stakeholder
+feedback.
+Outcomes:
+  ● Improved Collaboration
+  ● Faster Delivery
+  ● Higher Quality Product
+
+WATERFALL:
+  rigid; dificult to implement
+  limited to initial & final phase
+  longer due to sequential phase
+  low satisfaction, final product did not meet expectations
+  increased costs due to late changes
+AGILE:
+  highly adaptable;welcomes changes
+  continious involvement throughout the project 
+  faster due to iterative sprints
+  high;regular feedback ensured alignment
+  better cost control through incremental delivery
+
+= Emphasizing iterative progress, flexibility, and stakeholder involvement in Agile
+ITERATIVE PROGRESS:
+refers to practice of breaking down the development process into small, manageable increments or iterations (often called sprints in scrum). each iteration results in a potentially shippable product increment
+=benefits:
+  frequent delivery
+  continous feedback
+  risk mitigation
+
+FLEXIBILITY:
+allows teams to adapt to changing requirements and priorities throughout dev.crucial for fast paced businesses.
+benefits:
+  ● Responsive to Change
+  ● Prioritization of Features
+  ● Enhanced Innovation
+  
+STAKE HOLDER INVOLVEMENT:
+active stakeholders such as customers, end-users, and business representatives is cornerstone of agile methodologies.
+=benefits:
+  ● Alignment with User Needs
+  ● Increased Satisfaction
+  ● Collaborative Problem Solving
