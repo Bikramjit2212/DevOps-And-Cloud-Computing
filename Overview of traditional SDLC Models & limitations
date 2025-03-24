@@ -1,0 +1,108 @@
+"SDLC" [Software Development Life Cycle] most cost effective and time efficient process that development teams use to design and build high-quality software.Minimizes project risks through forward planning so it meets customer expectations during the process.
+It contains:
+-Requirement Analysis
+-Design
+-Implementation
+-Testing
+-Evolution
+
+Traditional SDLC Models & Limitations:
+Key phases:
+-planning & requirement analysis
+-system design
+-implementation(Coding/Development)
+-testing
+-deployment
+-maintainance & support
+
+Requirement Analysis:
+=planning and requirement analysis
+to understand business requirements
+define projects scope
+HOW?
+gather and analyze requirements from stake holders
+conduct feasibility studies[technical,economic,operational]
+prepare project plans & resource allocation
+RESULT:
+Business requirement document - BRD
+
+=System Design:
+transfer requirements into system architecture and design
+HOW?
+design system architecture, database, application components.
+create wire frames and UI Design.
+define data flow diagrams and ER Diagrams.
+RESULT:
+system design document
+-high level design
+-low level design
+
+=Implementation [coding/development]
+convert design into executable code.
+HOW?
+write code in prefferd langauage
+follow guidelines and coding standards
+conduct unit testing
+RESULT:
+working source code
+
+=Testing
+ensure bug-free software
+meeting all requirements
+HOW?
+conduct diff type of testing (unit,integration,system,regression,user acceptance testing)
+log & bug fixes
+RESULT:
+test report and bug resolution document
+
+=Deployment
+release software in production
+HOW?
+deploy system to stagging & production environemnts.
+perform final systems tests in production
+rollout updates or patches if needed.
+RESULT:
+deployed software system.
+
+=Maintainance & Support:
+ensure smooth software operation and handle updates or bug fixes
+HOW?
+MONITOR SYSTEM PERFORMANCE
+PROVIDE TECH SUPPORT
+implement enhancements or updates
+RESULT:
+maintainace logs & update patches.
+
+Benefits:
+-improved project management & control
+-clear project milestones & deliverables
+-enhanced quality of software products.
+Better documentation and tracking
+reduced risks and development costs.
+
+SDLC Models:
+1. WaterFall Model:
+most traditional and straight-forward aproach to software development. follows a linear and sequential process where each phase to be completed before moving towards future & no overlap.
+Limitations:
+-Inflexibility
+-Late User Feedback
+-High Risk of failure
+
+2.V-Model:
+V-Model extends waterfall model by emphasizing verification and validation. each development corresponds directly to a testing phase.
+limitations:
+-rigid structure
+-assumes stable requirements
+
+3.Spiral model:
+combines iterative development with systematic risk assessment.consists of repeated cycles(or spirals)through phases such as planning,risk analysis,engineering, testing and evaluation.
+limitations:
+-complexity
+-high cost
+
+4.Iterative model
+iterative model emphasizes incremental development. each iteration produces working version that incorporates user feedback
+Limitations:
+less predictible outcomes
+documentation challenges
+
