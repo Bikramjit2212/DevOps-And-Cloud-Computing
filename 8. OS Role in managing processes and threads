@@ -1,0 +1,13 @@
+PROCESS MANAGEMENT:
+Defined as a program in execution, which encompasses the program code, current activity and allocated resources. OS is responsible for creating,scheduling and terminating processes. each processes operates within its own memory space, ensuring isolation from others, enhancing security and stability.
+=Responsibility:
+  ● Creation and Deletion
+  ● Scheduling
+  ● Resource Allocation
+
+THREADS MANAGEMENT:
+Is a light weight subprocess which executes independently while sharing same address space as of parent process. Multiple threads can exist in a single process allowing parrallel execution of tasks.
+=Responsibilty:
+  ● Creation and Control
+  ● Scheduling and Prioritization
+  ● Synchronization
