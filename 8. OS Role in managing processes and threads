@@ -5,9 +5,92 @@ Defined as a program in execution, which encompasses the program code, current a
   ● Scheduling
   ● Resource Allocation
 
+
 THREADS MANAGEMENT:
 Is a light weight subprocess which executes independently while sharing same address space as of parent process. Multiple threads can exist in a single process allowing parrallel execution of tasks.
 =Responsibilty:
   ● Creation and Control
   ● Scheduling and Prioritization
   ● Synchronization
+
+PROCESSES:
+Process is an instance of a computer program that is being executed. Includes program code, current activity[represented by program counter], and resources allocated to it, such as memory and file handles.
+=Examples:
+Google Chrome
+when open => OS creates a process
+when multiple tabs open => each tab runs separate process, i.e. if one tab crashes other tabs wont be affected
+
+THREADS:
+Smaller unit of execution within a process. often reffered as light weight processes bcz they require fewer resources to create and manage like full processes.
+=example:
+Same Google Chrome, within the Chrome process, each tab can have multiple threads handling different tasks simultaneously. For instance, one thread might be responsible for rendering the webpage, another for running JavaScript code, and yet another for handling user input. All these threads share the same resources allocated to the Chrome process but operate concurrently.
+
+PROCESSES VS THREADS:
+Both are fundamental concepts in OS each serving different purposes and characteristics
+
+PROCESSES:
+-independent program in execution with its own memory
+-has its own separate memory space, ensuring isolation from other processes.
+-dont share resources directly inter-process communication [IPC] mechanism is needed
+-creating new process is time-consuming, due to allocation of separate memory space and resources.
+-termination of 1 doesnt affect others each operating independently
+- have higher overhead due to their isolation and resource management requirements.
+-Context switching between processes is more time-consuming due to the need to switch memory
+contexts
+-suitable for tasks that require isolated execution environments (e.g., running different applications)
+
+THREADS:
+-lightweight unit of a process that can execute independently
+-within the same process share the same memory space, allowing easier communication.
+-share resources such as data segments and files, facilitating faster communication
+-threads share resources such as data segments and files, facilitating faster communication.
+-creating new thread is faster as it does not require a separate memory space.
+-one blocked can affect execution of other threads within same processes
+-have lower overhead, making them more efficient for concurrent tasks within a single application.
+-Context switching between threads is quicker since they share the same memory space
+-Threads are better for tasks that require frequent communication and shared data (e.g., web browsers handling multiple tabs).
+
+PROCESS LIFECYCLE:
+An OS consists of diff. several distinct states that a process transitions through from creation to termination.
+primary states: New, Ready, Running, Waiting, and Terminated
+
+This diagram illustrates the **Process Lifecycle in an Operating System (OS)**, showing the different states a process can go through from its creation to its termination. Let's break it down:
+
+1. Process Queue:
+* This represents a queue or waiting line where processes reside before being allocated CPU time.
+* The green segment indicates a process is currently in the queue, waiting for its turn to be executed.
+
+2. Process States:
+New:
+    * This is the initial state where a process is being created.
+    * When the OS admits the process (allocates necessary resources), it transitions to the "Ready" state.
+Ready:
+    * In this state, the process is ready to be executed by the CPU but is waiting for its turn.
+    * The "Scheduler Dispatch" arrow indicates the OS's scheduler selecting the process for execution, moving it to the "Running" state.
+    * "Interrupted" represents that the running process was interrupted, and sent back to the ready queue.
+    * "I/O or Event Completed" represents that a process that was waiting on I/O is now ready to run again.
+Running:
+    * This is the state where the process is currently being executed by the CPU.
+    * "I/O or Event wait" signifies that the process is waiting for an input/output operation (e.g., reading from a disk) or an event to occur, so it transitions to the "Wait" state.
+    * "Exit" means that the process has finished its execution and moves to the "Terminated" state.
+Wait (or Blocked):
+    * In this state, the process is waiting for an event to happen (e.g., I/O completion).
+    * "I/O or Event Completed" means that the event has occurred, and the process is ready to be executed again, transitioning back to the "Ready" state.
+Terminated:
+    * This is the final state where the process has completed its execution or has been terminated by the OS.
+
+Key Concepts:
+Scheduler:
+    * The OS component responsible for selecting which process should run at any given time.
+I/O (Input/Output):
+    * Operations that involve data transfer between the CPU and external devices (e.g., disk, keyboard, network).
+Events:
+    * Occurrences that can affect the execution of a process (e.g., signals, timers).
+
+**In essence:**
+
+This illustrates the dynamic nature of processes within an operating system. Processes move through different states based on their execution status and events. The OS manages these transitions to ensure efficient resource utilization and process execution.
+
+
+
+
