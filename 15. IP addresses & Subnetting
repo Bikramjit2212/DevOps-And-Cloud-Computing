@@ -1,0 +1,28 @@
+IP ADDRESS:
+IP addresses are unique identifiers assigned to devices on a network, enabling them to communicate with each other. They are essential for routing data across the internet or local networks.
+IP Address Structure:
+●IPv4
+●IPv6
+Simple Examples:
+●IP Address: 192.168.1.10
+●Subnet Mask: 255.255.255.0
+●Network Portion: 192.168.1
+●Host Portion: 10
+
+SUBNETTING:
+Subnettingis the process of dividing a larger network into smaller, manageable sub-networks (subnets). This helps improve network performance and security by isolating traffic and controlling access.
+Subnet Mask: A subnet mask defines which part of an IP address is the network portion and which part is the host portion.
+●Network Portion: 192.168.1
+●Host Portion: .1 (indicating this specific device)
+Subnetting:
+Like dividing a large group into smaller, organized groups.
+Subnets:
+The smaller, organized groups created by subnetting.
+Subnet Mask:
+A code that tells computers which part of their address identifies the group they belong to, and which part identifies the individual computer within that group.
+Network Portion:
+The part of the computer address that identifies the group.
+Host Portion:
+The part of the computer address that identifies the individual computer.
+IP Address:
+The complete address of a computer on a network.
