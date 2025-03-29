@@ -1,0 +1,13 @@
+Memory allocation refers to the process of reserving a portion of memory for a program or process to use during its execution. There are two primary types of memory allocation:
+1.Static Allocation
+2.Dynamic Allocation
+
+Fragmentation occurs when free memory is inefficiently utilized due to the allocation and deallocation of memory blocks. There are two main types:
+1. Internal Fragmentation:
+Practical Example of Internal Fragmentation:
+● Imagine a system where memory is divided into fixed-size blocks of 1 KB. If an application allocates 750 bytes, the remaining 250 bytes in that block cannot be used for other allocations, leading to internal fragmentation.
+2. External Fragmentation:
+Practical Example of External Fragmentation:
+Consider a scenario where a system has allocated various sizes of memory blocks:
+● Allocated: 1 MB (used), 512 KB (free), 256 KB (used), 128 KB (free), and 512 KB (used).
+● If a new request comes in for 600 KB, it cannot be fulfilled despite having enough total free space (640 KB) because it is not contig
