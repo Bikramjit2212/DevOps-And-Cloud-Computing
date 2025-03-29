@@ -1,0 +1,34 @@
+CIDR (Classless Inter-Domain Routing) is a method for allocating and routing IP addresses that improves the efficiency of IP address usage.
+CIDR Notation: Its consists of an IP address followed by a slash (/) and a number that indicates the number of bits in the network prefix. For example, in the CIDR notation 192.168.1.0/24:
+●
+192.168.1.0 is the network address.
+●
+/24 indicates that the first 24 bits are used for the network portion, leaving 8 bits for host addresses.
+
+Imagine instead of having fixed-size neighborhoods, we have flexible ones.
+
+Old Way (Classes): Everyone had the same size neighborhood, even if they didn't need it. This wasted a lot of addresses.
+New Way (CIDR): We can make neighborhoods any size we want, based on how many houses are needed. This saves addresses.
+CIDR Notation: It's like a short way to write the address and tell how big the neighborhood is.
+
+Address/Number:
+The address tells you where the neighborhood starts.
+The number tells you how many houses are in the neighborhood.
+Example: 192.168.1.0/24
+
+192.168.1.0: This is the starting address of the neighborhood.
+/24: This means the first 24 parts of the address are the same for everyone in the neighborhood. The last 8 parts can be different for each house.
+Why is this better?
+
+Saves Addresses: We don't waste addresses on neighborhoods that are too big.
+More Efficient: It makes the internet work better.
+In short:
+
+CIDR lets us create neighborhoods of any size for computers on the internet.
+The "address/number" tells us where the neighborhood is and how big it is.
+
+Role in Efficient IP Allocation:
+1.Flexible Addressing
+2.Aggregation
+3.Efficient Use Of IP Space
+4.Simplified Management
