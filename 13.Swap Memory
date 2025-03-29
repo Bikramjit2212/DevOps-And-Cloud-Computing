@@ -1,0 +1,12 @@
+Swap memory, also known as swap space, plays a crucial role in managing system memory, particularly during periods of high memory usage. It serves as an overflow area on a hard disk or SSD where inactive data from RAM can be temporarily stored.
+●This allows the operating system to continue functioning even when physical RAM is fully utilized.
+Role of Swap Memory:
+●Virtual Memory Extension
+●Memory Management
+●System Stability
+Its Impact on performance during high memory usage:
+During high memory usage, swap memory significantly impacts system performance in several ways:
+●Performance Degradation
+●Disk I/O Bottlenecks
+●Fragmentation Issues
+●Insufficient Swap Space Risks
