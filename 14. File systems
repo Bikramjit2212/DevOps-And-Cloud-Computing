@@ -1,0 +1,46 @@
+Structure and Use Cases of Common File Systems: ext4, NTFS, FAT32
+ext4 (Fourth Extended File System):
+●Structure:
+●Extents
+●Inodes
+●Journaling
+Use Cases:
+●General-Purpose Systems
+●Large Files
+
+NTFS (New Technology File System):
+Structure:
+●Master File Table (MFT)
+●Journaling
+Use Cases:
+●Windows Operating Systems
+●Large Volumes & Files
+
+FAT32 (File Allocation Table 32):
+Structure:
+●File Allocation Table
+●Limited Metadata
+Use Cases:
+●Compatibility
+●Smaller Files
+
+Which file system is best suited for external storage devices due to its compatibility across multiple operating systems? -> FAT32
+
+Differences in Performance, Compatibility, and Use Cases of ext4, NTFS, and FAT32:
+ext4 (Fourth Extended File System):
+●Performance: Offers superior performance, especially for large files.
+●Compatibility: Primarily designed for Linux-based operating systems.
+Use Cases:
+●Linux servers/desktops.
+
+NTFS (New Technology File System):
+●Performance: Provides good performance with support for large files (up to 16 EiB) and efficient data management through journaling.
+●Compatibility:Fully compatible with Windows operating systems (from Windows NT onward). macOS can read NTFS but requires third-party software for writing.
+Use Cases:
+●Windows internal drives
+
+FAT32 (File Allocation Table 32):
+●Performance: Has limited performance capabilities, with a maximum file size of 4 GiB and a maximum partition size of 2 TiB.
+●Compatibility:Highly compatible across various operating systems.
+Use Cases:
+●USB/external drives
