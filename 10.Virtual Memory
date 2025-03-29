@@ -1,0 +1,7 @@
+Virtual memory is a memory management technique that allows an operating system to use a portion of the hard drive to extend the apparent size of the computer's physical memory (RAM).
+Benefits of Virtual Memory:
+● Increased Capacity
+● Improved Multitasking
+How it extends physical memory:
+● When the system runs out of physical memory, it temporarily transfers inactive data from RAM to a designated space on the hard drive, known as the swap space or page file. This process, called swapping, frees up RAM for active processes.
+● When the data stored on the hard drive is needed again, it is swapped back into RAM, allowing multiple applications to run simultaneously without exhausting physical memory resources.
