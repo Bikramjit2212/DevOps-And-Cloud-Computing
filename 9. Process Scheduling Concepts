@@ -1,0 +1,8 @@
+MULTITASKING:
+refers to the ability of an operating system (OS) to execute multiple tasks or processes simultaneously. This is achieved through process scheduling, which allows the OS to manage the execution of various tasks efficiently.
+TIME SLICING:
+technique used in multitasking OS that allocates fixed time[time slice/quantum] for each process to execute on CPU
+How it enables CPU sharing among processes:
+When a process's time slice expires, the CPU switches to another process. This method enables efficient CPU sharing among processes by ensuring that all active processes receive regular access to CPU resources.
+PRIORITY BASED SCHEDULING
+method where processes are assigned priority levels, determining their order of execution. Higher-priority processes are executed before lower-priority ones, allowing critical tasks to complete more quickly.
