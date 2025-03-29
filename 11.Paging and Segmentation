@@ -1,0 +1,9 @@
+Paging is a memory management scheme that eliminates the need for contiguous allocation of physical memory.
+How it works:
+● When a process is executed, its pages can be loaded into any available page frames in physical memory, allowing non-contiguous allocation.
+● The operating system maintains a page table for each process, which maps logical pages to physical page frames. This table helps in translating logical addresses into physical addresses.
+
+Segmentation is another memory management technique that divides the logical address space of a process into variable-sized segments based on the logical structure of the program, such as functions, arrays, or objects.
+How it works:
+● Each segment has a name and a length, and the logical address consists of a segment number and an offset within that segment.
+● The operating system maintains a segment table for each process, which contains the base address and length of each segment.
