@@ -1,0 +1,29 @@
+Roles Of DNS & DHCP In Networking
+DNS (Domain Name System)
+Function: DNS translates human-readable domain names (like www.example.com) into machine-readable IP addresses (like 192.0.2.1).
+Key Roles:
+●Address Resolution
+●Caching
+●Load Balancing
+●Security
+
+DHCP (Dynamic Host Configuration Protocol)
+Function: DHCP automatically assigns IP addresses and other network configuration parameters to devices on a network, allowing them to communicate effectively.
+Key Roles:
+●Dynamic IP Address Assignment
+●Configuration Management
+●Lease Management
+
+HTTP/S (Hypertext Transfer Protocol/Secure)
+Overview: HTTP is the protocol that governs how web pages are transmitted from servers to clients (web browsers).
+Practical Uses:
+●Web Browsing
+●E-Commerce
+●APIs
+
+FTP (File Transfer Protocol)
+Overview: FTP is designed specifically for transferring files between a client and a server. It allows users to upload, download, and manage files on remote servers.
+Practical Uses:
+●File Management
+●Backup Solutions
+●Web Development
