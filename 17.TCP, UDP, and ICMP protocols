@@ -1,1 +1,24 @@
+TCP (Transmission Control Protocol): A connection-oriented protocol that ensures reliable and ordered delivery of data packets. It is widely used in applications requiring high reliability.
 
+UDP (User Datagram Protocol):A connectionless protocol that allows fast data transmission without ensuring delivery or order. It is suited for applications where speed is more critical than reliability.
+
+ICMP (Internet Control Message Protocol):Primarily used for network diagnostics and error reporting rather than for direct data transmission.
+
+APPLICATIONS OF PROTOCOL:
+1. TCP Applications:
+●Web Browsing
+●Emails
+●File Transfers
+
+2. UDP Applications:
+●Streaming services
+●Online Gaming
+●VoIP
+
+3. ICMP Applications:
+●Network Diagnostics
+●Error reporting
+
+TCP: Guarantees reliable, ordered delivery of data.
+UDP: Fast, but doesn't guarantee delivery or order.
+ICMP: Used for network diagnostics and error reporting.
