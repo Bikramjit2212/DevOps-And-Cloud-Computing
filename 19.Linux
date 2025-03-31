@@ -1,9 +1,72 @@
 Linux Terminal
 Crucial Component of the Linux OS, providing CLI [Command Line Interface] that allows users to interact with the system through text-based commands.
 Importance:
-Command Execution
-Scripting & Automation
-Remote Management
-Resource Management
-Resource Efficiency
-Learning & Control
+    Command Execution
+    Scripting & Automation
+    Remote Management
+    Resource Management
+    Resource Efficiency
+    Learning & Control
+
+Demonstrating Basic Commands:
+1.ls: List directory: command use to display the files and directories in current directory.
+2. clear: clear screen
+3. ls --help: to get help [to get all commands/flags]
+4. ls -l: listing format to show files and folders with details
+5. dont start entries with . bcz . folders are hidden folders
+6. cd - changing directory
+7. mkdir- to make directory
+//mkdir folder_name -> mkdir developers
+
+#create directory
+mkdir developers
+
+#list files and folders
+ls 
+
+#move to directory
+cd developers
+
+#check the content in folder
+ls
+
+#coming out of directory
+cd .. 
+//[ .. -> go back]
+
+#remove directory(empty directory)
+rmdir
+//if directory not empty it will not move
+
+//if u want to remove non-empty directory use rm with -r and -f flag
+//r-> recursive & f-> forcefully delete
+rm -rf developers[repeatedly delete files inside the folder]
+
+8.sudo rm -rf developers[repeatedly delete files inside the folder]
+//sudo -> root access or admin access if it gives error for permission
+
+9.pwd - print working directory
+#show current working directory
+
+10. creating & editting files
+creating empty files use touch command
+#create directory
+mkdir developers
+#create empty file
+touch data.txt
+#verify using ls command
+ls
+#edit using nano or vi editor
+nano data.txt
+#you will be inside the editor
+#write content which you want to add thn ctrl+o[to save and name file] then enter then ctrl+x[exit]
+#verify the written content
+cat data.txt
+
+#to open the file 
+vi data.txt
+//then using insert button on keyboard you can insert texts
+then to exit from insert tap esc btn then write :wq! and press enter
+#we can also use vi editor to run command for file editing
+
+
