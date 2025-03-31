@@ -1,0 +1,41 @@
+Absolute Path:
+A complete path system from the root directory '/' to the desired file or directory. It always starts with a '/'.
+Eg: '/home/user/documents/report.txt' refers to the file 'report.txt' located in the documents directory, which is under the 'user' directory in the 'home' directory.
+
+Relative Path:
+refers to a location in relation to the current working directory. It does not start with a '/'
+Eg:if current directory is '/home/user', then 'documents/report.txt' refers to the same file as above
+
+Basic Navigation Commands:
+cd /mnt/d/pw/devops
+//as using wsl so we will use mnt
+In simpler terms, /mnt is like a staging area where you can temporarily connect external storage devices or other file systems to your computer's file system structure.
+In the context of Unix-like operating systems (such as Linux), /mnt is a directory that is traditionally used as a temporary mount point.
+
+eg: assume you are in c drive a read a file in d drive:
+cat /mnt/d/pw/devops/data.txt [mnt is like indicating the drive]
+//this will show the data inside the file [absolute path]
+cat devops/data.txt
+//this will search for devops folder and then show the data in data.txt file [relative path]
+//searching for the same folder where we are executing the command
+whenever we use cd with directory it will attach current directory with the directory.
+eg:if ur current directory is '/home/user', what does 'cd documents' do?
+changes to /home/user/documents
+
+cat -> displays the content of the file or concatenates multiple files.
+
+common options:
+-n: number of all output lines.
+-b: number with non-empty output lines.
+
+less-> when we have huge content in file
+navigation: use space bar to scroll down, 'b' to scroll up, & '/search term" to search within the file using g flag we can move at the bottom of the page and 
+to go page by page we have to go to the more
+
+grep-> search something
+searches specific patterns in files and outputs matching lines.
+grep "search_term" filename.txt
+Common Options:
+-i: ignore case i.e ignore case sensitive 
+-r: search recursively in directories
+//it is also case sensitive
