@@ -1,0 +1,20 @@
+An account created for an individual or a process that interacts with the system. each user has a unique username and is assigned a user ID [UID].
+purpose:
+-identity
+-access control
+-resourc management
+
+groups:
+collection of users who share common access privileges. each group has a unique group id [GID]
+purpose:
+  -access control
+  -simplified administration
+  -collaboration
+  -resource allocation
+
+  user creation:
+  command: adduser -> used to create a new user in a user-friendly manner
+  eg: sudo adduser roy
+  this setsup a new user roy and sets up a home directory at /home/roy
+  to see the users: cat /etc/passwd [this will show all the users & ls doesnt works here]
+  
