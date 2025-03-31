@@ -66,7 +66,13 @@ cat data.txt
 #to open the file 
 vi data.txt
 //then using insert button on keyboard you can insert texts
-then to exit from insert tap esc btn then write :wq! and press enter
+then to exit from insert, tap esc btn then write :wq! and press enter [w -> save, q!-> exit]
 #we can also use vi editor to run command for file editing
 
+11.cp command: copy the content
+cp data.txt file1.txt
+#check file created or not
+ls
+#check content of new file
+cat file1.txt
 
