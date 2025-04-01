@@ -17,4 +17,59 @@ purpose:
   eg: sudo adduser roy
   this setsup a new user roy and sets up a home directory at /home/roy
   to see the users: cat /etc/passwd [this will show all the users & ls doesnt works here]
-  
+
+# when you create user by default it is added into one group which is same as username
+# called Primary Group
+# bob:x:1002:1002::/home/bob:/bin/sh
+# means bob is the user
+# 1002 is user ID, 1002 is Group ID, /home/bob: is the Directory, /bin/sh is default shell
+
+# Update password
+sudo passwd bob
+# enter the password , reenter and update
+
+usermod -> modifies existing user accounts. can change attributes like group membership or home directories.
+#user Mod Giving administrative Permission
+sudo usermod -aG sudo bob
+this adds bob to the sudo group granting administrative privileges.
+
+# change Directory
+sudo usermod -d /new/home/directory bob
+
+# Change Shell
+sudo usermod -s /bin/bash bob
+
+# change comment (Full name of User)
+sudo usermod -c "John Doe" bob
+
+how to manage groups:
+command: groupadd
+//creates new group in system
+eg: sudo groupadd devs
+this creates new group named devs
+
+to check list of groups:
+getent groups
+
+to check particular group:
+getent group developers
+
+groupmod -> modifies an existing group attributes such as name or GroupID [GID]
+eg:sudo groupmod -n team devs
+//will change the group from devs to team
+//change a user,s group membership, use 'usermod' command again, ensuring to use '-a' option when adding them to additional groups.
+remove user from specific group, you typically need to specify their newgroup membership without including the group you want to remove them from.
+
+groupdel -> deletes an existing group from the system
+eg: sudo groupdel devs
+
+adding user to a group
+sudo usermod -aG developers bob
+
+creating new user and assigning groups:
+sudo useradd -g staff -G devs, test cktutorials
+//this creates the user 'cktutorials' with 'staff' as the primary groupand adds them in 'developers & 'test" groups
+
+verify user Groups [viewing group membership]
+groups bob [groups username]
+//this lists all groups associated with specified user.
