@@ -62,53 +62,91 @@ sudo systemctl restart apache2
 
 ## disabling service at Boot time
 sudo systemctl disable apache2
+systemctl is a command-line utility that serves as the central management tool for systemd, the system and service manager now prevalent in most major Linux distributions (including Debian and its derivatives like Ubuntu). Think of it as your primary way to interact with and control the core of your Linux system.
+to run any service in bakground use systemctl
+The "ctl" in systemctl is indeed a common abbreviation for control.
+"systemd" refers to the system daemon, which is the core system and service manager. "systemctl" is the tool you use to control this system daemon and the various services it manages. It's a pretty neat and consistent naming scheme once you understand the "d" for daemon and "ctl" for control!
+
 File Permissions and its Numeric Format
 Types: Read(r), write (w), Execute (x)
 Users:
 Owner : who created the file
 Group: a set of users who can access the file
 others: all other users who don't direct access
+
 Numeric Permission
 Read = 4
 Write = 2
 Execute = 1
 777 (rwxrwxrwx) first represent owner, 2nd group and 3rd others
 chmod 755 data.txt
+
 rwxr-xr-x
 owner: read write execute
 group: read and execute (no write)
 others: read and execute (no write)
+
 Symbolic permission
 chmod u+x file.txt
 (u for user, g for group and o for others)
 + for adding the permission
 -for removing the permission
-chmod -R 755 directory
+chmod -R 755 directory // multiple permission inside the directory in recursive form
+chmod: This is the command itself. It stands for "change mode".
+-R: This is an option that stands for "recursive"
+
+755: This is the permission mode you're setting. It's represented in octal (base-8) notation.
+the command chmod -R 755 directory will recursively set the following permissions for the specified directory and all its contents:
+Owner: Read, write, and execute permissions.   
+Group: Read and execute permissions.
+Others: Read and execute permissions.
+
+most of the times we give the permission in octal format 
+sometimes we can also use symbolic
+
 File Ownership
+chown: change owner
 chown new_owner : new_group name of your file
-chown :group_name data.txt
+chown :group_name data.txt //used in Linux to change the group ownership of the file named data.txt.
+
 **** umask ******
 for setting default permission
 check umask value: umask
-change: umask 027
+change: "umask 027"
 calculate
 default permission is 666 and mask is 027 then resulting permission is 640
-Disk usage
+
+Disk usage: 
+1:df; 2:du
 df: its command to check file system usage,
 we can also check space, check mounted files system etc..
 df
 df -h (human readable format)
+
 du : identify directory sizes and locate the space consuming files
 du location
 du /mnt/d/Physicswalla/Devops-March
 du -h /mnt/d/Physicswalla/Devops-March
 du -sh /mnt/d/Physicswalla/Devops-March (summarize)
+
 CRON JOBS
 which used in Linux to schedule and automate some time to run at some specific interval
 to create own job
 manage the processes
 run any process in background use & symbol
 sleep 60 & (it will run in background)
+
+you use "crontab -e" because it provides a safe and reliable way to manage your scheduled tasks by:
+
+Opening your crontab file in an editor.
+  Performing syntax checks to prevent errors.
+  Ensuring your changes are properly installed and recognized by the system's scheduling service.
+  Managing the crontab for your specific user account.
+So, if you want to automate a script to run daily, back up your files weekly, or perform any other regularly scheduled task on your Linux system, crontab -e is your go-to command to set that up.
+
+to remove:
+crontab -r
+crontab -l -> to list 
 check: jobs
 if you want to take it in foreground: fg procesId
 fg %1 (1 is jobs id)
