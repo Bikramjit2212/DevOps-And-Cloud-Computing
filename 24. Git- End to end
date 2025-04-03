@@ -1,0 +1,65 @@
+versions - like milestones
+vcs - a tool to manage changes by devs over time also called SCM
+git - industry standard
+with version control manual  intervention is gone
+git helps to collaborate between dev remotely
+any project that is tracked by git is git repository
+to enable git in any root directory of project use :git init" and it will start tracking the code,
+this will create '.git' folder in the root folder
+
+every single file in project goes through 3 important areas:
+    1. working area:
+      having those files which are not tracked by git or git has barely started tracking it.
+      "git status"- tells what are files are on working area or in staging area.
+      "git add" - start to track a file by git
+      "git add ." - to add all multiple files in staging area
+      "git add file1.txt file2.txt" : by this way also you can write multiple names of the files and send them to staging area
+      any changes to a file that is tracked by git is in working area
+      any new file created will be a untracked file so git add is compulsory.
+      all the changes that which are now a version, can be looked using "log" command
+    2.staging area :
+    any changes in files/files present in staging area are those which will be part of the next version/checkpoint.
+    3.repository area:
+    here we have those changes which are now part of some versions/checkpoints
+
+    when we do "git add file" - it goes from working->staging area
+    if we do "git commit" - goes from staging area -> repository area
+    to commit something use "git commit" opens a text editor called vim where we write the version
+    & then a new version will be created
+    it git version or checkpoint = commit
+to remove a file from staging area "git rm--cached <file>..."
+to unstage a file into working area: "git restore --staged <file>..."
+
+to see all versions use git log
+to do git commit : "git commit"
+it opens a text editor because it wants to create a version
+to come out of it use "esc btn":wq!
+then it creates commit
+
+for not opening the text editor you can write
+git commit -m"the_message" : what is basically does is it ignores opening the text editor and in CLI only you can wrtie what you want and gets committed
+
+git maintains 3areas for trackingchanges to a file
+  1. working area
+  2.staging area
+  3.repository area
+
+  working area:
+  any file that is already being tracked [whose changes are tracked by git], gets some modification, then these new changes are kept in the working area region. these are mainly the new changes in existing git project.
+  if we want to move a change from working area to staging area we can do:
+  git add 'file name'
+  git add command will help u to add the changes of a file from working afrea to staging area. we can add multiple files together by giving their names space separated
+  
+  staging area:
+  here we have those changes which are going to be the part of next version, but are not currently in the next version.
+  
+ repository area:
+ those changes which are already part of some earlier versions.
+
+ note:
+ if we create a brand new file in a project, then by default that file is in a untracked state.
+ to start tracking the file we can git add: this will not just tracking but with current content of file , add that file in the staging area directly.
+
+ there can be a case that we have some changes in file in the staging area & working area & some already in repository area.
+ this can happen when we have a file who is added in staging area already, but before we add it to the next version we made more changes to the file. these new changes are now part of working directory all together
+ 
