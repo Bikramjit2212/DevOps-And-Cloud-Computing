@@ -198,6 +198,7 @@ crontab -l -> to list
 check: jobs
 if you want to take it in foreground: fg procesId
 fg %1 (1 is jobs id)
+%1 is a job identifier managed by the shell, providing a convenient way to manage groups of related background processes.
 
 to stop the fg process ctrl+z (after this execute jobs command so you can see job is in
 stopped state)
@@ -205,12 +206,15 @@ again to run in background: bg %1 (it will again start in background) (job is in
 if its completed it will move to Done state and them removed from job list)
 
 for terminating job: kill %1 (job ID)
+
 Analyze performance
 VMstat (virtual memory statistics)
 information processes, memory, paging, blocks, IO
+
 vmstat (provides statistics for process, memory, swappe memory , io/io, system , cpu)
 vmstat 1 (after every 1 second calculation)
 vmstat 2 5 (every 2 second and 5 iterations)
+
 iostat (input/output statistics)
 install: sudo apt install sysstat
 iostat
