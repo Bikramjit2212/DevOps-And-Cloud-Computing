@@ -63,3 +63,21 @@ git maintains 3areas for trackingchanges to a file
  there can be a case that we have some changes in file in the staging area & working area & some already in repository area.
  this can happen when we have a file who is added in staging area already, but before we add it to the next version we made more changes to the file. these new changes are now part of working directory all together
  
+-----------------------------------------------------------------------------------------------
+
+to upload anything in the repository the uploader should be given the permission by author for uploading in the repository, needs the permission for being a contributer
+"git remote add origin": git remote add origin <repository_url> is a fundamental command in Git that serves a crucial purpose: it creates a connection between your local Git repository and a remote repository.
+
+why do we use it?
+    1.To connect your local work to a central repository: Without this command, your local repository is isolated. You can't easily share your changes with others or retrieve changes they've made.
+    2.To enable collaboration: Once you've added the origin remote, you can use commands like git push origin <branch_name> to send your local commits to the remote repository, allowing collaborators to see and merge your work. Similarly, git pull origin <branch_name> lets you download changes from the remote repository to your local machine.
+    3.To set up a default remote: By naming the remote origin, many Git commands implicitly assume you're referring to this remote if you don't specify otherwise. This simplifies common operations like pushing and pulling.
+
+to clone something:
+there is a green btn in repo click on the dropdown btn and copy the url of clone & then
+inside their machine: 
+go to any folder, then write 
+"git clone <then the copied link>" :- downloads the data
+
+to download anything from repo from github to local machine: "git pull origin main"
+any changes made in repo will only come to machine when we download it.
