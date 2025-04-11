@@ -81,3 +81,158 @@ go to any folder, then write
 
 to download anything from repo from github to local machine: "git pull origin main"
 any changes made in repo will only come to machine when we download it.
+
+how internally Git Works?:Git -> hashing -> graph/ Tree data Structure
+=> Git is actually a key value store.
+key -> stores hash of the data in SHA-1 format
+value -> stores the actual data as a blob object
+git uses a cryptographic hash func. that is -> SHA-1
+SHA-1, or Secure Hash Algorithm 1, is a cryptographic hash function that takes an input and produces a 160-bit (20-byte) hash value, used to verify data integrity and ensure it hasn't been altered
+for a given data it o/p 40 digit hexadecimal no. 
+& the # value is always same for same data
+after hash git compresses the data in a blob and stores some metadata about data. 
+git init -> initializes a new git repo.
+to install tree: sudo apt install tree [to use tree install tree]
+to add anything to git: 'git add'
+
+echo 'hello git' | git-hash-object --stdin: 
+Imagine Git needs a unique ID number (like a fingerprint) for every piece of content it stores.
+1.echo 'hello git': This part just prints the text "hello git".
+2.|: This symbol is called a "pipe". It takes the text from the command on the left (echo 'hello git') and sends it as input to the command on the right.
+3.git-hash-object --stdin: This is the Git command.
+4.git-hash-object: Tells Git: "Calculate the unique ID number (the hash) for some content."
+--stdin: Tells git-hash-object: "Get the content to calculate the ID for from the input I receive (which is coming from the pipe)."
+
+In simple terms:
+You are telling your computer:
+"Take the text 'hello git', send it over to the Git ID calculator, and tell me what unique ID number (hash) Git would give to this specific text."
+
+The command will then output a long string of letters and numbers (like 3f9a9f63d8ddc51e44a470d9efe7c30299f85a4e - the exact hash depends slightly on Git's internal formatting), which is Git's unique fingerprint for the exact content "hello git".
+
+It doesn't store this content in your Git repository yet; it just calculates what the ID would be
+
+if we use normal cat to see files inside '.git' then it will return ghibrish  that's why git gives us custom cat command to read file which is: ".git cat-file -p <full 40 digit hex code with the folder code> -> this will give the same o/p&chnge inside the file.
+hash stores the same value object which we have inside the file in 40 hex code. the 1st 2codes are set as folder name/directory & the rest 38 codes are as file name binary object ,this is the key value pair
+hash storing binary large object in which it is storing the data in hexadecimal format.
+so everything that we do is stored in SHA-1 hash
+tree object -> contains pointers [uses hashes], to store blobs, to store trees & 
+has metadata:
+    type of pointers(tree,blob),
+    directory name or filename, 
+    mode
+
+to manage directories git uses tree: inside which u can have multipple files i.e. blob or sub directories i.e. trees
+.git cat-file -p <40digit hex code> -> gives the o/p/text in the file 
+.git cat-file -t <40digit hex code> -> gives the type of the file
+
+commit also get something like a key value pair.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
