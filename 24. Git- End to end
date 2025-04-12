@@ -126,13 +126,71 @@ to manage directories git uses tree: inside which u can have multipple files i.e
 .git cat-file -t <40digit hex code> -> gives the type of the file
 
 commit also get something like a key value pair.
+commit-> snapshot of a code/repo in a particular time
+ith has: 1.author, 2.message, 3.date
+you cant have to same ID 
+git diff: git doesnt stores every diffs rather it stores every snapshot of the file, this data is calculated on the go, very inefficient for long codes, thats where same path file comes into the picture.
+
+how & why git creates pack file?
+
+Why Does Git Create Pack Files? (The "Why")
+
+Think of it like moving house. You have lots of individual items. Would you rather:
+
+Carry each item to the new house separately? (Inefficient, takes a long time, lots of trips)
+Pack similar items into boxes and then move the boxes? (More efficient, fewer trips, things are organized)
+Git does the second thing with pack files. The main reasons are:
+
+Save Disk Space: Over time, your Git repository accumulates many versions of your files (objects). Instead of keeping each version as a complete, separate file, Git identifies similarities between these versions. In a pack file, it can store one full version and then just the differences (deltas) needed to recreate other versions. This drastically reduces the storage space your repository needs.   
+Improve Efficiency (Especially for Network Operations): When you push or pull changes to a remote repository (like GitHub), transferring one or a few large pack files is much faster and more efficient than transferring hundreds or thousands of small, individual files. It reduces network overhead.
+How Does Git Create Pack Files? (The "How")
+
+Git creates pack files in a few key situations:
+
+Garbage Collection (git gc): As you mentioned, the git gc command is like Git's cleanup crew. One of its main jobs is to consolidate loose Git objects (the individual file versions and metadata) into pack files. It looks for objects that are related or similar and then efficiently packs them together, often using delta compression.   
+Pushing to a Remote Repository: When you run git push, Git needs to send your local changes to the remote server. To do this efficiently, it often creates a pack file containing the necessary objects that the remote repository doesn't already have.
+Cloning a Repository: When you first clone a repository, the remote server usually sends the entire repository history as one or more pack files. Your local Git then unpacks these files.
+Automatic Background Processes: Git can also automatically trigger garbage collection in the background under certain conditions (e.g., when there are too many loose objects). This automatic process can lead to the creation of pack files without you explicitly running git gc.   
+The Process in a Nutshell:
+
+Git looks at the various objects in your repository.
+It identifies objects that are similar (often different versions of the same file).
+It chooses one version as a base and then calculates the differences (deltas) needed to get to the other versions.
+It bundles these base objects and their deltas into a single compressed file – the pack file.
+It also creates an index file (.idx) alongside the pack file. This index helps Git quickly locate specific objects within the larger pack file, so it doesn't have to decompress the entire thing to find what it needs.   
+So, pack files are a clever way for Git to keep your repository small and efficient, especially when you're sharing changes over a network. The git gc command is a primary tool for creating and optimizing these pack files locally.
 
 
+git creates pack files where it doesnt stores two separate objects all together and tries to store corresponding diff pack file and this happens when git does GC[garbage collection] or you push your code to some other remote origin.
+to see git garbage collection: "git gc"
+check content of pack files: 
+git verify-pack .git/objects/pack/pack-<40-hex-code-file-name.pack>
+Imagine you're keeping track of changes to a document. Instead of making a complete copy every single time you change a word, which would take up a lot of space, you could just note down the differences from the last version. That's kind of what Git does with pack files.
 
+Think of it like this:
 
+Without Pack Files (the simpler way, but inefficient): Every time you commit a change, Git would store the entire new version of your files as a separate object. If you made many small changes, you'd end up with lots of full copies, eating up space.
 
+With Pack Files (the smarter way): Git is clever. When it does its "housekeeping" (that's the git gc command – think of it as a spring cleaning for your repository) or when you push your changes to a remote place like GitHub, it looks for ways to save space.
 
+Instead of keeping tons of full copies, Git bundles many of these individual "objects" (representing file versions and other Git metadata) into a single, compressed file called a pack file.
 
+Within this pack file, Git doesn't just dump everything together. It's smart about it. If it sees two versions of a file that are very similar, it will store one full version and then just the differences (the "diff") needed to get from the first version to the second. This is way more space-efficient than storing both full versions.
+
+So, a pack file might contain a few full versions of files and then a series of "instructions" (the diffs) on how to transform one version into another.
+
+Why does Git do this?
+
+Save Space: This is the big one. By storing diffs, especially for projects with lots of history and similar files, Git can significantly reduce the overall size of your repository.
+Efficiency: Transferring one big pack file is often more efficient than transferring lots of small individual files when you're pushing or pulling changes.
+What about git verify-pack .git/objects/pack/pack-<40-hex-code-file-name.pack>?
+
+This command is like opening up one of those bundled pack files and having Git tell you what's inside and if it's all in good shape. It will show you information like:
+
+The number of objects in the pack file.
+The total size of the packed objects.
+Whether the pack file is consistent and not corrupted.
+So, in simple terms, Git's pack files are like compressed archives of your project's history, and instead of storing full copies of every change, it often stores the differences between them to save space and make things more efficient. git gc is the command that often triggers this optimization, and git verify-pack lets you peek inside those optimized bundles.
 
 
 
