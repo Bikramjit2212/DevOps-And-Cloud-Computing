@@ -1,0 +1,40 @@
+version control -> source control
+It it is a System which record changes to your files so later on you can manage them as specific Version.
+It also allows multiple developers to collaborate on one project.
+Why?
+track the code
+• manage the changes of code.
+• team can collaborate with each other
+• revert the previous version if is there any bug in latest version.
+• we can do branching and merging for development
+• check the entire history like who changed the code, what feature added and why?
+Types?
+Local version Control System:
+  Stores version of files locally in local-disk
+  Simple but not good for collaboration.
+  example: RCS (revision VCS)
+  
+Centralized Version Control System:
+  • one central server stores all versions
+  • developers can check code, make changes can go back.
+  • Easy to understand, good to work with teams for same network.
+  • problem is: single point failure.
+  • example: SVN (Sub versions), CVS
+  
+Distributed Version Control System:
+  • every developer can have full copy of repository
+  • supports offline work
+  • faster development, good for collaboration
+  • example: GIT
+To work with the Git, it must be downloaded to your system.
+
+https://git-scm.com/downloads (download Link)
+follow the simple installation process and install.
+you can run in Git Bash or CMD
+open cmd and run git version command
+• track the code
+• manage the changes of code.
+• team can collaborate with each other
+• revert the previous version if is there any bug in latest version.
+• we ca do branching and merging for development
+• check the entire history like who changed the code, what feature added and why?
