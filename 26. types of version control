@@ -33,3 +33,275 @@ https://git-scm.com/downloads (download Link)
 follow the simple installation process and install.
 you can run in Git Bash or CMD
 open cmd and run git version command
+
+GIT Terminology:
+Repository (Repo): its a folder which contains all your project files and folders
+also have all the history of changes.
+Commit: Snapshot of changes made to your codebase with some message.
+Branch: separate line of developer, used for development, bug fix etc.
+Merge: combining one branch to another branch for integrating features.
+clone: Copy entire remote code to local machine
+pull: fetch or merge changes from remote to local, merge changes in remote repo.
+push: upload local commit to remote
+Staging area: a middle ground where you set up your changes before commit.
+
+Work Flow of Local Repo:
+Working Directory [where you do code](add)-> Add to staging area [task complete](commit)-> Local Repo
+
+When we start working for project its just a folder means its called Working Directory.
+When you initialize git Repo in that folder it becomes Git Repository which is having .git
+hidden folder inside the same.
+This folder keep the track of staging area commits etc...
+and that's called Local Repository.
+Let's create folder, one file inside the same. Open Git bash,
+------------------------------------------------------------------------
+    Bikramjit@BIKRAMJIT MINGW64 /d/pw try
+    $ mkdir myproject1
+    
+    Bikramjit@BIKRAMJIT MINGW64 /d/pw try
+    $ cd myproject1
+    
+    Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1
+    $ nano file1.txt
+    
+    Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1
+    $ cat file1.txt
+    Hello This is testing of git
+    
+    Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1
+    $ ls
+    file1.txt
+--------------------------------------------------------------------------
+This is working directory, to make it git repo execute git init command.
+when this command executed it will initialize empty git repo and create .git hidden
+folder to your repo.
+--------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1
+$ git init
+Initialized empty Git repository in D:/pw try/myproject1/.git/
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ ls -a
+./  ../  .git/  file1.txt
+--------------------------------------------------------------------------
+here you can see, after initialization, its also showing master branch by default.
+.git folder is keeping track of all staging area and commits
+--------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+----------------------------------------------------------------------------
+now to Track the untrack File use add command.
+----------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git add file1.txt
+warning: in the working copy of 'file1.txt', LF will be replaced by CRLF the next time Git touches it
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   file1.txt
+-----------------------------------------------------------------------------
+Now the file is tracked.
+Remove it from staging area
+-----------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git rm --cached file1.txt
+rm 'file1.txt'
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+-----------------------------------------------------------------------------
+--cached means remove from staging but keep it in working directory.
+If you want to stage all files then use git add . (. indicates all files and folders)
+-----------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git add .
+warning: in the working copy of 'file1.txt', LF will be replaced by CRLF the next time Git touches it
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   file1.txt
+---------------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git commit -m "feature 1 complete"
+[master (root-commit) ddc0bc4] feature 1 complete
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git log
+commit ddc0bc467f20a3157c6d86a550ffaba747e8645c (HEAD -> master)
+Author: Bikramjit Roy <bikramjitroy20@gmail.com>
+Date:   Thu Apr 17 22:19:07 2025 +0530
+
+    feature 1 complete
+
+---------------------------------------------------------------------------------
+While doing commit if you are getting config error then we need to config git user to local system.
+we need to configure git User
+3 Types:
+  System Configuration:
+    Applied to all users of a system
+  Global Configuration:
+    Applicable to to single user but for all files and folders.
+  Local Configuration:
+    For only 1 folder
+
+Different levels at which you can configure Git settings. Think of it like setting preferences, but for how Git works in your projects. There are three main levels:
+
+System: This is like setting a rule for everyone who uses the computer. If you set something at the system level, it applies to all Git projects on that computer, no matter who is working on them. The configuration for this is usually stored in a file called /etc/gitconfig.
+
+Global: This is like setting a personal preference for you, the user. If you configure something globally, it will apply to all Git projects you work on, but not to other users on the same computer. These settings are usually stored in a file named .gitconfig inside your user's home folder. In the example, it says it was created for "sonam soni user," meaning only Sonam Soni will have these settings applied to all their Git projects.
+
+Local: This is the most specific level. It's like setting a preference for one particular project only. Settings at the local level only affect the Git repository where you set them. These configurations are stored inside the .git folder within that specific project's directory.
+
+The commands you use to set these configurations are generally the same. The only difference is the flag you add to the command to specify whether you want to set it at the --system, --global, or --local level.
+
+In simple terms:
+
+Imagine you're setting rules for playing games:
+
+System Rule: A rule that everyone in the house has to follow for all games.
+Global Rule: A personal rule that you follow for all the games you play.
+Local Rule: A specific rule that only applies to one particular game you're playing.
+Git configuration works similarly, allowing you to set rules for how Git behaves at different scopes – for the whole computer, just for you, or only for a specific project.
+----------------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global user.name "Bikram"
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global user.email "bikramjitroy20@gmail.com"
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global --list
+user.name=Bikram
+user.email=bikramjitroy20@gmail.com
+----------------------------------------------------------------------------------
+For few commands you want to set alias:
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global alias.st status
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global alias.co commit
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global alias.ci commit
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global alias.co checkout
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global alias.br branch
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git config --global --list
+user.name=Bikram
+user.email=bikramjitroy20@gmail.com
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+core.editor="D:\Microsoft VS Code\bin\code" --wait
+alias.st=status
+alias.co=checkout
+alias.ci=commit
+alias.br=branch
+----------------------------------------------------------------------------
+changing default branch as main branch
+----------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (master)
+$ git branch -M main
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (main)
+$ git log
+commit ddc0bc467f20a3157c6d86a550ffaba747e8645c (HEAD -> main)
+Author: Bikramjit Roy <bikramjitroy20@gmail.com>
+Date:   Thu Apr 17 22:19:07 2025 +0530
+
+    feature 1 complete
+----------------------------------------------------------------------------
+Now we want to push this on remote Repository.
+Create Repository on GitHub
+To push Local Repo to Remote we need to set Remote Origin:
+git remote add origin origin-link (command to set origin)
+origin you need to set only once
+----------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (main)
+$ git remote add origin https://github.com/Bikramjit2212/Rough-Repo.git
+-----------------------------------------------------------------------------
+Now to push the code: git push -u origin main
+means I want to push my commits to mentioned origin on main branch
+-----------------------------------------------------------------------------
+origin means where to push code: its your remote repository link
+-u is to set upsteam banch means if i say -u origin main means it will set upsteam branch to
+main
+next time if i say git push that means it will push the code of main branch to remote
+-----------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (main)
+$ git push -u origin main
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 249 bytes | 124.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/Bikramjit2212/Rough-Repo.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+-----------------------------------------------------------------------------
+If you are doing this for very first time then, it will ask for browser authentication.
+say Yes for it and you will be redirected to your browser then enter credentials, once login
+done you can push the code.
+If you are maintaining repository from local then we need to initialize it local, manage
+locally, connect to remote by setting up remote origin and then we can do push
+command execution.
+create folder --> mkdir project
+move --> cd project
+create file --> nano file.txt
+initialize repo --> git init
+stage file --> git add file.txt
+check stattus --> git status
+commit the staged content --> git commit -m "first commit"
+check the commit history --> git log
+set master branch to main as default --> git branch -M main
+to push them remotely --> create remote repository by going to github --> new repo -->
+add name + description --> not check on readme creation --> you will get remote origin
+set up command
+set origin --> git remote add origin origin link
+push the code: --> git push -u origin main
+Also- for the very first time if you trying to commit or push it can give error for configuration
+so set up configuration only once.
+git config --global user.name "user-name"
+git config --global user.email "user@email.com"
+this is one time setup after this i want to add some more codes and i want to push then how?
+just do : git add . (. indicates all updated files in working directory)
+git commit -m "new version update"
+git push
+just 3 commands.
