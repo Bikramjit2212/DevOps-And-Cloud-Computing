@@ -305,3 +305,22 @@ just do : git add . (. indicates all updated files in working directory)
 git commit -m "new version update"
 git push
 just 3 commands.
+
+to push new edits in the existing file
+you have to use the set-url sample shown below: 
+--------------------------------------------------------------------------------------------
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (main)
+      $ git remote set-url origin https://github.com/Bikramjit2212/Rough-Repo
+
+Bikramjit@BIKRAMJIT MINGW64 /d/pw try/myproject1 (main)
+      $ git push -u origin main
+          Enumerating objects: 5, done.
+          Counting objects: 100% (5/5), done.
+          Delta compression using up to 4 threads
+          Compressing objects: 100% (2/2), done.
+          Writing objects: 100% (3/3), 308 bytes | 102.00 KiB/s, done.
+          Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+          To https://github.com/Bikramjit2212/Rough-Repo
+             2b6a8f8..4e4bfbc  main -> main
+          branch 'main' set up to track 'origin/main'.
+
