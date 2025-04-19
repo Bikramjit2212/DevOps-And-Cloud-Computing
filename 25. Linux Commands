@@ -1,0 +1,182 @@
+to check manual: 'man'
+mkdir - make directory
+/ -> separator 
+there are different types of flags present in linux to make our tasks easy like: 
+mkdir -p MyFolder/src -> to create new set of folder/folders inside folder or parent directory[src folder created inside my folder directory]
+create single or nested directory with mkdir command
+
+ls - list content
+ls -l-> see much more details about a folder
+ls -lh -> everything in human readable format
+
+ls -a -> to show all files and folders [including hidden]
+ls -lt -> list down everything in folder in sorted form with basis of modification to time [i.e. newest modified files first]
+we can also to do in clubbed form for the flags: "ls -lt -lh -a"
+pwd - print working directory - shows the whole path of the current working directory you are working on: "pwd -> /users/roy/dev/file.txt"
+touch -> to create a file: "touch file1.txt"
+touch file{2..6}.txt -> creates multiple files in 1shot [ creates file2.txt - file6.txt]
+rm - remove a file: "rm file1.txt"
+rm file{2..6}.txt : removes multiple files in 1shot
+rm -r directory_name -> if we want to delete a directory then only rm command wont be able to directly delete a directory, so to directly delete it we will rm -r to recurssively delete it whichb deletes any files or folder that is present in the directory.
+
+cd- change directory
+cd .. -> ".." in linux represnets 1 directory out
+cd ../.. -> 2directory out
+home directory represented in ~ symbol
+
+Diff between absolute & relative path
+In Linux, an absolute path specifies a file or directory's location starting from the root directory ( / ), while a relative path specifies a location relative to the current working directory. 
+Here's a more detailed breakdown: 
+Absolute Path: 
+Starts with a forward slash (/). 
+Provides a complete and unambiguous path to a file or directory, regardless of the current location. 
+Example: /home/user/documents/file.txt. 
+Relative Path: 
+means that standing inside one folder how you should navigate to move to another folder
+Does not start with a forward slash. 
+Specifies the location of a file or directory relative to the current working directory. 
+Uses . (current directory) and .. (parent directory). 
+Example: documents/file.txt (if the current directory is home/user). 
+man -> manual for commands, gives the full description: "man ls" : gives the full details of the ls in descriptive form.
+& to come out of the manual press 'q'
+
+cat -> to display the content of a file, the command "cat" stands for "concatenate," and it's used to display, concatenate, and create files. 
+
+uname -> to see basic system info like kernal , kernal version etc
+uname -a -> complete kernal & system information. 
+uname -r -> shows kernel version only
+uname -s -> shows kernel name
+man uname -> display the system info.
+whoami -> diplays logged in user name
+echo -> print something in CLI terminal just like JS or java has for o/p this bash scripting has echo to show output
+these all are bash script programming language
+echo "hello world" >> roy.txt: this will input the text hello world text inside roy.txt file which i can see using "cat roy.txt" & if the file already exists it will keep on adding the o/p in the file
+>> -> to dump the output in the file whatever the o/p is.
+ls >> roy.txt: this dumps all the o/p of ls in roy.txt file and when I open it "cat roy.txt" I can see all the o/p inside roy.txt file.
+
+Every file in linux has 3 permissions associated:
+ - Read - read a file
+ - write - edit a file
+ - execute - execute the file
+we can make a file & get any combination of permissions
+a file may have all 3 permissions or a subset of them.
+
+these are associated on different levels of ownership.
+ownership is based on user lvl, that it includes:
+- users who owns the file
+- user groups that owns the file
+- other users who has access to the system
+- all the users of the system
+
+chmod:
+helps us to changethe permission of a file or directory[d]
+2 ways to use it:
+1. symbolic way
+    chmod [user] [operator] [permission] filename -> syntax
+    - user : user part describes which set of users who want this chmod command to affect. it can have one of the following values:
+          -u: owner
+          -g: group
+          -o: others
+          -a: all users [owner group and others]
+    - operator: this operator tells if we want to add a permission, remove or set an exact permission by removing other. It can have the following values:
+          +: addingpermission
+          -: will be reving a permission
+          =: will be allocating an exact permission & removing everything else
+    - permission: the permission we want to associate.
+          read : r
+          write : w
+          execute : x
+    eg: if we want to add execute permission for the owner of the file->
+    chmod u+x script.sh //u-> owner; x-> executable permission
+    if we want to remove write permission for the group
+    chmod g-w script.sh //g-> group; w-> write
+
+2. numeric way:
+every file gets permission associated to it in a group of 3 characters for owner group
+eg: rwxr-wr-- // the first rwx shows owner of the file has read write & execute access, group has read and write access and others can only read the file
+we can represent the 3 characters associated to owner/group/other in the form of a no. in the range of [0-7]. How? Because the no. from 0-7 can be represented in the form of a 3 digit binary.
+eg: 
+7: 111
+5: 101
+3: 011
+
+so if we have 3 digit binary, every character of binary shows that if we have that permission or not.
+eg: 
+4: 100,  so we have only read permission
+5: 101, we have read & execute permission
+so for each user. group and other we can put a decimal no. in the range 0-7 and change permission
+eg: chmod 444 script.sh -> 4 means 100 in binary which is only read permission, so owner group & other all get read access only
+
+chmod 400 script.sh
+now only owner has read access else no one can do anything.
+
+chmod 700 script.sh //owner of the file has read write executeand nobody else has anything because 7 in binary is 111
+---------------------------------------------------------------------
+chown:
+command that can change the ownership of the file i.e. who the file belongs to
+chown [options] [owner] [:group] file -> syntax
+if you are the root user then you can do this but if you are not then you have to use "sudo" it gives the root access
+---------------------------------------------------------------------
+system monitoring in Linux:
+commands that can help us to monitor system related things like disk usage, running processes etc.
+
+df: command to understand disk space usage
+we can see the amount of disks available and used using the df command to make the response more human readable format use "-h" flag
+
+du: to check disk usage of a particular folder
+can help us to check how much space a folder is taking we can use the "-h" flag to make the output human readable format.
+if we dont mention any folder then it will recursively go to each folder & show the usage
+to not go deep inside the folders: du -h -depth=1 <folder name> // it will show this usage for the folder and wont go deep inside it
+
+du -d2 <folder-name> // going 2 folder down
+du -d3 <folder-name> // going 3 folder down
+
+processes running in machine: 'ps'
+to check the list of all the corresponding processes running: 'ps aux'
+
+real time monitoring dashboard: top
+
+to exit the top command press 'q'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
