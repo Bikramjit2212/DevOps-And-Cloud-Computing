@@ -1,0 +1,51 @@
+# Introduction
+
+### to move/cut a file →
+
+```bash
+mv file1.txt ../folder2/ #moves the file 1 in folder2 from folder 1, file1.txt present in foder 1
+```
+
+```bash
+mv *.txt ../folder2/ #any file that ends with * should be moved to folder 2
+```
+
+### to rename a file
+
+```bash
+mv file1.txt something.txt #we can use mv to rename the file name & is not going to change any content inside it
+```
+
+### to copy a file
+
+```bash
+cp file1.txt ../folder1 # copies file1.txt from folder 2 to folder 1
+```
+
+## VIM [vi improved]
+
+first you need to install vim → https://www.geeksforgeeks.org/how-to-install-vim-editor-in-ubuntu/
+
+vim is a text editor 
+
+to start editing a file → 
+
+```bash
+vim file1.txt #enables the text editor to write 
+press esc + : + w + q #to exit & go back to terminal
+```
+
+### Modes of VIM
+
+1. normal mode [default mode] - can do copy, paste, delete
+2. insert mode → edit text, (press i → normal/default to insert mode) [to esc → esc + w+ q]
+3. visual mode → select the text (press v → normal to visual mode) (to select press shift + arrow btn to select)
+4. command mode → (first press esc btn then “press : +w+q”)
+
+we cant directly paste in vim by using ctrl+v from clipboard 
+
+to paste it we need to use “+p” and it will paste from the clipboard
+
+to learn vim using a game play “vim adventures”
+
+to delete the whole line altogether press esc btn first then press “dd” → it deletes the whole line
