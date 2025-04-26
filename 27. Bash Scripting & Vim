@@ -1,5 +1,194 @@
 # Introduction
 
+Bash→ Unix shell and command language, widely available in various OS & also default command interpreter on most linux
+
+BASH → Bourne-Again Shell
+
+Bash is essential for DevOps because it's the ubiquitous language of Linux/Unix systems, allowing you to automate tasks, manage infrastructure, and integrate various tools – ultimately making you more efficient and effective in your role.
+
+- **Automation:** Bash scripts automate repetitive tasks and system administration duties, saving time and reducing errors.
+- **Cross-Platform Compatibility:** Bash is compatible with most Unix-like systems, such as Linux and macOS, making scripts portable.
+- **Command Line Integration:** Bash scripts seamlessly interact with the command line, other scripts, programs, and file/process management. They can also prompt users for input, adding interactivity.
+- **Cost-Effective:** Bash is free and open-source.
+
+### **Creating and Running Bash Scripts:**
+
+- Create a script file using a text editor, starting with `#!/bin/bash` to specify Bash as the interpreter. Save the file with a `.sh` extension (e.g., `my_script.sh`).
+- Make the script executable by using the command `chmod +x my_script.sh` in the terminal.
+- Run the script by typing `./my_script.sh` in the terminal
+
+### **Basic Bash Script Components:**
+
+- **Variables:** Store data using variables (e.g., `NAME="Alice"`).
+- **User Input:** Get input from the user using `read` (e.g., `read NAME`).
+- **If Statements:** Create decision-making logic using `if`, `then`, `else`, and `fi`.
+- **Loops:** Repeat tasks using loops (e.g., `for i in 1 2 3; do echo "Number $i"; done`).
+
+### **Running and Debugging:**
+
+- Execute scripts using `$ ./my_script.sh`.
+- Debug scripts by adding the `x` option when running them (e.g., `bash -x my_script.sh`).
+
+# **What is Shell Scripting?**
+
+Shell scripting is essentially writing a series of commands that you want the shell (the command-line interpreter) to execute in sequence.  It's a way to automate tasks, perform operations on files, and interact with the operating system.
+
+**1. What is a Shell?**
+
+- The shell is a command-line interface (CLI).
+- It's the tool that allows you to interact with the operating system by typing commands.
+- When you type a command, the shell interprets it and then runs it.
+
+**2. What is a Shell Script?**
+
+- A shell script is essentially a program consisting of a series of commands written in a specific order.
+- The purpose of a shell script is to automate processes by executing multiple commands in sequence.
+- For example, you could write a shell script to automate the process of backing up all the files and folders within a directory.
+- Shell scripts have a `.sh` file extension (e.g., `my_script.sh`).
+- Even though it's a program, it's designed to be executed within the shell environment.
+
+**3. Popular Shells**
+
+- There are several popular shell programs available, including:
+    - Bash (Bourne Again Shell)
+    - Zsh
+    - Ksh
+    - Fish
+- You can run your shell scripts within any of these compatible shell environments.
+
+**4. Where to Use Shell Scripts**
+
+Shell scripts are very versatile and can be used for various purposes, including:
+
+- Automating repetitive tasks (like backups or deployments).
+- DevOps workflows.
+- System administration.
+- Environment setup.
+
+**5. Bash in Detail**
+
+- Bash is the most commonly used shell on Unix/Linux systems.
+- Bash is powerful because it allows you to use programming concepts within your scripts, such as:
+    - Variables (to store data)
+    - Loops (to repeat actions)
+    - Functions (to create reusable code blocks)
+    - Conditional statements (to make decisions)
+
+**6. Creating a Basic Shell Script**
+
+- The first line of a Bash script is crucial: `#!/bin/bash`
+    - This is called the "Shebang".
+    - The Shebang tells your system to use the Bash interpreter to execute the script.
+    - If you don't include the Shebang, the script might still run, but it will use the system's default shell, which might not be Bash.
+
+**7. Comments in Shell Scripts**
+
+- Comments are non-executable lines in your script.
+- You use the `#` symbol to start a comment.
+- Comments are used for documentation and to help you (or others) understand the code.
+
+**8. Variables in Bash**
+
+- In Bash, a variable is a named location in the computer's memory.
+- Variables are used to store data temporarily while the script is running.
+
+**9. Special Variables**
+
+- Bash provides some built-in variables called "Special Variables".
+- These variables are automatically available, and you don't need to create them yourself.
+- They provide useful information about the script and its execution:
+    - `$0`: Stores the name of the script itself.
+    - `$#`: Stores the number of arguments passed to the script.
+    - `$@`: Stores all the arguments passed to the script as a list.
+    - `$?`: Stores the exit status of the last command that was executed.
+        - An exit status of `0` usually means the command was successful.
+        - A non-zero exit status (e.g., `1`) usually indicates an error.
+    - `$1`, `$2`, `$3`, etc.: These variables store the individual arguments passed to the script.
+        - `$1` holds the first argument, `$2` holds the second argument, and so on.
+
+**10. Example: Script with Arguments**
+
+- The document gives an example of a script called `copy.sh` that takes two arguments: a source filename and a destination filename.
+- If you run the script like this: `sh copy.sh source.txt dest.txt`
+    - `$0` would be `copy.sh`
+    - `$#` would be `2` (because you provided two arguments)
+    - `$@` would be `source.txt dest.txt`
+    - `$1` would be `source.txt`
+    - `$2` would be `dest.txt`
+
+## **Key Concepts**
+
+1. **Creating a Script**
+    - You begin by opening a text editor (like `nano`, `vim`, or `gedit`).
+    - The first line of your script is crucial: it's called the "shebang" and tells the system which interpreter to use to execute the script. For Bash, it's `#!/bin/bash`.
+    - Then, you write your sequence of commands (e.g., `echo "Hello, World!"`).
+    - Finally, you save the file with a `.sh` extension (e.g., `script.sh`).
+2. **Making the Script Executable**
+    - Before you can run your script, you need to give it execute permissions. The `chmod +x script.sh` command does this.
+3. **Running the Script**
+    - To execute the script, you type `./script.sh` in your terminal.
+4. **Basic Components**
+    - **Comments:** Lines starting with `#` are comments and are ignored by the shell.  They're used to explain what the script does.
+    - **Variables:** You can store data in variables.  For example, `NAME="Alice"` assigns the value "Alice" to the variable `NAME`, and you can use it like this: `echo "Hello, $NAME"`.
+    - **User Input:** The `read` command lets you get input from the user.  For example: Bash
+        
+        `echo "Enter your name:"
+        read NAME
+        echo "Hello, $NAME"`
+        
+    - **Control Structures:** These allow you to control the flow of your script.
+        - **If Statement:** Executes different code blocks based on a condition.  Bash
+            
+            `if [ "$NAME" = "Alice" ]; then
+              echo "Hi, Alice!"
+            else
+              echo "You are not Alice."
+            fi`
+            
+        - **For Loop:** Repeats a block of code for a sequence of values.  Bash
+            
+            `for i in 1 2 3
+            do
+              echo "Number $i"
+            done`
+            
+5. **Functions**
+    - Functions let you define reusable blocks of code.  Bash
+        
+        `greet() {
+          echo "Hello, $1"
+        }
+        
+        greet "Alice"
+        greet "Bob"`
+        
+6. **File Operations**
+    - The document briefly mentions commands for working with directories:
+        - `mkdir new_directory` (create a directory)
+        - `cd new_directory` (change the current directory)
+        - It also mentions listing files, but doesn't provide the command.  (`ls`)
+7. **String Operations**
+    - The document shows how to:
+        - Find the length of a string: `STR="Hello"; echo ${#STR}`
+        - Extract a substring: `echo ${STR:1:3}`
+8. **Arithmetic Operations**
+    - You can perform calculations using double parentheses: `result=$((3 + 5)); echo $result`
+9. **Debugging**
+    - To debug a script, you can run it with the `x` option: `bash -x script.sh`.  This will print each command before executing it, helping you see what's going on
+
+---
+
+- **File Management:** Bash scripts can automate file-related operations like backing up files/directories, renaming multiple files, archiving/compressing files, and organizing files based on criteria like file extensions.
+- **System Administration:** These scripts can automate system updates, log management (rotating, compressing, deleting), system health monitoring (CPU, memory, disk space), and application deployment across servers.
+- **Networking Tasks:** Bash scripts can automate SSH tasks, network configuration (IP addresses, firewalls, VPNs), and data transfers between servers.
+- **Data Processing:** They are useful for text processing (searching, replacing, extracting data), database management (backups, migrations, imports/exports), and data parsing (CSV, JSON, XML files).
+- **Task Scheduling:** Bash scripts can be scheduled to run at specific intervals using cron jobs, and they can also automate reminders or notifications.
+- **Development Tasks:** They can automate testing, build automation (compiling, creating builds, deploying), and version control tasks (git).
+- **User Management:** Scripts can automate user account management (creation, deletion, modification) and permissions management.
+- **Automation of Repetitive Tasks:** Bash scripts can automate form filling and web scraping.
+- **Custom Alerts:** They can be used to send alerts for system monitoring (e.g., low disk space, high CPU usage) and service monitoring (e.g., restarting services).
+- **Integration with Other Tools:** Bash scripts can integrate with APIs and other automation tools like Ansible, Jenkins, or Docker.
+
 ### to move/cut a file →
 
 ```bash
@@ -49,3 +238,745 @@ to paste it we need to use “+p” and it will paste from the clipboard
 to learn vim using a game play “vim adventures”
 
 to delete the whole line altogether press esc btn first then press “dd” → it deletes the whole line
+
+# BASH Scripting
+
+## Command Line Interface
+
+To control OS of a machine we have 2 main mechanisms:
+
+1. GUI - Graphical User Interface
+2. CLI - Command Line Interface
+
+It becomes very easy to control your whole OS using GUI interfacing. But at a lot of situation you will be expected to control the whole OS using CLI interface. When?
+
+Back-end application hosted on a AWS cloud server, now these server are present in a very remote location, now if we have to interact with this server, then we need to control the OS of this server from our machine, & CLI will only help us as we wont be having any GUI access to the server.
+
+In CLI interface, we use softwares like iterm, terminal, CMD, power shell etc, which gives us an interface to write some commands that will be running directly in our OS.
+
+## REPL Console
+
+**REPL** stands for **Read, Evaluate, Print, Loop**. A repl console is a special type of console which understand a particular programming language and every time we run it, it will expect us to add one valid instruction to the console, it will then evaluate it's output, print the output and then go back to the same state where it is expecting an input from us. Just like CMD in windows
+Languages like Python, ruby, JS all have their respective REPL consoles.
+Even, the terminal which we see in our OS are REPL consoles, which understand bash scripting language.
+
+### What is Shell ?
+
+A shell in the context of computing and operating systems like Linux, is an **interface that allows you to access and interact services of your operating system**. The primary function of shell is to accept commands from user and then execute them.
+
+### What is Bash ?
+
+Bash is a type of **scripting language** that helps us to interact with a linux shell. Bash stands for : **Bourse Again Shell.**
+Using Bash, we can write linux command in CLI softwares like Iterm and terminal, and also
+
+1. **GUI** - Graphical user interface
+2. **CLI** - Command line interface
+
+write end to end programmed scripts which can help us to automate a lot of things in our computer.
+
+### What is a bash script ?
+
+We can say that at some point of time, we *might have to execute multiple bash commands for achieving a complex task*. 
+
+For example: We want to monitor that if the disk usage of our machine goes beyond 90%, we should be mailed for this incident. If we are implementing this
+problem using bash script then we might need a lot of lines to work together in a single logical piece, that's where bash script will help. Any bash script that we prepare will be having an extension of **`.sh`** .
+
+### How to write a bash script ?
+
+We can make a new file with an extension of `.sh` to make a bash script file. Any command that we were able to directly execute in the terminal can be added as a code in this file to eventually run it. It is a purely interpreted language
+
+```bash
+ls
+pwd
+```
+
+Let's say we save the above code in a new [script1.sh](http://script1.sh/) file. Now to run this file, we can use the following command:
+
+```bash
+sh [script1.sh](http://script1.sh/)
+#or
+bash [script1.sh](http://script1.sh/)
+```
+
+```bash
+echo "Welcome to shell scripting"
+echo "We are writing our first bash script"
+echo "Ending...."
+ls
+```
+
+With both of these commands we can actually run the bash script and see output on our screen.
+
+```bash
+Welcome to shell scripting
+We are writing our first bash script
+Ending....
+myFolder     script1.sh      script2.sh      script3.sh
+```
+
+Now in your machine there can be more than one shell scripting language available, like bash, zsh etc. Sometimes the default scripting language is not bash, so that's why we have to separately mention `bash fileName` to enable it to be run by bash script. Bash is an modification of the `sh` shell script.
+If we don't want to mention which scripting language to use in order to run the file, and exepct it to pick it from the code we can use **shebang**.
+
+## Shebang in scripts
+
+Shebang looks like this: `#!` 
+
+This shebang is added on the top of the script and then we can mention that path of the scripting language we want to get executed by.
+
+```bash
+#!/bin/bash
+Welcome to shell scripting"
+echo "We are writing our first bash script"
+echo "Ending....
+```
+
+Here we have added some bash code and at the top of the file added `#!/bin/bash` . So we passed the path of the interpreter which will be used to run the code, instead of picking the default one from system.
+
+Because we have mentioned the interpreter, we can run the file independently, 
+
+```bash
+./script1.sh
+```
+
+But this command will give you error. Why? 
+
+Because the current script file is not executable.
+
+When we say bash [`script1.sh`](http://script1.sh/) then bash interpreter is directly executable in the terminal. To make our file directly executable we can change it's permission.
+
+```bash
+chmod +x script1.sh
+```
+
+And now, we can run the script independently
+
+```bash
+./script1.sh
+```
+
+This command will start running the file, at the top because of shebang pick the interpreter as bash and then run the remaining code with bash.
+
+### Variables in bash script
+
+Sometimes we want to reuse a value at multiple places in our bash script, to do that we can create variables. Variables in bash script serve the same purpose as variables in any other language.
+
+To create a variable, we just give variable name put an equals and then give it a value
+
+```bash
+threshold=80
+```
+
+This command creates a new variable threshold with value 80. Now if we want to use this variable at any place, we have to prepend a $ before the variable name to access it's value.
+
+```bash
+echo "Value of threshold is $threshold"
+```
+
+In this statement, `$threshold` helps us to access the value of the variable threshold.
+Now to add a variable inside a bash script we can use the same syntax.
+
+```bash
+echo "Welcome to the program"
+threshold=80 #declaring a variable threshold with value 80
+echo "Value of the threshold set is $threshold" #using the variable inside a print statement
+```
+
+The variables which we create in a terminal, or in script will exist only in the same terminal session, once you close your terminal or move to a new terminal window, those variables won't be accessible.
+
+Apart from variables created by us, there are some predefined variables as well like `$USER` , `$PATH` that are already present in every terminal session we create. These are predefined in linux and serve some specific purpose but if we want we can change their value.
+
+If we want to see all the inbuilt variables we can use the command :
+
+```bash
+env
+```
+
+This will list all the existing prebuilt variables for us.
+
+### Subshells
+
+If we want to store the output of a linux command inside a variable we can do that using subshell.
+
+```bash
+current_path=$(pwd)
+```
+
+This will store output of pwd inside current path.
+
+### To store a date:
+
+```bash
+date +%y = last 2 digits of the year= 25 for 2025
+
+date +%Y = 2025
+
+date +%Y-%m = 2025-04
+
+date +%Y-%m-%d = 2025-04-26
+
+date +%Y-%m-%d-%H = 2025-04-26-19 #%H -> adds hour 19 -> hour
+```
+
+### Problem: Automate a Directory Backup Script
+
+**Objective: Use variables in a Bash script to automate the backup of a specific directory. The script should take the directory name as a variable, compress the directory, and save the backup with a timestamp.**
+
+```bash
+cd developer
+mkdir ShellBackupScript
+#creating another directory
+cd developer
+mkdir DirectoryToBackup
+cd DirectoryToBackup
+echo "Hello World" >> file.txt
+ls 
+#now to backup this directory we will write a script in ShellBackupScript directory
+vim script.sh
+#inside script.sh, go in the DirectoryToBackup and do pwd and you we will get the location of the file copy that and paste in directory_to_backup
+directory_to_backup= "/user/roy/developer/DirectoryToBackup"
+#this is the directory we want to zip & create a backup
+backup_location="/user/roy/developer"
+#path to store the backup
+current_date=$(date +%Y-%m-%d)
+#value of current date which will be appended in backup file-name
+tar -czf "$backup_location/backup-$current_date.tar.gz" "$directory_to_backup" #creating path to dump the backup 
+echo"backup of $directory_to_backup completed successfully on $current_date inside $backup_location
+#these all will be inside script.sh
+#to check all the contents again 
+cat script.sh
+bash script.sh
+#process will be completed & then to check the backup file go to DirectoryToBackup folder in file manager 
+#this is for taking hard code path approach
+```
+
+now this is hard coded to automate that
+
+Evaluation math expressions
+If we want to evaluate math expression in shell, we can use the expr command and then any
+arithmetic operation we can perform
+
+```bash
+directory_to_backup= $1
+#this is the directory we want to zip & create a backup
+backup_location=$2
+#path to store the backup
+current_date=$(date +%Y-%m-%d)
+#value of current date which will be appended in backup file-name
+tar -czf "$backup_location/backup-$current_date.tar.gz" "$directory_to_backup" #creating path to dump the backup 
+echo"backup of $directory_to_backup completed successfully on $current_date inside $backup_location
+
+#then while running bash
+bash script.sh /user/roy/developer/DirectoryToBackup /user/roy/developer
+#this is done for taking command line arguments
+```
+
+Here for multiplication we have to use \ because * is considered for regex matching also in
+shell.
+Conditionals and decisions in Bash Script
+Being a programming language, bash script is capable of using conditional statements for
+decision making process.
+env
+
+expr 10 + 2 # addition of numbers
+expr 10 / 2 # division of numbers
+expr 10 \* 2 # multiplication of numbers
+
+In bash, we have the if keyword that can help us to put a conditional in place.
+
+So, any if block starts with the if keyword and ends with fi keyword and in between we
+put the condition and algorithm to execute when condition is true.
+For example:
+
+Here in the conditionals square bracket we can use operators to prepare a condition which
+evaluates to a boolean true or false.
+If we want to put multiple conditions in place then we can also use elif .
+
+How the flow looks like ?
+If the first if conditional is true, then the block of if is executed, and everything else i.e. elif and
+else are avoided.
+Otherwise if the second conditional is true, then the block of second conditional is executed and
+if [ condition ];then
+
+# some algorithm
+
+fi
+
+#!/bin/bash
+my_value=2000
+if [ $my_value -ge 2000 ]; then
+echo "The condition is true"
+
+else
+
+echo "The condition is false"
+
+fi
+
+#!/bin/bash
+my_value=2000
+if [ $my_value -gt 2000 ]; then
+echo "The condition is true"
+elif [ $my_value -eq 2000 ]; then
+
+echo "The second condition is true"
+
+else
+
+echo "The condition is false"
+
+fi
+
+else is avoided.
+Otherwise block of else is executed.
+Interesting bash conditional script
+
+Here the part command -v is an actual valid linux bash command, which takes input of a
+command and tell the path from which command is executed if it exists.
+For example if curl command is installed in your machine and we do
+
+Then it returns the path of curl command.
+Now we want to write a conditional that executes if a command runs successfully, then we can
+just put the command in the if conditional. If command executed successfully we get conditiona
+true else false. But what about the output of the command, we don't want output of the
+command to be printed, hence we dump the output of the given command in /dev/null which
+is a special file that discards everything we write in it. Hence no output from command is printed
+on the screen and we get conditional evaluated.
+Operators in bash
+In Bash scripting, operators are used to perform various operations, including arithmetic,
+comparisons, logical operations, and more. Here’s a comprehensive guide to the different types
+of operators in Bash:
+
+1. Arithmetic Operators
+Arithmetic operators are used to perform basic mathematical operations.
+
+Operator Description Example
+
+- Addition echo $((3 + 2)) → 5
+- Subtraction echo $((5 - 2)) → 3
+command="curl"
+if command -v $command &> /dev/null ; then
+
+echo "curl command exists"
+
+else
+
+echo "curl command doesn't exist"
+
+fi
+
+command -v curl
+
+Operator Description Example
+
+- Multiplication echo $((4 * 2)) → 8
+/ Division echo $((10 / 2)) → 5
+% Modulus (remainder) echo $((5 % 2)) → 1
+** Exponentiation (power) echo $((2 ** 3)) → 8
+1. Comparison Operators
+Comparison operators are used to compare numbers or strings. These are commonly used in
+conditional statements like if or while .
+Numeric Comparison Operators
+
+Operator Description Example
+-eq Equal to [ 5 -eq 5 ] → true
+-ne Not equal to [ 5 -ne 4 ] → true
+-gt Greater than [ 5 -gt 3 ] → true
+-lt Less than [ 3 -lt 5 ] → true
+-ge Greater than or equal to [ 5 -ge 5 ] → true
+-le Less than or equal to [ 5 -le 5 ] → true
+
+String Comparison Operators
+
+Operator Description Example
+= Equal to [ "abc" = "abc" ] → true
+!= Not equal to [ "abc" != "xyz" ] → true
+< Less than, in ASCII alphabetical order [ "abc" < "xyz" ] → true
+
+> Greater than, in ASCII alphabetical order [ "xyz" > "abc" ] → true
+-z String is null (zero length) [ -z "" ] → true
+-n String is not null [ -n "abc" ] → true
+> 
+1. Logical Operators
+Logical operators are used to combine multiple conditions.
+
+Operator Description Example
+&& Logical AND [ 5 -gt 3 ] && [ 5 -lt 10 ]
+|| Logical OR `[ 5 - lt 3 ] || [ 5 -gt 3 ]` 
+! Logical NOT [ ! 5 -eq 3 ] → true
+
+1. File Test Operators
+File test operators are used to test various attributes of files, such as whether a file exists, is
+readable, is a directory, etc.
+
+Operator Description Example
+-e File exists [ -e /path/to/file ]
+-f File is a regular file [ -f /path/to/file ]
+-d File is a directory [ -d /path/to/dir ]
+-r File is readable [ -r /path/to/file ]
+-w File is writable [ -w /path/to/file ]
+-x File is executable [ -x /path/to/file ]
+-s File is not empty (has size > 0) [ -s /path/to/file ]
+-L File is a symbolic link [ -L /path/to/file ]
+
+1. Assignment Operators
+Assignment operators are used to assign values to variables.
+
+Operator Description Example
+= Assign value my_var=10
++= Add and assign my_var+=5 (same as my_var=$((my_var + 5)) )
+-= Subtract and assign my_var-=5
+*= Multiply and assign my_var*=2
+/= Divide and assign my_var/=2
+%= Modulus and assign my_var%=3
+
+1. Miscellaneous Operators
+
+Conditional (Ternary) Operator
+
+1. Bitwise Operators
+Bitwise operators perform operations on the binary representations of numbers.
+
+Operator Description Example
+& Bitwise AND echo $((5 & 3)) → 1
+ `` Bitwise OR
+^ Bitwise XOR echo $((5 ^ 3)) → 6
+~ Bitwise NOT echo $((~5))
+<< Left Shift echo $((2 << 1)) → 4
+
+> Right Shift echo $((4 >> 1)) → 2
+> 
+1. Command Substitution
+Command substitution allows the output of a command to be used as an argument or variable
+value.
+2. Brace Expansion
+Brace expansion is used to generate a series of strings at once.
+Description: This operator is used to assign a value based on a condition.
+Syntax: [ condition ] && echo "true case" || echo "false case"
+Example:
+
+Explanation: Assigns the value of $b to max if $a is less than $b ; otherwise, assigns
+the value of $a .
+
+Syntax: $(command) or `command`
+Example:
+
+Explanation: The output of the date command is stored in the variable current_date .
+[ $a -lt $b ] && max=$b || max=$a
+
+current_date=$(date)
+echo "Today's date is $current_date"
+
+1. Range Expressions
+Range expressions are used to generate a sequence of numbers or letters.
+
+Exit codes in bash\
+Every command that we execute in linux shell has a dedicated exit code associated to it, that
+tells whether the command executed successfully or not. This can help us to put a programatic
+way to determine whether the command worked well or not otherwise most of the time we just
+look at the logs and then determine this.
+
+To get access of this status code, there is a variable which stores after any command is execute
+i.e. $? .
+Note:
+echo commands mostly always have 0 exit code as they mostly get no errors
+Syntax: {start..end} or {option1,option2,...}
+Example:
+
+Example:
+
+Exit code 0 means the command was successful
+Non zero exit code means there was some issue
+echo {1..5} # Outputs: 1 2 3 4 5
+echo {a,b,c} # Outputs: a b c
+
+for i in {1..5}; do echo $i; done # Outputs: 1 2 3 4 5
+for i in {a..e}; do echo $i; done # Outputs: a b c d e
+
+pwd
+echo $? # this will print 0, as pwd command has no issue and will definetely
+run
+
+Loops in bash script
+In bash we have support of loops using which we can do repeated tasks.
+While loop
+While loop takes a condition and keeps on running it's block of code till the time the condition
+doesn't become false.\
+
+To write a while loop that prints counting of first 10 natural numbers we can do:
+
+Here in the condition we are checking $i -le 10 i.e. till the time i is less than or equal to 10
+we keep on executing the block of while , and the moment i goes beyond 10, we terminate the
+loop and move ahead.
+If we consider one more loop:
+ls -l /something # considering /something doesn't exist
+echo $? # this will print something other than 0
+
+while [ condition ]
+do
+
+# some logic
+
+done
+
+i=1 # this is a variable using which we will control the while loop to start
+and stop
+while [ $i -le 10 ]
+do
+
+echo "Value of i is: $i"
+i=$((i+1)) # increment the value of i by 1
+sleep 1 # pause the execution by 1 second
+
+done
+
+while [ -f [conditionals.sh](http://conditionals.sh/) ]
+do
+
+echo "File exists till $(date +%H-%M-%S)"
+sleep 5
+
+done
+
+Here we keep on running the while loop till the time the [considionals.sh](http://considionals.sh/) file exist in the same
+folder as that of the loop file. For every iteration of the loop we sleep for 5s, which is kind of a
+delay we are adding up.
+Once you rename / remove the file the loop stops immediately when it checks the condition.
+Problem Statement:
+Create a Bash script that monitors a directory and continuously counts the number of files in it.
+The script should print the file count every 10 seconds, and if the directory becomes empty, the
+script should exit with a message indicating that the directory is empty.
+Solution:
+
+Let's break down the command ls -1 ~/testdir | wc -l step by step:
+Command Breakdown
+
+1. We first of all take the directory as input
+2. In the while loop we are using ls -A that will also list hidden file from the input directory
+3. To do the file count we use ls -1 which prints the output of ls command in multiple lines
+and then we pipe this multiline output to the wc command which counts the words,
+characters and lines from a text. And because we are using wc with a -l flag it will only
+count the number of line.
+4. ls -1 ~/testdir :
+ls : This is the list command in Unix/Linux, which is used to list the contents of a
+directory.
+echo "File no longer exists from $(date +%H-%M-%S)"
+
+directory_to_check=$1
+while [ "$(ls -A $directory_to_check)" ] # till the time directory exists
+keep running the loop
+do
+
+file_count=$(ls -1 $directory_to_check | wc -l)
+echo "File count in the direct is $file_count"
+sleep 5
+
+done
+echo "Directory is now empty"
+
+Complete Command Purpose
+
+Github link to the script
+For loops in bash
+Example Output:
+If ~/testdir contains three files named file1 , file2 , and file3 , the output of ls -1
+~/testdir would be:
+-1 : This option tells ls to list each file or directory name on a separate line. Without
+this option, ls might display files in a more compact, multi-column format.
+~/testdir : This specifies the directory whose contents you want to list. ~
+represents the home directory of the current user, so ~/testdir refers to the
+testdir directory inside the user's home directory.
+
+file1
+file2
+file3
+
+1. | (Pipe Operator):
+The pipe | is used to pass the output of one command as input to another
+command. In this case, the output of ls -1 ~/testdir is passed to the next
+command, wc -l .
+2. wc -l :
+
+In this context, wc -l will count the number of lines produced by the ls -1 ~/testdir
+command.
+Example Output:
+For the previous example where ls -1 ~/testdir outputted three lines ( file1 , file2 ,
+file3 ), wc -l would return 3 , which is the number of lines.
+wc stands for "word count," but it can also count lines and characters.
+-l : This option tells wc to count the number of lines in the input it receives.
+
+ls -1 ~/testdir | wc -l :
+This command lists all the files in ~/testdir , with each file name on a new line.
+It then counts the number of lines in this list, which is effectively the number of files in
+the directory.
+
+We have while loops that keep on executing the task till the time condition is actually true. On
+the other hand we have for loops that can run again and again for each item in a list or set of
+items.
+
+Here, we have a variable i, used inside the for loop which goes one by one to every single items
+of list and take it's value. Then just like while loops we use do and done to create a block of
+for which will be executed again and again till the time i takes value of each and every
+single item.
+Note:
+In bash, if we want to represent a range of numbers we can use {x..y} . Here the range will
+start from x and incrementally move up till y.
+So, we can modify our for loop using this range syntax.
+
+Interesting problem
+Let's say we want to generate zip of every file inside a folder separately then we can use the
+below script:
+for i in 1 2 3 4 5 6 7 8
+do
+
+echo "i is $i"
+sleep 1
+
+done
+
+for i in {1..8}
+do
+
+echo "i is $i"
+sleep 1
+
+done
+
+for file in ~/Developer/ShellScripting/Countable/*
+do
+
+tar -czvf "$file-$(date +%Y-%M).tar.gz" "$file"
+
+done
+
+Here the for loop has a file variable that goes to each and every single file in the directory
+mentioned and then use the tar command to zip them up.
+Problem Statement:
+Write a Bash script that iterates through a directory containing text files. For each text file, the
+script should:
+
+Solution
+
+We are iterating to all the files in the target folder and then passing that whole file in the wc
+command with -l flag for counting lines. And then appending the line count in the same file.
+Data streams
+Any text that we see as an output or pass as an input is classified into different stream of data.
+
+We can control how the stdout and stderr be handled in our linux machine.
+If we want to stream out correct output i.e. stdout in a file by dumping it we can use > or 1>
+
+With both of the above codes, if our command runs properly then it will dump its log inside
+output.txt. but if the commands fails, then the failure log or stderr will not be dumped in
+output.txt.
+Count the number of lines in the file.
+Append the line count to the end of the file.
+
+Standard Input (stdin) - Data stream where the input is received
+Standard output (stdout) - Data stream where command output is sent
+Standard error (stderr) - Data stream where any error is actually sent
+#!/bin/bash
+for file in ~/Developer/ShellScripting/Countable/*.txt
+do
+
+line_count=$(wc -l < $file)
+echo "Line count is $line_count" >> $file
+
+done
+
+ls -l 1> output.txt
+
+# or
+
+ls -l > output.txt
+
+To dump the data of error, we can use 2> .
+
+Here, if the command runs properly then the logs will not be dumped in error.txt, but iof the
+command fails all the error logs will be dumped.
+If we don't care and we want to dump everything i.e. stdout and stderr both then we can use &>
+
+Now, doesn't matter stdout and stderr both will be dumped in log.txt
+If we want to separately stream both stdout and stderr then we can combine the usage of 1>
+and 2> .
+
+Here all the stderr logs will be streamed to error.txt and stdout to success.txt
+Now to handle taking input from user in bash, we can use stdin. To trigger taking an input we
+have a command called as read
+
+Here, we first print Give input , and then we will wait for the user to give an input, once the
+user gives an put then the script resume and prints the second log with value of num.
+Function in bash
+If we have a piece of logic that we want encapsulate in one place and use it multiple times, then
+we can wrap that logic into a function. Function is a piece of code, that has some logic, which
+can take some input, process the input from that logic and generates an output.
+
+Example:
+ls -l notexistent 2> error.txt
+
+ls -l &> log.txt
+
+bash [test.sh](http://test.sh/) 1> success.txt 2> error.txt
+
+echo "Give input"
+read num
+echo "Number given is $num"
+
+function_name() {
+
+# here we can write function logic
+
+}
+
+Here we have defined a function, by first giving it a name, then putting a pair of parenthesis,
+and then a pair of curly braces to create a block of the function. Now in this block we can write
+some logic.
+Example 2:
+To take a user input in a function call, we can pass the input space separated when calling the
+function and inside the function we can use $1 for first incoming input, $2 for the second one
+and so on.
+
+Here we will calculate square of 4 and print it.
+If let's say you want to store the logs from the function created in a variable we can do
+something like this:
+
+Here whatever is the log result of square will be stored inside r1 . If we don't want to store an
+echo log, and actually return something then we can use return keyword.
+greet() {
+
+echo "Hello world"
+
+}
+
+square() {
+v=$1
+sq=$((v*v))
+echo $sq
+
+}
+square 4
+
+square() {
+v=$1
+sq=$((v*v))
+echo $sq
+
+}
+r1=$(square 4)
+echo "R1 is $r1"
+
+square() {
+v=$1
+sq=$((v*v))
+return $sq
+
+}
+
+With a return keyword, whatever we return from the function call, is stored inside $1. We can
+fetch that response from their.
+How we can schedule our scripts to run at a particular
+time ?
+We can automate when the system should run our script, we can decide if we want to run it
+immediately, or 5 mins after the schedule, or daily at 6:00AM in the morning and what not.
+To do this scheduling there are a lot of different ways but the most widely accepted is :
+
+at package
+This is a software that we can install in our linux shell, so that we can schedule jobs for future.
