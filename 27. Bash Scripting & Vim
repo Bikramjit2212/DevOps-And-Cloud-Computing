@@ -451,10 +451,6 @@ bash script.sh
 
 now this is hard coded to automate that
 
-Evaluation math expressions
-If we want to evaluate math expression in shell, we can use the expr command and then any
-arithmetic operation we can perform
-
 ```bash
 directory_to_backup= $1
 #this is the directory we want to zip & create a backup
@@ -470,37 +466,37 @@ bash script.sh /user/roy/developer/DirectoryToBackup /user/roy/developer
 #this is done for taking command line arguments
 ```
 
-Here for multiplication we have to use \ because * is considered for regex matching also in
-shell.
-Conditionals and decisions in Bash Script
-Being a programming language, bash script is capable of using conditional statements for
-decision making process.
-env
+## Evaluation math expressions
 
+If we want to evaluate math expression in shell, we can use the `expr` command and then any arithmetic operation we can perform.
+
+```bash
 expr 10 + 2 # addition of numbers
+
 expr 10 / 2 # division of numbers
+
 expr 10 \* 2 # multiplication of numbers
+```
 
-In bash, we have the if keyword that can help us to put a conditional in place.
+Here for multiplication we have to use `\`because `*`is considered for regex matching also in shell.
 
-So, any if block starts with the if keyword and ends with fi keyword and in between we
-put the condition and algorithm to execute when condition is true.
-For example:
+## Conditionals and decisions in Bash Script
 
-Here in the conditionals square bracket we can use operators to prepare a condition which
-evaluates to a boolean true or false.
-If we want to put multiple conditions in place then we can also use elif .
+Being a programming language, bash script is capable of using conditional statements for decision making process.
+In bash, we have the `if`keyword that can help us to put a conditional in place.
 
-How the flow looks like ?
-If the first if conditional is true, then the block of if is executed, and everything else i.e. elif and
-else are avoided.
-Otherwise if the second conditional is true, then the block of second conditional is executed and
+```bash
 if [ condition ];then
 
-# some algorithm
+some algorithm
 
 fi
+```
 
+So, any `if`block starts with the `if`keyword and ends with `fi`keyword and in between we put the condition and algorithm to execute when condition is true.
+For example:
+
+```bash
 #!/bin/bash
 my_value=2000
 if [ $my_value -ge 2000 ]; then
@@ -511,7 +507,12 @@ else
 echo "The condition is false"
 
 fi
+```
 
+Here in the conditionals square bracket we can use operators to prepare a condition which evaluates to a boolean true or false.
+If we want to put multiple conditions in place then we can also use elif .
+
+```bash
 #!/bin/bash
 my_value=2000
 if [ $my_value -gt 2000 ]; then
@@ -525,34 +526,29 @@ else
 echo "The condition is false"
 
 fi
+```
 
-else is avoided.
+```bash
+lt → first expression lesser than second
+
+gt → 1st expression greater than second
+
+ge → comparison operator between 1st & 2nd operator
+
+eq → equals
+
+ne → not equals
+```
+
+**How the flow looks like ?**
+
+If the first if conditional is true, then the block of if is executed, and everything else i.e. elif and else are avoided.
+Otherwise if the second conditional is true, then the block of second conditional is executed and else is avoided.
 Otherwise block of else is executed.
-Interesting bash conditional script
 
-Here the part command -v is an actual valid linux bash command, which takes input of a
-command and tell the path from which command is executed if it exists.
-For example if curl command is installed in your machine and we do
+## Interesting bash conditional script
 
-Then it returns the path of curl command.
-Now we want to write a conditional that executes if a command runs successfully, then we can
-just put the command in the if conditional. If command executed successfully we get conditiona
-true else false. But what about the output of the command, we don't want output of the
-command to be printed, hence we dump the output of the given command in /dev/null which
-is a special file that discards everything we write in it. Hence no output from command is printed
-on the screen and we get conditional evaluated.
-Operators in bash
-In Bash scripting, operators are used to perform various operations, including arithmetic,
-comparisons, logical operations, and more. Here’s a comprehensive guide to the different types
-of operators in Bash:
-
-1. Arithmetic Operators
-Arithmetic operators are used to perform basic mathematical operations.
-
-Operator Description Example
-
-- Addition echo $((3 + 2)) → 5
-- Subtraction echo $((5 - 2)) → 3
+```bash
 command="curl"
 if command -v $command &> /dev/null ; then
 
@@ -563,111 +559,158 @@ else
 echo "curl command doesn't exist"
 
 fi
+```
 
+Here the part `command -v` is an actual valid linux bash command, which takes input of a command and tells the path from which command is executed if it exists.
+For example if curl command is installed in your machine and we do
+
+```bash
 command -v curl
+```
 
-Operator Description Example
+Then it returns the path of curl command.
+Now we want to write a conditional that executes if a command runs successfully, then we can just put the command in the if conditional. If command executed successfully we get condition true else false. But what about the output of the command, we don't want output of the command to be printed, hence we dump the output of the given command in `/dev/null` which is a special file that discards everything we write in it. Hence no output from command is printed on the screen and we get conditional evaluated.
 
-- Multiplication echo $((4 * 2)) → 8
-/ Division echo $((10 / 2)) → 5
-% Modulus (remainder) echo $((5 % 2)) → 1
-** Exponentiation (power) echo $((2 ** 3)) → 8
-1. Comparison Operators
-Comparison operators are used to compare numbers or strings. These are commonly used in
-conditional statements like if or while .
-Numeric Comparison Operators
+Operators in bash
+In Bash scripting, operators are used to perform various operations, including arithmetic,
+comparisons, logical operations, and more. Here’s a comprehensive guide to the different types of operators in Bash:
 
-Operator Description Example
--eq Equal to [ 5 -eq 5 ] → true
--ne Not equal to [ 5 -ne 4 ] → true
--gt Greater than [ 5 -gt 3 ] → true
--lt Less than [ 3 -lt 5 ] → true
--ge Greater than or equal to [ 5 -ge 5 ] → true
--le Less than or equal to [ 5 -le 5 ] → true
+### Arithmetic Operators:
 
-String Comparison Operators
+Arithmetic operators are used to perform basic mathematical operations.
 
-Operator Description Example
-= Equal to [ "abc" = "abc" ] → true
-!= Not equal to [ "abc" != "xyz" ] → true
-< Less than, in ASCII alphabetical order [ "abc" < "xyz" ] → true
+| Operator | Description | Example |
+| ---      | ---         | ---     |
+| +        | Addition    | echo $((3 + 2)) → 5 |
+| -        | Subtraction | echo $((5 - 2)) → 3 |
+| *        | Multiplication | echo $((4 * 2)) → 8 |
+| /        | Division | echo $((10 / 2)) → 5 |
+| %        | Modulus [remainder] | echo $((5 % 2)) → 1 |
+| **       | Exponentiation [power] | echo $((2 ** 3)) → 8 |
 
-> Greater than, in ASCII alphabetical order [ "xyz" > "abc" ] → true
--z String is null (zero length) [ -z "" ] → true
--n String is not null [ -n "abc" ] → true
-> 
-1. Logical Operators
+### Comparison Operators
+
+Comparison operators are used to compare numbers or strings. These are commonly used in conditional statements like if or while .
+
+**Numeric Comparison Operators**
+
+| Operator | Description | Example |
+| --- | --- | --- |
+| -eq | equal to | [ 5 -eq 5 ] → true |
+| -ne | Not equal to | [ 5 -ne 4 ] → true |
+| -gt | greater than | [ 5 -gt 3 ] → true |
+| -lt | less than | [ 3 -lt 5 ] → true |
+| -ge | greater than or equal to | [ 5 -ge 5 ] → true |
+| -le | Less than or equal to | [ 5 -le 5 ] → true |
+
+### String Comparison Operators
+
+| Operator | Description | Example |
+| --- | --- | --- |
+| = | equal to | [ "abc" = "abc" ] → true |
+| ! = | Not Equal to | [ "abc" != "xyz" ] → true |
+| < | Less than, in ASCII alphabetical order | [ "abc" < "xyz" ] → true |
+| > | Greater than, in ASCII alphabetical order |  [ "xyz" > "abc" ] → true |
+| -z | string is null [ zero length ] | String is null (zero length) [ -z "" ] → true |
+| -n | String is not null | String is not null [ -n "abc" ] → true |
+
+### Logical Operators
+
 Logical operators are used to combine multiple conditions.
 
-Operator Description Example
-&& Logical AND [ 5 -gt 3 ] && [ 5 -lt 10 ]
-|| Logical OR `[ 5 - lt 3 ] || [ 5 -gt 3 ]` 
-! Logical NOT [ ! 5 -eq 3 ] → true
+| Operator | Description  | Example |
+| --- | --- | --- |
+| && | logical AND | `[ 5 -gt 3 ] && [ 5 -lt 10 ]` |
+| || | logical OR | `[ 5 - lt 3 ] || [ 5 -gt 3 ]` |
+| ! | logical not | `[ ! 5 -eq 3 ] → true` |
 
-1. File Test Operators
+### File Test Operators
+
 File test operators are used to test various attributes of files, such as whether a file exists, is
 readable, is a directory, etc.
 
-Operator Description Example
--e File exists [ -e /path/to/file ]
--f File is a regular file [ -f /path/to/file ]
--d File is a directory [ -d /path/to/dir ]
--r File is readable [ -r /path/to/file ]
--w File is writable [ -w /path/to/file ]
--x File is executable [ -x /path/to/file ]
--s File is not empty (has size > 0) [ -s /path/to/file ]
--L File is a symbolic link [ -L /path/to/file ]
+| Operator | Description | Example |
+| --- | --- | --- |
+| -e | File exists | [ -e /path/to/file ] |
+| -f | File is a regular file | [ -f /path/to/file ] |
+| -d | File is a directory | [ -d /path/to/dir ] |
+| -r | File is readable | [ -r /path/to/file ] |
+| -w | File is writable | [ -w /path/to/file ] |
+| -x | File is executable | [ -x /path/to/file ] |
+| -s | File is not empty (has size > 0)  | [ -s /path/to/file ] |
+| -L | File in symbolic Link | [ -L /path/to/file ] |
 
-1. Assignment Operators
+### Assignment Operators
+
 Assignment operators are used to assign values to variables.
 
-Operator Description Example
-= Assign value my_var=10
-+= Add and assign my_var+=5 (same as my_var=$((my_var + 5)) )
--= Subtract and assign my_var-=5
-*= Multiply and assign my_var*=2
-/= Divide and assign my_var/=2
-%= Modulus and assign my_var%=3
+| Operator | Description | Example |
+| --- | --- | --- |
+| = | Assign Value | my_var=10 |
+| += | Add & assign  | my_var+=5 (same as my_var=$((my_var + 5)) ) |
+| -= | Subtract & Assign | my_var-=5 |
+| *= | Multiply & Assign | *my_var**=2 |
+| /= | Divide & Assign | my_var/=2 |
+| % | Modulus & Assign | my_var%=3 |
 
-1. Miscellaneous Operators
+### Miscellaneous Operators
 
-Conditional (Ternary) Operator
+**Conditional (Ternary) Operator**
 
-1. Bitwise Operators
-Bitwise operators perform operations on the binary representations of numbers.
-
-Operator Description Example
-& Bitwise AND echo $((5 & 3)) → 1
- `` Bitwise OR
-^ Bitwise XOR echo $((5 ^ 3)) → 6
-~ Bitwise NOT echo $((~5))
-<< Left Shift echo $((2 << 1)) → 4
-
-> Right Shift echo $((4 >> 1)) → 2
-> 
-1. Command Substitution
-Command substitution allows the output of a command to be used as an argument or variable
-value.
-2. Brace Expansion
-Brace expansion is used to generate a series of strings at once.
 Description: This operator is used to assign a value based on a condition.
 Syntax: [ condition ] && echo "true case" || echo "false case"
-Example:
+Example: `[ $a -lt $b ] && max=$b || max=$a`
 
-Explanation: Assigns the value of $b to max if $a is less than $b ; otherwise, assigns
-the value of $a .
+Explanation: Assigns the value of $b to max if $a is less than $b ; otherwise, assigns the value of $a .
+
+### Bitwise Operators
+
+Bitwise operators perform operations on the binary representations of numbers.
+
+| Operator | Description | Example |
+| --- | --- | --- |
+| & | Bitwise AND | echo $((5 & 3)) → 1 |
+| ^ | Bitwise XOR | echo $((5 ^ 3)) → 6 |
+| ~ | Bitwise NOT | echo $((~5)) |
+| << | Left Shift | echo $((2 << 1)) → 4 |
+| >> | Right Shift | echo $((4 >> 1)) → 2 |
+
+### Command Substitution
+
+Command substitution allows the output of a command to be used as an argument or variable value.
 
 Syntax: $(command) or `command`
 Example:
 
-Explanation: The output of the date command is stored in the variable current_date .
-[ $a -lt $b ] && max=$b || max=$a
-
+```bash
 current_date=$(date)
 echo "Today's date is $current_date"
+```
 
-1. Range Expressions
+Explanation: The output of the date command is stored in the variable current_date .
+
+### Brace Expansion
+
+Brace expansion is used to generate a series of strings at once.
+
+Syntax: {start..end} or {option1,option2,...}
+Example:
+
+```bash
+echo {1..5} # Outputs: 1 2 3 4 5
+echo {a,b,c} # Outputs: a b c
+```
+
+### Range Expressions
+
 Range expressions are used to generate a sequence of numbers or letters.
+
+Example:
+
+```bash
+for i in {1..5}; do echo $i; done # Outputs: 1 2 3 4 5
+for i in {a..e}; do echo $i; done # Outputs: a b c d e
+```
 
 Exit codes in bash\
 Every command that we execute in linux shell has a dedicated exit code associated to it, that
@@ -679,18 +722,9 @@ To get access of this status code, there is a variable which stores after any co
 i.e. $? .
 Note:
 echo commands mostly always have 0 exit code as they mostly get no errors
-Syntax: {start..end} or {option1,option2,...}
-Example:
-
-Example:
 
 Exit code 0 means the command was successful
 Non zero exit code means there was some issue
-echo {1..5} # Outputs: 1 2 3 4 5
-echo {a,b,c} # Outputs: a b c
-
-for i in {1..5}; do echo $i; done # Outputs: 1 2 3 4 5
-for i in {a..e}; do echo $i; done # Outputs: a b c d e
 
 pwd
 echo $? # this will print 0, as pwd command has no issue and will definetely
