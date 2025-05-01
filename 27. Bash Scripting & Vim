@@ -580,13 +580,13 @@ comparisons, logical operations, and more. Here’s a comprehensive guide to the
 Arithmetic operators are used to perform basic mathematical operations.
 
 | Operator | Description | Example |
-| ---      | ---         | ---     |
-| +        | Addition    | echo $((3 + 2)) → 5 |
-| -        | Subtraction | echo $((5 - 2)) → 3 |
-| *        | Multiplication | echo $((4 * 2)) → 8 |
-| /        | Division | echo $((10 / 2)) → 5 |
-| %        | Modulus [remainder] | echo $((5 % 2)) → 1 |
-| **       | Exponentiation [power] | echo $((2 ** 3)) → 8 |
+| --- | --- | --- |
+| + | Addition | echo $((3 + 2)) → 5 |
+| - | Subtraction | echo $((5 - 2)) → 3 |
+| * | Multiplication | echo $((4 * 2)) → 8 |
+| / | Division | echo $((10 / 2)) → 5 |
+| % | Modulus [remainder] | echo $((5 % 2)) → 1 |
+| ** | Exponentiation [power] | echo $((2 ** 3)) → 8 |
 
 ### Comparison Operators
 
@@ -712,92 +712,88 @@ for i in {1..5}; do echo $i; done # Outputs: 1 2 3 4 5
 for i in {a..e}; do echo $i; done # Outputs: a b c d e
 ```
 
-Exit codes in bash\
-Every command that we execute in linux shell has a dedicated exit code associated to it, that
-tells whether the command executed successfully or not. This can help us to put a programatic
-way to determine whether the command worked well or not otherwise most of the time we just
-look at the logs and then determine this.
+## Exit codes in bash
 
-To get access of this status code, there is a variable which stores after any command is execute
-i.e. $? .
-Note:
-echo commands mostly always have 0 exit code as they mostly get no errors
+Every command that we execute in linux shell has a dedicated exit code associated to it, that tells whether the command executed successfully or not. This can help us to put a programatic way to determine whether the command worked well or not otherwise most of the time we just look at the logs and then determine this.
 
 Exit code 0 means the command was successful
 Non zero exit code means there was some issue
 
+```bash
 pwd
-echo $? # this will print 0, as pwd command has no issue and will definetely
-run
+echo $? # this will print 0, as pwd command has no issue and will definetely run
+```
 
-Loops in bash script
+To get access of this status code, there is a variable which stores after any command is executed
+i.e. `$? .`
+Note: echo commands mostly always have 0 exit code as they mostly get no errors
+
+```bash
+ls -l /something # considering /something doesn't exist
+echo $? # this will print something other than 0
+```
+
+# Loops in bash script
+
 In bash we have support of loops using which we can do repeated tasks.
-While loop
+
+## While loop
+
 While loop takes a condition and keeps on running it's block of code till the time the condition
-doesn't become false.\
+doesn't become false.
+
+```bash
+while [ condition ]
+do
+  #some logic
+done
+```
 
 To write a while loop that prints counting of first 10 natural numbers we can do:
 
-Here in the condition we are checking $i -le 10 i.e. till the time i is less than or equal to 10
-we keep on executing the block of while , and the moment i goes beyond 10, we terminate the
-loop and move ahead.
-If we consider one more loop:
-ls -l /something # considering /something doesn't exist
-echo $? # this will print something other than 0
-
-while [ condition ]
-do
-
-# some logic
-
-done
-
-i=1 # this is a variable using which we will control the while loop to start
-and stop
+```bash
+i=1 # this is a variable using which we will control the while loop to start and stop
 while [ $i -le 10 ]
 do
 
-echo "Value of i is: $i"
-i=$((i+1)) # increment the value of i by 1
-sleep 1 # pause the execution by 1 second
+		echo "Value of i is: $i"
+		i=$((i+1)) # increment the value of i by 1
+		sleep 1 # pause the execution by 1 second
 
 done
 
+```
+
+Here in the condition we are checking `$i -le 10` i.e. till the time `i` is less than or equal to 10 we keep on executing the block of while, and the moment `i` goes beyond 10, we terminate the loop and move ahead.
+
+If we consider one more loop:
+
+```bash
 while [ -f [conditionals.sh](http://conditionals.sh/) ]
 do
-
 echo "File exists till $(date +%H-%M-%S)"
 sleep 5
-
 done
+echo "File no longer exists from $(date +%H-%M-%S)"
+```
 
-Here we keep on running the while loop till the time the [considionals.sh](http://considionals.sh/) file exist in the same
-folder as that of the loop file. For every iteration of the loop we sleep for 5s, which is kind of a
-delay we are adding up.
+Here we keep on running the while loop till the time the considionals.sh file exist in the same folder as that of the loop file. For every iteration of the loop we sleep for 5s, which is kind of a delay we are adding up.
 Once you rename / remove the file the loop stops immediately when it checks the condition.
-Problem Statement:
-Create a Bash script that monitors a directory and continuously counts the number of files in it.
-The script should print the file count every 10 seconds, and if the directory becomes empty, the
-script should exit with a message indicating that the directory is empty.
-Solution:
+
+this condition can be helpful when suppose you have a file that gets occassionaly deleted automatically this helps to keep in track the last log of what happened
+
+### Problem Statement:
+
+Create a Bash script that monitors a directory and continuously counts the number of files in it. The script should print the file count every 10 seconds, and if the directory becomes empty, the script should exit with a message indicating that the directory is empty.
+
+*Solution:*
 
 Let's break down the command ls -1 ~/testdir | wc -l step by step:
 Command Breakdown
 
-1. We first of all take the directory as input
-2. In the while loop we are using ls -A that will also list hidden file from the input directory
-3. To do the file count we use ls -1 which prints the output of ls command in multiple lines
-and then we pipe this multiline output to the wc command which counts the words,
-characters and lines from a text. And because we are using wc with a -l flag it will only
-count the number of line.
-4. ls -1 ~/testdir :
-ls : This is the list command in Unix/Linux, which is used to list the contents of a
-directory.
-echo "File no longer exists from $(date +%H-%M-%S)"
-
+```bash
 directory_to_check=$1
-while [ "$(ls -A $directory_to_check)" ] # till the time directory exists
-keep running the loop
+while [ "$(ls -A $directory_to_check)" ] # till the time directory exists keep running the loop
 do
 
 file_count=$(ls -1 $directory_to_check | wc -l)
@@ -806,67 +802,68 @@ sleep 5
 
 done
 echo "Directory is now empty"
+```
 
-Complete Command Purpose
+1. We first of all take the directory as input
+2. In the while loop we are using ls -A that will also list hidden file from the input directory
+3. To do the file count we use ls -1 which prints the output of ls command in multiple lines and then we pipe this multiline output to the wc command which counts the words, characters and lines from a text. And because we are using wc with a `-l` flag it will only count the number of line.
 
-Github link to the script
-For loops in bash
-Example Output:
-If ~/testdir contains three files named file1 , file2 , and file3 , the output of ls -1
-~/testdir would be:
--1 : This option tells ls to list each file or directory name on a separate line. Without
-this option, ls might display files in a more compact, multi-column format.
-~/testdir : This specifies the directory whose contents you want to list. ~
-represents the home directory of the current user, so ~/testdir refers to the
-testdir directory inside the user's home directory.
+wc - word count & Line count
 
+### Command Breakdown
+
+1. `ls -1 ~/testdir` :
+- `ls` : This is the list command in Unix/Linux, which is used to list the contents of a directory.
+- `-1` : This option tells `ls` to list each file or directory name on a separate line. Without this option, `ls` might display files in a more compact, multi-column format.
+- `~/testdir` : This specifies the directory whose contents you want to list. `~` represents the home directory of the current user, so `~/testdir` refers to the `testdir` directory inside the user's home directory.
+
+**Example Output:**
+1. If ~/testdir contains three files named `file1 , file2 , and file3` , the output of `ls -1~/testdir` would be:
+
+```bash
 file1
 file2
 file3
+```
 
 1. | (Pipe Operator):
-The pipe | is used to pass the output of one command as input to another
-command. In this case, the output of ls -1 ~/testdir is passed to the next
-command, wc -l .
-2. wc -l :
+- The pipe | is used to pass the output of one command as input to another
+command. In this case, the output of `ls -1 ~/testdir` is passed to the next command, `wc -l` .
+1. `wc -l` :
+- `wc` stands for "word count," but it can also count lines and characters.
+- `-l` : This option tells wc to count the number of lines in the input it receives.
 
-In this context, wc -l will count the number of lines produced by the ls -1 ~/testdir
-command.
+In this context, `wc -l` will count the number of lines produced by the `ls -1 ~/testdir` command.
+
 Example Output:
-For the previous example where ls -1 ~/testdir outputted three lines ( file1 , file2 ,
-file3 ), wc -l would return 3 , which is the number of lines.
-wc stands for "word count," but it can also count lines and characters.
--l : This option tells wc to count the number of lines in the input it receives.
+For the previous example where ls -1 ~/testdir outputted three lines ( `file1 , file2, file3` ), `wc -l` would return `3` , which is the number of lines.
 
-ls -1 ~/testdir | wc -l :
-This command lists all the files in ~/testdir , with each file name on a new line.
-It then counts the number of lines in this list, which is effectively the number of files in
-the directory.
+### Complete Command Purpose
 
-We have while loops that keep on executing the task till the time condition is actually true. On
-the other hand we have for loops that can run again and again for each item in a list or set of
-items.
+- l`s -1 ~/testdir | wc -l` :
+1. This command lists all the files in `~/testdir` , with each file name on a new line.
+2. It then counts the number of lines in this list, which is effectively the number of files in the directory.
 
-Here, we have a variable i, used inside the for loop which goes one by one to every single items
-of list and take it's value. Then just like while loops we use do and done to create a block of
-for which will be executed again and again till the time i takes value of each and every
-single item.
-Note:
-In bash, if we want to represent a range of numbers we can use {x..y} . Here the range will
-start from x and incrementally move up till y.
-So, we can modify our for loop using this range syntax.
+## For loops in bash
 
-Interesting problem
-Let's say we want to generate zip of every file inside a folder separately then we can use the
-below script:
+We have while loops that keep on executing the task till the time condition is actually true. On the other hand we have for loops that can run again and again for each item in a list or set of items.
+
+```bash
 for i in 1 2 3 4 5 6 7 8
 do
-
-echo "i is $i"
-sleep 1
-
+	echo "i is $i"
+	sleep 1
 done
+```
 
+Here, we have a variable i, used inside the for loop which goes one by one to every single items of list and take it's value. Then just like while loops we use do and done to create a block of `for` which will be executed again and again till the time `i` takes value of each and every single item.
+
+Note:
+In bash, if we want to represent a range of numbers we can use {x..y} . Here the range will start from x and incrementally move up till y.
+
+So, we can modify our for loop using this range syntax.
+
+```bash
 for i in {1..8}
 do
 
@@ -874,39 +871,29 @@ echo "i is $i"
 sleep 1
 
 done
+```
 
+### Interesting problem
+
+Let's say we want to generate zip of every file inside a folder separately then we can use the below script:
+
+```bash
 for file in ~/Developer/ShellScripting/Countable/*
 do
-
 tar -czvf "$file-$(date +%Y-%M).tar.gz" "$file"
-
 done
+```
 
-Here the for loop has a file variable that goes to each and every single file in the directory
-mentioned and then use the tar command to zip them up.
-Problem Statement:
-Write a Bash script that iterates through a directory containing text files. For each text file, the
-script should:
+Here the for loop has a file variable that goes to each and every single file in the directory mentioned and then use the tar command to zip them up.
 
-Solution
+### Problem Statement:
 
-We are iterating to all the files in the target folder and then passing that whole file in the wc
-command with -l flag for counting lines. And then appending the line count in the same file.
-Data streams
-Any text that we see as an output or pass as an input is classified into different stream of data.
+Write a Bash script that iterates through a directory containing text files. For each text file, the script should:
 
-We can control how the stdout and stderr be handled in our linux machine.
-If we want to stream out correct output i.e. stdout in a file by dumping it we can use > or 1>
-
-With both of the above codes, if our command runs properly then it will dump its log inside
-output.txt. but if the commands fails, then the failure log or stderr will not be dumped in
-output.txt.
 Count the number of lines in the file.
 Append the line count to the end of the file.
 
-Standard Input (stdin) - Data stream where the input is received
-Standard output (stdout) - Data stream where command output is sent
-Standard error (stderr) - Data stream where any error is actually sent
+```bash
 #!/bin/bash
 for file in ~/Developer/ShellScripting/Countable/*.txt
 do
@@ -917,77 +904,107 @@ echo "Line count is $line_count" >> $file
 done
 
 ls -l 1> output.txt
+```
 
-# or
+Solution
+
+We are iterating to all the files in the target folder and then passing that whole file in the `wc` command with `-l` flag for counting lines. And then appending the line count in the same file.
+
+# Data streams
+
+Any text that we see as an output or pass as an input is classified into different stream of data.
+
+- Standard Input (stdin) - Data stream where the input is received
+- Standard output (stdout) - Data stream where command output is sent
+- Standard error (stderr) - Data stream where any error is actually sent
+
+We can control how the stdout and stderr be handled in our linux machine.
+
+If we want to stream out correct output i.e. stdout in a file by dumping it we can use `>` or `1>`
+
+```bash
+ls -l 1> output.txt
+
+#or
 
 ls -l > output.txt
+```
 
-To dump the data of error, we can use 2> .
+With both of the above codes, if our command runs properly then it will dump its log inside output.txt. but if the commands fails, then the failure log or stderr will not be dumped in output.txt.
 
-Here, if the command runs properly then the logs will not be dumped in error.txt, but iof the
-command fails all the error logs will be dumped.
-If we don't care and we want to dump everything i.e. stdout and stderr both then we can use &>
+To dump the data of error, we can use `2>` .
+
+```bash
+ls -l notexistent 2> error.txt
+```
+
+Here, if the command runs properly then the logs will not be dumped in error.txt, but if the command fails all the error logs will be dumped.
+If we don't care and we want to dump everything i.e. stdout and stderr both then we can use `&>`
+
+```bash
+ls -l &> log.txt
+```
 
 Now, doesn't matter stdout and stderr both will be dumped in log.txt
-If we want to separately stream both stdout and stderr then we can combine the usage of 1>
-and 2> .
+
+If we want to separately stream both stdout and stderr then we can combine the usage of `1>` and `2>` .
+
+```bash
+bash test.sh 1> success.txt 2> error.txt
+```
 
 Here all the stderr logs will be streamed to error.txt and stdout to success.txt
-Now to handle taking input from user in bash, we can use stdin. To trigger taking an input we
-have a command called as read
 
-Here, we first print Give input , and then we will wait for the user to give an input, once the
-user gives an put then the script resume and prints the second log with value of num.
-Function in bash
-If we have a piece of logic that we want encapsulate in one place and use it multiple times, then
-we can wrap that logic into a function. Function is a piece of code, that has some logic, which
-can take some input, process the input from that logic and generates an output.
+Now to handle taking input from user in bash, we can use stdin. To trigger taking an input we have a command called as `read`
 
-Example:
-ls -l notexistent 2> error.txt
-
-ls -l &> log.txt
-
-bash [test.sh](http://test.sh/) 1> success.txt 2> error.txt
-
+```bash
 echo "Give input"
 read num
 echo "Number given is $num"
+```
 
+Here, we first print `Give input` , and then we will wait for the user to give an input, once the user gives an put then the script resume and prints the second log with value of num.
+
+# Function in bash
+
+If we have a piece of logic that we want encapsulate in one place and use it multiple times, then we can wrap that logic into a function. Function is a piece of code, that has some logic, which can take some input, process the input from that logic and generates an output.
+
+```bash
 function_name() {
 
-# here we can write function logic
+#here we can write function logic
 
 }
+```
 
-Here we have defined a function, by first giving it a name, then putting a pair of parenthesis,
-and then a pair of curly braces to create a block of the function. Now in this block we can write
-some logic.
-Example 2:
-To take a user input in a function call, we can pass the input space separated when calling the
-function and inside the function we can use $1 for first incoming input, $2 for the second one
-and so on.
+Example:
 
-Here we will calculate square of 4 and print it.
-If let's say you want to store the logs from the function created in a variable we can do
-something like this:
-
-Here whatever is the log result of square will be stored inside r1 . If we don't want to store an
-echo log, and actually return something then we can use return keyword.
+```bash
 greet() {
 
 echo "Hello world"
 
 }
+```
 
+Here we have defined a function, by first giving it a name, then putting a pair of parenthesis, and then a pair of curly braces to create a block of the function. Now in this block we can write some logic.
+
+Example 2:
+To take a user input in a function call, we can pass the input space separated when calling the function and inside the function we can use $1 for first incoming input, $2 for the second one and so on.
+
+```bash
 square() {
-v=$1
-sq=$((v*v))
-echo $sq
-
+		v=$1
+		sq=$((v*v))
+		echo $sq
 }
 square 4
+```
 
+Here we will calculate square of 4 and print it.
+If let's say you want to store the logs from the function created in a variable we can do something like this:
+
+```bash
 square() {
 v=$1
 sq=$((v*v))
@@ -996,21 +1013,122 @@ echo $sq
 }
 r1=$(square 4)
 echo "R1 is $r1"
+```
 
+Here whatever is the log result of `square` will be stored inside `r1` . If we don't want to store an echo log, and actually return something then we can use `return` keyword.
+
+```bash
 square() {
-v=$1
-sq=$((v*v))
-return $sq
-
+		v=$1
+		sq=$((v*v))
+		return $sq
 }
 
-With a return keyword, whatever we return from the function call, is stored inside $1. We can
-fetch that response from their.
-How we can schedule our scripts to run at a particular
-time ?
-We can automate when the system should run our script, we can decide if we want to run it
-immediately, or 5 mins after the schedule, or daily at 6:00AM in the morning and what not.
+square 4
+r1=$? # $? has the result return from square 4
+echo "R1 is $r1"
+```
+
+With a return keyword, whatever we return from the function call, is stored inside $1. We can fetch that response from their.
+
+### How we can schedule our scripts to run at a particular time ?
+
+We can automate when the system should run our script, we can decide if we want to run it immediately, or 5 mins after the schedule, or daily at 6:00AM in the morning and what not.
 To do this scheduling there are a lot of different ways but the most widely accepted is :
 
-at package
+- Using at package in bash
+- Using Cron jobs
+
+### at package
+
 This is a software that we can install in our linux shell, so that we can schedule jobs for future.
+
+# **Basic Scripting**
+
+## **Introduction to Bash scripting**
+
+- Bash scripting involves writing scripts using the Bash shell, a command-line interpreter used in Unix/Linux systems. These scripts automate repetitive tasks, manage system operations, and perform complex sequences of commands with ease. Bash scripts are essentially text files containing commands that you can run as if they were a single command.
+
+## **Shell Scripting Basics**
+
+- Variables: Store data that can be used throughout the script, like paths, filenames, or user input.
+- Control Structures: Include if-else, for, while, and case statements to control the flow of the script.
+- Functions: Reusable blocks of code that perform specific tasks, improving the organization and readability of scripts.
+- Input/Output: Handle user input and output to files or the terminal, allowing interaction and data manipulation.
+
+## **What Kind of Stuff to Automate?**
+
+Bash scripting can be used to automate a wide range of tasks, including:
+
+- File Management: Automate backups, file organization, or batch processing of files.
+- System Monitoring: Regularly check system health, such as disk usage, memory, or running services.
+- User Management: Automate user account creation, deletion, or permission settings.
+- Software Installation: Automate the installation, configuration, and updating of software packages.
+- Data Processing: Automate the processing of large datasets, such as text manipulation or data conversion.
+
+## **Background Running Processes**
+
+- Running Scripts in the Background: Use & at the end of a command to run a script in the background, freeing the terminal for other tasks.
+- Managing Background Jobs: Use jobs, fg, and bg commands to manage background processes. nohup can be used to ensure a script continues running even after the terminal is closed.
+- Cron Jobs: Automate recurring tasks by scheduling scripts to run at specific times using the cron daemon, configured with the crontab command.
+
+## **Automating Tasks with Scripts for System Administration**
+
+Bash scripting is widely used in system administration to automate repetitive and critical tasks, such as:
+
+- System Backups: Automatically backup important files or databases at regular intervals.
+- Log Management: Rotate, compress, and archive log files automatically.
+- Service Monitoring and Restart: Automatically check if essential services are running and restart them if they fail.
+- Security Audits: Automate the scanning of systems for security vulnerabilities and generate reports.
+- User Notifications: Send automated email alerts based on system events, such as low disk space or high CPU usage.
+
+# **Advanced Scripting**
+
+## **File Handling and String Manipulation**
+
+- File Handling: Bash provides commands to manage files and directories, such as cp, mv, rm, ls, and cat. You can redirect input and output using >, >>, and <, and handle file streams with commands like grep, sed, and awk.
+- String Manipulation: Bash allows for various operations on strings, including concatenation, substring extraction, and pattern replacement. For example:
+    - Concatenation: full_name="$first_name $last_name"
+    - Substring Extraction: ${string:position:length}
+    - Pattern Replacement: ${string/pattern/replacement}
+
+## **Command Substitution and Process Substitution**
+
+- Command Substitution: This allows you to use the output of a command as an argument in another command. Use backticks (`command`) or $(command) to capture the output.
+
+Example: current_date=$(date)
+
+- Process Substitution: This allows a command's output to be treated as a file. Use <(command) or >(command) to redirect input/output.
+
+Example: diff <(ls dir1) <(ls dir2)
+
+## **Regular Expressions, arrays and associative arrays**
+
+- Regular Expressions (Regex): Used for pattern matching in strings. They are utilized with commands like grep, sed, and awk to search, replace, and manipulate text.
+    - Basic Regex: Patterns like ^start, end$, or a.b (matches 'a', any character, then 'b').
+    - Extended Regex: Allows more complex patterns like a{2,4} (matches 'a' between 2 and 4 times).
+- Arrays: One-dimensional indexed collections. Access elements with ${array[index]}.
+
+Example: fruits=("apple" "banana" "cherry")
+
+- Associative Arrays: Key-value pairs, allowing for named keys rather than numeric indexes. Use declare -A to create them.
+
+## **Bash Control Structures (if-else loops)**
+
+- If-Else Statements: Used for decision-making, allowing different blocks of code to be executed based on conditions.
+- Loops: Used for repeated execution of code, with for iterating over items, while looping while a condition is true, and until looping until a condition becomes true.
+- Break and Continue: Control the flow within loops, where break exits the loop, and continue skips to the next iteration.
+
+## **Bash variables and parameters**
+
+- Bash Variables: Store and manage data within scripts. Use $ to access values and export to share them with child processes.
+- Bash Parameters: Handle script arguments and special variables to manage script execution and status.
+- Parameter Expansion: Allows setting default values and performing string manipulations.
+
+## **Best practices for Bash Scripting**
+
+- Use Descriptive Names and Comments
+- Implement Error Handling
+- Quote Variables and Handle Inputs Carefully
+- Organize Code with Functions
+- Test and Validate
