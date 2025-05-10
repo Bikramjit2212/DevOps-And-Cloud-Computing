@@ -1,0 +1,118 @@
+CI- Continious Integration
+
+CD- Continious Delivery
+
+# CI
+
+CI → practice of continiously integrating code changes to a shared repo, often several times a day
+
+Goal → to catch issues early before creating a big problem
+
+involves using automated tests to verify that code changes don't break existing functionality or introduce new bugs.
+
+CI pipelines also require regular maintenance to accommodate changes in the
+code base, dependencies (such as APIs) and infrastructure
+
+## Importance of CI
+
+1. Earlier, more efficient error detection
+2. Improved team collaboration
+3. Accelerated software development
+4. Reduced risk in the development process
+5. Improved Transparency and Accountability → CI provides visibility into the state of the codebase at all times. 
+6. Reduced Costs and Time
+7. Faster Feedback
+
+# CI Tools
+
+Continuous Integration (CI) tools automate the process of integrating code changes, running tests, and deploying applications.
+
+Essential →
+
+1. Streamline workflows
+2. improve code quality
+3. Enable faster releases
+
+## 3 popular CI tools:-
+
+### Jenkins →
+
+Jenkins is one of the most popular and widely used open-source CI tools. It is highly customizable, with a large ecosystem of plugins that support various stages of software development, from building and testing to deploying applications
+
+**Advantages**:
+
+1. Open-Source and Free
+2. Extensibility: With over 1,800 plugins available, Jenkins can be extended to support a wide range of tools, languages, and environments.
+3. Flexibility: Jenkins can be used on-premises or in the cloud and can integrate with almost any tool or technology used in software development
+4. Scalability: Jenkins supports distributed builds, allowing the workload to be distributed across multiple machines, which is beneficial for large projects
+5. Custom Pipelines: Jenkins provides the ability to create complex pipelines using the Jenkins Pipeline DSL, giving teams full control over their CI/CD processes
+
+### Travis CI →
+
+cloud-based CI tool that is particularly popular in the open-source community. It integrates well with GitHub and supports a wide range of programming languages.
+
+**Advantages**:
+
+1. Ease of Use: Travis CI is easy to set up and use, especially for GitHub projects. It requires minimal configuration, often just a `.travis.yml` file in the project repository
+2. Integration with GitHub: Travis CI integrates seamlessly with GitHub, making it a great choice for projects hosted on this platform. It automatically triggers builds on every commit and pull request.
+3. Cloud-Based: As a fully hosted solution, Travis CI eliminates the need for teams to manage their own CI infrastructure, saving time and resources.
+4. Support for Multiple Languages: Travis CI supports many programming languages, including Ruby, Python, Node.js, Java, and more, making it versatile for different types of projects.
+5. Open-Source Friendly: Travis CI offers free plans for open-source projects, making it accessible to the open-source community
+
+### Circle CI
+
+cloud-based CI tool that offers both hosted and on-premises solutions. It is known for its speed and performance, making it a popular choice for teams focused on quick and efficient CI/CD pipelines
+
+Advantages
+
+1. Speed: CircleCI is optimized for speed, with features like parallelism and containerization that help reduce build times.
+2. Flexibility: CircleCI supports both cloud-based and self-hosted configurations, giving teams the flexibility to choose the option that best fits their needs
+3. Advanced Docker Support: CircleCI has strong support for Docker, making it ideal for teams working with containerized applications 
+4. Customizable Workflows: CircleCI allows teams to define complex workflows with multiple jobs that can run sequentially or in parallel, providing greater control over the CI/CD process 
+5. Detailed Insights: CircleCI provides detailed build analytics and insights, helping teams optimize their pipelines and improve performance over time
+
+# Difference Between Continious Delivery & Continious Deployment
+
+## Continious Delivery
+
+software development practice where code changes are automatically
+built, tested, and prepared for a release to production. However, the deployment to production is done manually.
+
+### Characteristics:
+
+1. Automated Testing: Continuous Delivery involves extensive automated testing (unit, integration, system, and acceptance tests) to ensure that the code is always in a deployable state.
+2. Manual Approval: Even though the code is ready for deployment at any time, the actual release to production requires manual approval or triggering. This step allows teams to review and decide when to
+release the new code.
+3. Release on Demand: With Continuous Delivery, the software can be released to production at any time. This allows for flexibility in deciding when to push new features or updates live.
+4. Pipeline Integration: The Continuous Delivery pipeline integrates various stages of the development process, from code commit to production readiness, ensuring a consistent and reliable release process.
+
+### Benefits:
+
+1. Flexibility: Teams can choose the most appropriate time to deploy, aligning releases with business needs 
+2. Control: Manual approval adds an extra layer of control, which can be important for critical or large-scale deployments. 
+3. Reduced Risk: Because the code is always in a deployable state, the risk of introducing bugs in production is minimized.
+
+**Example**
+A team working on a financial application uses Continuous Delivery. The code passes all automated tests and is ready for production, but the team waits until a scheduled maintenance window to manually deploy the changes
+
+# Continuous Deployment (CD)
+
+extension of Continuous Delivery where every code change that passes automated tests is automatically deployed to production, without requiring manual approval.
+
+### Key Characteristics
+
+1. Fully Automated Pipeline: Continuous Deployment takes automation further by removing the manual approval step. Once the code passes all tests, it is automatically deployed to production.
+2. High Frequency of Releases: Continuous Deployment allows for rapid, frequent releases to production, sometimes multiple times a day. This is particularly useful in environments where continuous updates are
+beneficial, such as web services or SaaS platforms.
+3. Immediate Feedback: Changes are immediately reflected in production, providing real-time feedback and allowing for quick iterations based on user input or monitoring data.
+4. Robust Monitoring: Continuous Deployment requires robust monitoring and alerting systems in place to detect and respond to any issues that arise after deployment
+
+### Benefits
+
+1. Speed: Continuous Deployment maximizes the speed of delivering new features, bug fixes, and improvements to users.
+2. Efficiency: It eliminates the bottleneck of manual approval, making the release process more efficient
+3. Continuous Innovation: Teams can continuously innovate and release new features, staying ahead of competitors.
+
+Example
+A team developing a social media platform uses Continuous Deployment. Each new code commit that passes automated testing is deployed directly to production, allowing users to immediately experience new features and updates
+
