@@ -1,0 +1,114 @@
+# What is AWS:
+
+Amazon Web Services (AWS) is a cloud computing platform provided by Amazon that offers a wide range of cloud services to individuals, businesses, and organizations. AWS provides a flexible, scalable, and cost- effective infrastructure for hosting applications, storing data, and running various types of workloads in the cloud.
+
+# What is Cloud
+
+Cloud is a data center or multiple data centers made up of compute & storage resources connected by network
+- An infrastructure service for the world of elastic computing
+- Storage in the cloud security
+- Pricing & Availability"
+- You can access this infrastructure by using different services that give you more flexibility in usage & payment.
+
+# Cloud Computing?
+
+Cloud computing is a technology model that allows users to access, store, and manage various computing resources over the internet, without the need for owning or directly managing the physical infrastructure. In cloud computing, computing resources such as servers, storage, databases, networking, software, and analytics are delivered as services over the internet by cloud service providers.
+
+Key characteristics of cloud computing include?
+- On-Demand Self-Service: Users can provision and manage computing resources (e.g., virtual machines, storage) as needed without requiring human intervention from the service provider)
+- Resource Pooling: Cloud providers consolidate computing resources to serve multiple customers, allowing for efficient utilization and flexibility)
+- Rapid Elasticity: Cloud services can quickly scale up or down to meet changing demands, ensuring that resources are available when needed and costs are optimized)
+- Measured Service: Cloud resources are monitored, controlled, and billed based on usage, enabling users to pay only for the resources they consume.
+
+# Service Models:
+
+1. Infrastructure as a Service (IaaS): Provides virtualized computing resources over the internet, including virtual machines, storage, and networking. Users have control over the operating systems, applications, and
+other software running on the infrastructure)
+    - **Definition:** IaaS provides on-demand access to virtualized computing resources like servers, storage, and networking.
+    - **Example:** Amazon Web Services (AWS), Microsoft Azure, and Google Compute Engine (GCP).
+    - **User Responsibility:** Users are responsible for managing their operating systems, applications, and data.
+2. Platform as a Service (PaaS): Offers a platform and environment that enables developers to build, deploy, and manage applications without worrying about underlying infrastructure details. PaaS provides tools,
+libraries, and services to facilitate the development process)
+    - **Definition:** PaaS offers a platform for developers to build, deploy, and manage applications without managing the underlying infrastructure.
+    - **Example:** AWS Elastic Beanstalk, Google App Engine, and Microsoft Azure.
+    - **User Responsibility:** Developers need to focus on application development, while the PaaS provider handles infrastructure management.
+3. Software as a Service (SaaS): Delivers software applications over the internet on a subscription basis. Users can access and use the software through a web browser without needing to install or maintain it locally.
+    - **Definition:** SaaS provides users with ready-to-use application software, accessed via the internet without needing to install or manage it on their own devices.
+    - **Example:** Zoom for video conferencing, [**Salesforce**](https://www.salesforce.com/) for customer relationship management, and Microsoft 365 for productivity suite.
+    - **User Responsibility:** Users typically need a browser and internet connection to access SaaS
+
+
+## Deployment Models:
+
+Deployment models **define how an application or infrastructure is deployed and managed**
+
+1.  Public Cloud
+2. Private Cloud
+3. Hybrid Cloud
+4. Community Cloud
+
+![image.png](attachment:57c6f372-6b94-4fc0-80e1-96d593c33144:image.png)
+
+# Regions & Availability Zones
+
+1.  Regions:
+- A region in cloud computing refers to a specific geographic location where a cloud service provider operates one or more data centers. Each region is typically located in a separate geographical area and is designed to be isolated from other regions to enhance data resilience and reduce the impact of potential disasters or outages
+- Cloud providers offer a variety of services within each region, such as computing instances, storage, databases, and networking services
+- Users can select a specific region to deploy their resources and services. The choice of region can impact factors like data transfer speeds, compliance requirements, and cost.
+2. Availability Zones (AZs):
+- An availability zone is a distinct, isolated location within a region. Each availability zone is designed to be independent of the others, with its own power, networking, and cooling infrastructure.
+- The purpose of availability zones is to provide fault tolerance and high availability for cloud services. By distributing resources across multiple availability zones, cloud providers ensure that if one zone experiences an issue, the services can automatically failover to another zone with minimal disruption.
+- Availability zones are typically located a few miles apart within a region to prevent correlated failures due to localized events like power outages or natural disasters.
+
+## Understanding Regions Deeper
+
+- High Availability
+- Low network Latency
+- Cost effectiveness
+
+Availability Zone - cluster of actual Data center whete physical aws resources are present.
+
+In Aws - regions are the largest unit, they separate geographic locations and in 1 region we have cluster of data centers called as availability zones
+
+Each region has atleast 3 zones which are connected by very high bandwith physical connectios, & they help us to achieve fault tolerance
+
+## AWS Services:
+
+- compute services: EC2 [elastic compute cloud]→ rent scalable virtual machines, ECS [elastic container service] - container management, AWS lambda→ serverless computing engine
+- Database service: RDS [relational db service], DynamoDB, MongoDB,
+- Storage Services: S3[ simple storage services], EBS [elastic block store], EFS[elastic file system]
+- Networking Services - VPC [Virtual Private Cloud], Route 53
+- Security Services: KMS[ Key management service], IAM, WAF
+- Machine learning
+- Management Services
+
+Some services are zonal, some regional, some global
+
+In AWS, services can be deployed at three different levels: zonal, regional, and global, each with distinct characteristics and implications for your application.
+
+**Zonal Services:**
+
+- **Definition:**
+    
+    Zonal services are deployed within a specific Availability Zone (AZ) within a Region. An AZ is a physically isolated location within a Region, designed to provide redundancy and fault tolerance.
+    
+- **Example:**
+    
+    An Amazon EBS volume is a zonal service. You can specify which AZ the volume resides in when you create it.
+    
+- **Implications:**Zonal services can be used to distribute components of an application across multiple AZs within a Region, enhancing resilience. However, if an AZ fails, the resources within that AZ will be unavailable.
+
+**Regional Services:**
+
+- **Definition:** Regional services are deployed across multiple AZs within a Region.
+- **Example:** Amazon EC2 instances are a regional service. When you launch an EC2 instance, it is deployed within a specific Region, and the service will ensure it is running in multiple AZs within that region.
+- **Implications:** Regional services provide a higher level of redundancy and fault tolerance than zonal services. If an AZ fails, your application's resources within the Region will continue to be available, as long as other AZs are operational.
+
+**Global Services:**
+
+- **Definition:**Global services are not tied to a specific Region. They operate across the entire AWS global infrastructure.
+- **Example:**Amazon IAM (Identity and Access Management) is a global service. When you create a user in IAM, that user can access resources across all AWS Regions.
+- **Implications:**Global services provide the most robust resilience and availability, as they are not dependent on any single Region. However, they may also have higher latency for certain operations compared to zonal or regional services.
+
+
+In essence, zonal services offer the most granular control over resource placement, while regional services provide a balance between control and redundancy. Global services are the most resilient and widely available, but with potentially higher latency
