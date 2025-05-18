@@ -37,6 +37,7 @@ libraries, and services to facilitate the development process)
     - **Example:** Zoom for video conferencing, [**Salesforce**](https://www.salesforce.com/) for customer relationship management, and Microsoft 365 for productivity suite.
     - **User Responsibility:** Users typically need a browser and internet connection to access SaaS
 
+![image.png](attachment:00ae5deb-aaf2-4320-b5fa-8119cb418fee:image.png)
 
 ## Deployment Models:
 
@@ -110,5 +111,94 @@ In AWS, services can be deployed at three different levels: zonal, regional, and
 - **Example:**Amazon IAM (Identity and Access Management) is a global service. When you create a user in IAM, that user can access resources across all AWS Regions.
 - **Implications:**Global services provide the most robust resilience and availability, as they are not dependent on any single Region. However, they may also have higher latency for certain operations compared to zonal or regional services.
 
+[](data:image/png;base64,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)
 
 In essence, zonal services offer the most granular control over resource placement, while regional services provide a balance between control and redundancy. Global services are the most resilient and widely available, but with potentially higher latency
+
+# Amazon EC2
+
+In simple terms we can rent a machine from Amazon
+
+Elastic Compute Cloud
+
+It is a compute service → Resizable Cloud Computing capability
+
+It is secure, flexible, scalabe, deploy, manage,
+
+EC2 makes us free from any hassle of handling physical hardware
+
+## Instances in EC2
+
+Virtual Server that is running in AWS cloud, which we can use for our usecase
+
+It can run any OS we want, any computer power or memory
+
+## Instance Types:
+
+- General Purpose - provides balance of compute, memory & networking resources, and can be used for a variety of diverse workloads
+- Compute optimised - most cpu power
+- Memory optimised - optimised for RAM
+- Accelerated Optimised
+- Storage Optimised - optimised for harddisk
+
+https://aws.amazon.com/ec2/instance-types/
+
+To login to AWS machine after creating the instance AWS gives us a secure key to login into AWS there we can use SSH protocol key, it downloads automatically when we launch the instances
+
+SSH (Secure Shell) is **a network protocol that enables secure remote access to computers over an unsecured network**. It provides encrypted communication and authentication, making it a secure alternative to older protocols like Telnet. SSH is used for tasks like remote login, file transfer, and executing commands on a remote server. 
+
+The Secure Shell (SSH) protocol is **a method for securely sending commands to a computer over an unsecured network**. SSH uses cryptography to authenticate and encrypt connections between devices.
+
+## EC2 Instance Connection
+
+Before using we need to change the permission of our key so that it can not be hampered by any other person to do that
+
+in CLI:
+
+```bash
+chmod 400 <name_of_the_key>
+```
+
+chmod- changes read, write & execute permission of the corresponding
+
+400 → 4- read access, 0- no write access, 0- no execute access 
+
+and to check the permission we can use the command
+
+```bash
+ls -lh
+```
+
+```bash
+chmod 700 <name_of_the_key>
+```
+
+chmod- changes read, write & execute permission of the corresponding
+
+700 → gives the permission for the current user to read, write, execute
+
+### flag -i in ssh
+
+```bash
+ssh -i <name-of-the-secret-private-key> ubuntu@<public_v4_ip_address>
+```
+
+ssh- we are going to use secure shell protocol
+
+-i - to actually show that we are going to use a private key
+
+ubuntu- user name of the machine
+
+this all will be done in CLI, connecting our local machine to AWS machine
+
+to check if succesfully logged in or not →write  `whoami`
+
+if it says ubuntu - successfully logged in
+
+whenever after borrowing the machine we should always do 
+
+```bash
+sudo apt-get update
+```
+
+It updates the AWS machine altogether
