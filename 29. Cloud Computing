@@ -117,6 +117,8 @@ In essence, zonal services offer the most granular control over resource placeme
 
 # Amazon EC2
 
+Amazon Elastic Compute Cloud (AmazonEC2) is a computing capacity that is scalable in the Amazon Web Services (AWS) Cloud. Using Amazon EC2 eliminates the need to invest in hardware up front, allowing you to develop and deploy applications more quickly.
+
 In simple terms we can rent a machine from Amazon
 
 Elastic Compute Cloud
@@ -126,6 +128,46 @@ It is a compute service → Resizable Cloud Computing capability
 It is secure, flexible, scalabe, deploy, manage,
 
 EC2 makes us free from any hassle of handling physical hardware
+
+### Features:
+
+1. Instances are virtual computing environments.
+2. Amazon Machine Images (AMIs) are preconfigured templates for your instances that package the bits you need for your server (including the operating system and additional software)
+3. Instance types are different configurations of CPU, memory, storage, and networking capacity for your instances
+4. Using key pairs, you can secure login information for your instances (AWS stores the public key, and you store the private key in a secure place)
+
+### Elastic Compute Cloud
+
+Elastic: It is the level at which a system is able to adapt to workload changes by provisioning and de-provisioning resources such that the resources meet the current demand as closely as possible.
+
+### Pricing Options for EC2
+
+1. On Demand
+2. Reserved
+3. Spot Instances
+4. Dedicated Host
+
+On-Demand provides pay-as-you-go pricing by the hour or second, with no upfront costs or long-term commitments. Reserved Instances offer discounted pricing in exchange for a commitment to use the instance for a specific duration. Spot Instances offer significant discounts on unused capacity but can be interrupted with short notice. Savings Plans offer discounts based on your usage commitment. Dedicated Instances provide dedicated hardware and control over your instance's environment
+
+- **On-Demand:**Pay per hour or second, no upfront costs or long-term commitments.
+- **Reserved Instances:**Pay a discounted rate for a fixed term (1, 3, or 5 years). There are different purchase options, including no upfront payment (monthly billing), partial upfront payment, and full upfront payment for maximum savings.
+    
+    Types Of Reserved Instances:
+    
+    - Standard Reserved Instancer
+    - Convertible Reserved Instancer
+    - Scheduled Reserved Instances
+    
+    Standard Reserved Instances: provides a discount of up to 75% off on demand. For example, you are paying all up-fronts for 3 year contract. It is useful when your Application is at the steady-state.
+    
+    Convertible Reserved Instances: It provides a discount of up to 54% off on demand. It provides the feature that has the capability to change the attributes of RI as long as the exchange results in the creation of Reserved Instances of equal or greater value. Like Standard Reserved Instances, it is also useful for the steady state applications.
+    
+    Scheduled Reserved Instances: Scheduled Reserved Instances are available to launch within the specified time window you reserve. It allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.
+    
+- **Spot Instances:**Pay a significantly discounted rate for unused capacity, but your instance can be terminated with two minutes' notice if the capacity is needed.
+- **Savings Plans:**Commit to a specific level of usage and receive discounts on On-Demand pricing.
+- **Dedicated Instances:**Pay a per-hour fee for the instance and a region fee, providing dedicated hardware and control over the instance.
+- **Dedicated Hosts:** Pay for physical servers, allowing you to use your own licensing and potentially lower costs.
 
 ## Instances in EC2
 
@@ -202,3 +244,174 @@ sudo apt-get update
 ```
 
 It updates the AWS machine altogether
+
+# AMI - Amazon Machine Image
+
+Amazon Machine Image (AMI) is a template used **to create virtual servers (EC2 instances) in AWS, offering speed, efficiency, and cost-effectiveness**. It's like a blueprint containing the operating system, pre-installed software, and other configuration settings, allowing for rapid and standardized deployment of virtual machines.
+
+Amazon Machine Image (AMI) contains the information required to launch an instance
+-Operating system
+-Architecture
+-Storage for the root device(Instance store or EBS-backed
+-Virtualization type (HVM or PV)
+
+Here's a more detailed look at why AMIs are used:
+
+**1. Speed and Efficiency:**
+
+- **Faster Deployment:**AMIs streamline the instance creation process, reducing the time and effort required compared to traditional software installations.
+- **Consistent Configurations:**Instances launched from the same AMI will have identical configurations, ensuring consistency across your fleet.
+- **Scalability:**AMIs facilitate easy scaling by allowing you to launch multiple instances with the same pre-configured environment.
+
+**2. Cost-Effectiveness:**
+
+- **Reduced Manual Work:** AMIs automate the installation and configuration of software, saving time and resources.
+- **No Upfront Costs:** You only pay for the resources you consume, not for the AMI itself.
+- **Predictable Costs:** With AMIs, you can scale up or down as needed, ensuring predictable costs.
+
+**3. Flexibility and Control:**
+
+- **Customization:** You can create custom AMIs with your specific software, configuration, and security settings.
+- **Operating System Choice:** AMIs support various operating systems, including Linux, Windows, and UNIX.
+- **Security:** AMIs can be secured with specific security groups and user permissions.
+
+**4. Other Benefits:**
+
+- **Immutable Infrastructure:** AMIs are often used in immutable infrastructure deployments, where instances are replaced with new ones from an AMI, rather than modified.
+- **Test and Development:** AMIs can be used to create separate test and development environments.
+- **AWS Marketplace:** AMIs can be shared and purchased through the AWS Marketplace, allowing you to use pre-built and vetted images.
+
+It is a preconfigured image/configurations created by amazon that contains all the neccessary info to launch the EC2 instance
+
+It is kind of like a template with which we boot a new machine
+
+This contains information on OS, applications to be installed
+
+You can define your own amazon image
+
+### AMI life cycle
+
+- **Create AMIs:** While Amazon provides AMIs that you can use to launch your instances, you can create custom AMIs tailored to your needs. To create a custom AMI, launch an instance from an existing AMI, customize the instance (for example, install software and configure operating system settings), and then create an AMI from the instance. Any instance customizations are saved to the new AMI, so that instances launched from your new AMI include these customizations.
+- **Copy AMIs.** You can use an AMI to launch an instance only in the AWS Region in which the AMI is located. If you need to launch instances with the same configuration in multiple Regions, copy the AMI to the other Regions.
+- **Deprecate AMIs.** To mark an AMI as superseded or out of date, you can set an immediate or future deprecation date. Deprecated AMIs are hidden from AMI listings, but users and services can continue to use deprecated AMIs if they know the AMI ID.
+- **Disable AMIs.** To temporarily prevent an AMI from being used, you can disable it. When an AMI is disabled, it can't be used to launch new instances. However, if you re-enable the AMI, it can be used to launch instances again. Note that disabling an AMI doesn't affect existing instances that have already been launched from it.
+- **Deregister (delete) AMIs.** When you no longer need an AMI, you can deregister it, preventing it from being used to launch new instances. If the AMI matches a retention rule, it moves to the Recycle Bin, where it can be restored before its retention period expires, after which it is permanently deleted. If it doesn't match a retention rule, it is permanently deleted immediately. Note that deregistering an AMI does not affect existing instances that were launched from the AMI.
+- **Automate the AMI lifecycle.** You can use Amazon Data Lifecycle Manager to automate the creation, retention, copy, deprecation, and deregistration of Amazon EBS-backed AMIs and their backing snapshots. You can also use EC2 Image Builder to automate the creation, management, an deployment of customized AMIs.
+
+## Life Cycle of EC2 instance
+
+AMI -[provision a new machine] → Pending → Running/Stopping -[Terminate]→ Shutting Down → terminated
+
+```mermaid
+graph TD
+  AMI-->Pending-->Running-->terminate-->shutting_down-->terminated
+  Stopping-->Shutdown
+```
+
+To use an EC2 instance in Windows, you need to install both Putty and PuTTYgen
+
+Download the putty.exe and puttygen.exe file.
+
+**PuTTY is the SSH client that allows you to connect to the EC2 instance**, while PuTTYgen is a utility that helps convert the PEM key file you download from AWS to a compatible PPK file that PuTTY can use for authentication
+
+# EBS:
+
+- EBS stands for Elastic Block Store
+- EC2 is a virtual server in a cloud while EBS is a virtual disk in a cloud
+- Amazon EBS allows you to create storage volumes and attach them to the EC2 instances
+- Once the storage volume is created, you can create a file system on the top of these volumes, and then you can run a database, store the files, applications or you can even use them as a block device in some other
+way
+- Amazon EBS volumes are placed in a specific availability zone, and they are automatically replicated to protect you from the failure of a single component
+- EBS volume does not exist on one disk, it spreads across the Availability Zone. EBS volume is a disk which is attached to an EC2 instance
+- EBS volume attached to the EC2 instance where windows or Linux is installed known as Root device of volume.
+
+### Features of EBS:
+
+- Amazon Elastic Block Store (Amazon EBS) persistent storage volumes, also known as Amazon EBS volumes
+- Regions and Availability Zones are multiple physical locations for your resources, such as instances and Amazon EBS volumes
+- Using security groups, you can specify the protocols, ports, and source IP ranges that can reach your instances.
+- Elastic IP addresses are static IPv4 addresses used for dynamic cloud computing.
+
+### EBS Volume Types:
+
+- SSD-Backed Volumes
+- HDD-Backed Volumes
+
+# SSD
+
+- SSD stands for solid-state Drives
+- In June 2014, SSD storage was introduced
+- It is a general purpose storage
+- It supports up to 4000 IOPS which is quite very high
+- SSD storage is very high performing, but it is quite expensive as compared to HDD (Hard Disk Drive) storage
+- SSD volume types are optimized for transactional workloads such as frequent read/write operations with small I/O size, where the performance attribute is IOPS.
+
+SSD is further classified into two parts:
+1. General Purpose SSD
+2. Provisioned IOPS SSD
+
+General Purpose SSD
+- General Purpose SSD is also sometimes referred to as a GP2
+- It is a General purpose SSD volume that balances both price and performance
+- You can get a ratio of 3 IOPS per GB with up to 10,000 IOPS and the ability to burst up to 3000 IOPS for an extended period of time for volumes at 3334 GiB and above. For example, if you get less than 10,000 IOPS, then GP2 is preferable as it gives you the best performance and price.
+
+Provisioned IOPS SSD
+- It is also referred to as IO1
+- It is mainly used for high-performance applications such as intense applications, relational databases
+- It is designed for I/O intensive applications such as large relational or NOSQL databases
+- It is used when you require more than 10,000 IOPS.
+
+# HDD
+
+- It stands for Hard Disk Drive
+- HDD based storage was introduced in 2008
+- The size of the HDD based storage could be between 1 GB to 1 TB
+- It can support up to 100 IOPS which is very low.
+
+### Types of HDD
+
+- Throughput Optimized HDD (ST1)
+- Cold HDD (SC1)
+- Magnetic Volume
+
+Throughput Optimized HDD (st1)
+
+- It is also referred to as ST1
+- Throughput Optimized HDD is a low-cost HDD designed for those applications that require higher throughput up to 500 MB/s
+- It is useful for those applications that require the data to be frequently accessed
+- It is used for Big data, Data warehouses, Log processing, etc
+- It cannot be a boot volume, so it contains some additional volume. For example, if we have Windows server installed in a C: drive, then C drive cannot be a Throughput Optimized Hard disk, D: drive or some other drive
+could be a Throughput Optimized Hard disk
+- The size of the Throughput Hard disk can be 500 GiB to 16 TiB.
+- It supports up to 500 IOPS.
+
+Cold HDD (sc1)
+
+- It is also known as SC1
+- It is the lowest cost storage designed for the applications where the workloads are infrequently accessed
+- It is useful when data is rarely accessed
+- It is mainly used for a File server
+- It cannot be a boot volume
+- The size of the Cold Hard disk can be 500 GiB to 16 TiB
+- It supports up to 250 IOPS.
+
+Magnetic Volume
+
+- It is the lowest cost storage per gigabyte of all EBS volume types
+- It is ideal for the applications where the data is accessed infrequently
+- It is useful for applications where the lowest storage cost is important
+- Magnetic volume is the only hard disk which is bootable. Therefore, we can say that it can be used as a boot volume.
+
+Important points to be noted:
+
+- Volumes exist on EBS. Volume is a Virtual Hard Disk which stores the operating system
+- Snapshots exist on S3. However if you look at a bucket and searches for the snapshots in a bucket, you will not be able to see the snapshots. Therefore, we can say that the snapshot has no visibility.
+- Snapshots are a point in time copies of volumes. It's just like taking a photograph of the hard disk at a point of time.
+- Snapshots are incremental means the blocks that have been changed since your last snapshot are moved to S3
+- The first snapshot always takes some time to create
+- However, you can take a snapshot while the instance is running
+- You can create AMI from snapshots
+- To create a snapshot for Amazon EBS Volumes that serve as root devices, you should stop the instance before taking the snapshot.
+- You can change the EBS Volume size and storage type
+- The Volume will always be in the same availability zone as the EC2 instance
+- To move an EBS Volume from one region to another, take a snapshot of it, and then copy it to the new region.
