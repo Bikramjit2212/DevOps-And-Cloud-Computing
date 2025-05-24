@@ -83,10 +83,6 @@ Each region has atleast 3 zones which are connected by very high bandwith physic
 - Machine learning
 - Management Services
 
-Some services are zonal, some regional, some global
-
-In AWS, services can be deployed at three different levels: zonal, regional, and global, each with distinct characteristics and implications for your application.
-
 **Zonal Services:**
 
 - **Definition:**
@@ -191,6 +187,16 @@ SSH (Secure Shell) is **a network protocol that enables secure remote access to
 
 The Secure Shell (SSH) protocol is **a method for securely sending commands to a computer over an unsecured network**. SSH uses cryptography to authenticate and encrypt connections between devices.
 
+In AWS, a security group acts as **a virtual firewall for your EC2 instances, controlling which traffic can come in and out**. It's like a set of rules that decide what's allowed through a "door" to your instances, based on things like the source IP, protocol, and port number. 
+
+- **What it does:** Security groups control both inbound (traffic coming in) and outbound (traffic going out) traffic for your EC2 instances.
+- **How it works:** Each security group has a set of rules that define what traffic is permitted. For example, a rule might allow inbound traffic on port 80 (HTTP) from any IP address.
+- **Why it's important:** Security groups are essential for securing your cloud environment by ensuring that only authorized traffic reaches your instances. They help prevent unauthorized access and protect your data.
+
+Some services are zonal, some regional, some global
+
+In AWS, services can be deployed at three different levels: zonal, regional, and global, each with distinct characteristics and implications for your application.
+
 ## EC2 Instance Connection
 
 Before using we need to change the permission of our key so that it can not be hampered by any other person to do that
@@ -219,6 +225,8 @@ chmod- changes read, write & execute permission of the corresponding
 
 700 → gives the permission for the current user to read, write, execute
 
+![image.png](attachment:29a56f47-a5df-4784-bf79-9afc41972440:image.png)
+
 ### flag -i in ssh
 
 ```bash
@@ -227,7 +235,7 @@ ssh -i <name-of-the-secret-private-key> ubuntu@<public_v4_ip_address>
 
 ssh- we are going to use secure shell protocol
 
--i - to actually show that we are going to use a private key
+-i → to actually show that we are going to use a private key
 
 ubuntu- user name of the machine
 
@@ -244,6 +252,201 @@ sudo apt-get update
 ```
 
 It updates the AWS machine altogether
+
+![image.png](attachment:f4f4e153-8edd-41a9-a4f1-bae667572625:image.png)
+
+![image.png](attachment:5495bd0e-5088-4750-a0bf-5a2f4997762e:image.png)
+
+```bash
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ssh -i devops-practice.pem ubuntu@15.206.79.66
+The authenticity of host '15.206.79.66 (15.206.79.66)' can't be established.
+ED25519 key fingerprint is SHA256:cVrEBXy3JTHmJc+Mr65VRuBbmoFRHJSc99BnDIYn4xk.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '15.206.79.66' (ED25519) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0555 for 'devops-practice.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "devops-practice.pem": bad permissions
+ubuntu@15.206.79.66: Permission denied (publickey).
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ls
+devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ chmod 400 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ls -lh
+total 4.0K
+-r-xr-xr-x 1 bikramjit bikramjit 1.7K May 21 14:09 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ chmod 000 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ls -lh
+total 4.0K
+-r-xr-xr-x 1 bikramjit bikramjit 1.7K May 21 14:09 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ chmod 4 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ls -lh
+total 4.0K
+-r-xr-xr-x 1 bikramjit bikramjit 1.7K May 21 14:09 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ chmod 0400 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ls -lh
+total 4.0K
+-r-xr-xr-x 1 bikramjit bikramjit 1.7K May 21 14:09 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ssh -i devops-practice.pem ubuntu@15.206.79.66
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0555 for 'devops-practice.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "devops-practice.pem": bad permissions
+ubuntu@15.206.79.66: Permission denied (publickey).
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ chmod 400 devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ssh -i devops-practice.pem ubuntu@15.206.79.66
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0555 for 'devops-practice.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "devops-practice.pem": bad permissions
+ubuntu@15.206.79.66: Permission denied (publickey).
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ mkdir -p ~/.ssh
+mv devops-practice.pem ~/.ssh/
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ chmod 400 ~/.ssh/devops-practice.pem
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$ ssh -i ~/.ssh/devops-practice.pem ubuntu@15.206.79.66
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-1024-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed May 21 14:51:55 UTC 2025
+
+  System load:  0.0               Processes:             103
+  Usage of /:   25.0% of 6.71GB   Users logged in:       0
+  Memory usage: 20%               IPv4 address for enX0: 172.31.38.97
+  Swap usage:   0%
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@ip-172-31-38-97:~$ whoami
+ubuntu
+ubuntu@ip-172-31-38-97:~$ ls
+ubuntu@ip-172-31-38-97:~$ ls -a
+.  ..  .bash_logout  .bashrc  .cache  .profile  .ssh
+ubuntu@ip-172-31-38-97:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-38-97:~$ sudo apt-get update
+Hit:1 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:3 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:4 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 Packages [15.0 MB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:6 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/universe Translation-en [5982 kB]
+Get:7 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 Components [3871 kB]
+Get:8 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/universe amd64 c-n-f Metadata [301 kB]
+Get:9 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [269 kB]
+Get:10 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/multiverse Translation-en [118 kB]
+Get:11 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/multiverse amd64 Components [35.0 kB]
+Get:12 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble/multiverse amd64 c-n-f Metadata [8328 B]
+Get:13 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1101 kB]
+Get:14 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [234 kB]
+Get:15 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [161 kB]
+Get:16 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [13.5 kB]
+Get:17 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1065 kB]
+Get:18 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [269 kB]
+Get:19 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [376 kB]
+Get:20 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [26.0 kB]
+Get:21 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1155 kB]
+Get:22 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [240 kB]
+Get:23 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+Get:24 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [492 B]
+Get:25 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [21.7 kB]
+Get:26 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [4788 B]
+Get:27 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:28 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [592 B]
+Get:29 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [39.2 kB]
+Get:30 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/main Translation-en [8676 B]
+Get:31 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7108 B]
+Get:32 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/main amd64 c-n-f Metadata [272 B]
+Get:33 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [27.1 kB]
+Get:34 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/universe Translation-en [16.5 kB]
+Get:35 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [16.3 kB]
+Get:36 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/universe amd64 c-n-f Metadata [1304 B]
+Get:37 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+Get:38 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 c-n-f Metadata [116 B]
+Get:39 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Get:40 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 c-n-f Metadata [116 B]
+Get:41 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [855 kB]
+Get:42 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [156 kB]
+Get:43 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+Get:44 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [7068 B]
+Get:45 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [840 kB]
+Get:46 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [183 kB]
+Get:47 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.3 kB]
+Get:48 http://security.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [17.0 kB]
+Get:49 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1122 kB]
+Get:50 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [233 kB]
+Get:51 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+Get:52 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 c-n-f Metadata [468 B]
+Get:53 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [17.7 kB]
+Get:54 http://security.ubuntu.com/ubuntu noble-security/multiverse Translation-en [3792 B]
+Get:55 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [212 B]
+Get:56 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata [380 B]
+Fetched 34.3 MB in 16s (2135 kB/s)
+Reading package lists... Done
+ubuntu@ip-172-31-38-97:~$
+Broadcast message from root@ip-172-31-38-97 (Wed 2025-05-21 14:55:50 UTC):
+
+The system will power off now!
+
+Connection to 15.206.79.66 closed by remote host.
+Connection to 15.206.79.66 closed.
+bikramjit@BIKRAMJIT:/mnt/d/pw try/devops$
+
+-----------------------------------------------------------------------------------------
+to search for the file go to file explorer and in the address bar search -> \\wsl$\ there in the home directory in the user folder you will get it
+Open File Explorer: You can do this by clicking its icon on your taskbar or pressing Windows key + E.
+
+Navigate to WSL Network Location:
+
+In the address bar of File Explorer, type:
+\\wsl$\
+Press Enter.
+Select your Linux Distribution:
+
+You will see one or more folders representing your installed WSL distributions (e.g., Ubuntu, Debian, etc.). Click on the one you are using (likely Ubuntu in your case).
+Navigate to your home directory:
+
+Inside your distribution's folder, you'll see the root filesystem.
+Navigate to home -> bikramjit (or your WSL username).
+Show Hidden Files (if .ssh is not visible):
+
+Once inside /home/bikramjit/, you might not see the .ssh folder immediately because it's hidden.
+In File Explorer, go to the "View" tab at the top.
+Check the box for "Hidden items" (or "Hidden files" depending on your Windows version).
+You should now see the .ssh folder.
+Find your key:
+
+Open the .ssh folder, and you should find devops-practice.pem there.
+```
 
 # AMI - Amazon Machine Image
 
@@ -313,6 +516,12 @@ To use an EC2 instance in Windows, you need to install both Putty and PuTTYgen
 Download the putty.exe and puttygen.exe file.
 
 **PuTTY is the SSH client that allows you to connect to the EC2 instance**, while PuTTYgen is a utility that helps convert the PEM key file you download from AWS to a compatible PPK file that PuTTY can use for authentication
+
+![image.png](attachment:fb71f402-5f74-4c4a-92e4-7a5ecfa54a03:image.png)
+
+![image.png](attachment:4f9cb0e4-82e6-459c-8b64-fe9cd5f40565:image.png)
+
+![image.png](attachment:feddae47-c897-48fb-a368-36ac555b5ef9:image.png)
 
 # EBS:
 
@@ -415,3 +624,147 @@ Important points to be noted:
 - You can change the EBS Volume size and storage type
 - The Volume will always be in the same availability zone as the EC2 instance
 - To move an EBS Volume from one region to another, take a snapshot of it, and then copy it to the new region.
+
+GitHub Runners - Runners are **the machines that execute jobs in a GitHub Actions workflow**. For example, a runner can clone your repository locally, install testing software, and then run commands that evaluate your code. GitHub provides runners that you can use to run your jobs, or you can host your own runners.
+——————————————————————————————————————————-
+
+Deploying CICD
+
+```bash
+IN AWS
+go to instance->create instance-> launch
+go to security-> click on the link in security groups
+go to edit inbound rules-> add rule->select type: custom tcp->port range:3000
+source: ipv4 / ipv6 -> save rules
+```
+
+```bash
+PS C:\Users\bikra> wsl
+bikramjit@BIKRAMJIT:/mnt/c/Users/bikra$ cd home
+-bash: cd: home: No such file or directory
+bikramjit@BIKRAMJIT:/mnt/c/Users/bikra$ cd /home/bikramjit/.ssh/
+bikramjit@BIKRAMJIT:~/.ssh$ cd /home
+bikramjit@BIKRAMJIT:/home$ ls
+abhi  bikramjit  dev  newuser  p1
+bikramjit@BIKRAMJIT:/home$ cd bikramjit
+bikramjit@BIKRAMJIT:~$ ls
+backup  system_health.log  todo.txt
+bikramjit@BIKRAMJIT:~$ ls -a
+.     .azure         .bashrc  .docker     .local       .selected_editor           .viminfo           todo.txt
+..    .bash_history  .cache   .landscape  .motd_shown  .ssh                       backup
+.aws  .bash_logout   .config  .lesshst    .profile     .sudo_as_admin_successful  system_health.log
+bikramjit@BIKRAMJIT:~$ cd .ssh
+bikramjit@BIKRAMJIT:~/.ssh$ ls
+devops-practice.pem  known_hosts  known_hosts.old
+bikramjit@BIKRAMJIT:~/.ssh$ ssh -i devops-practice.pem ubuntu@13.201.89.247
+The authenticity of host '13.201.89.247 (13.201.89.247)' can't be established.
+ED25519 key fingerprint is SHA256:km2lE0H4ek8dC+NqU6466AHTh4GRamj0LxXzukmR1lU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '13.201.89.247' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-1024-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Fri May 23 07:14:37 UTC 2025
+
+  System load:  0.05              Processes:             105
+  Usage of /:   25.0% of 6.71GB   Users logged in:       0
+  Memory usage: 20%               IPv4 address for enX0: 172.31.4.165
+  Swap usage:   0%
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+---------------------------------------------------------------------------------------
+sudo apt update
+
+```
+
+# IAM in AWS
+
+AWS IAM, or AWS Identity and Access Management, is **a service that lets you securely control access to AWS resources**. It allows you to manage users, groups, roles, and policies to determine who can do what with your AWS resources. 
+
+Share different permissions in your org.
+
+when we create a new aws acc, it is a root account not everyone in an org should be having access to it.
+
+- Manage users in an org by providing them relevant permissions
+- IAM allows you to manage users & their level of access to the aws console
+- Set user permission & roles
+
+Permissions are allocated using JSON documents called as policies.
+
+## Features of IAM
+
+1. free service
+2. Eventual Consistent Service
+3. Provide temporary access 
+4. Multi factor authentication
+5. Granular permission
+6. networking control
+
+IAM is a global service not a region specific
+
+As EC2 is region specific so it may create the difference
+
+auto generated password → if we are not going to use the IAM for ourself we will use auto generated password
+
+custom password → if we are going to access it ourself
+
+we can attach policies directly in AWS or create a group and directly attach policies to the group
+
+# MFA in IAM
+
+2 types-
+
+- MFA [Multi Factor Authentication]
+- Password Policy
+
+### Password Policy:
+
+- Define rules for acc password for IAM users & yourself
+    - Set a min password length
+    - Req of specific characters
+    - Password refresh
+    - Prevent from password reuse
+    - Set different requirements
+
+### MFA
+
+introduces 1  more layer of protection
+
+appart from password using one more secret token
+
+this token can be generated by many ways like otp
+
+helps in protecting root & IAM accounts
+
+In AWS:
+
+Password+token → authenticate
+
+3 ways AWS use:
+
+- Physical Device [ YubiKey] - physical key which has its own signature installed
+- Authenticator Apps
+- Physical Hardware Key
