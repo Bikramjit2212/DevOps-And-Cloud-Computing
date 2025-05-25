@@ -1,0 +1,172 @@
+# Containers
+
+Gives lot of security & resource management features
+
+Docker Image → can consider them as a blueprints of some already made containers
+
+Docker Images as a drawing or picture of ur fav toys
+
+It contains details of your toys look
+
+## Docker Containers
+
+It is like a magical Box that can hold your fav toy inside
+
+When you add your image you can use this magical box to create an exact copy of your toy
+
+Definition → Docker images is a snapshot or a blueprint of a complete environment for an application
+
+It includes everything like what the application needs to run such as libraries,  dependencies, config etc…
+
+It kind of encapsulates the app & all the req together.
+
+Containers → it is an actual running instance of the environment configured by the image
+
+when we run a docker image, it creates a live & running container.
+
+This containers are isolated & very light weight virtual machines
+
+A big difference between containers & VM’s is that containers share the host OS kernel & this sharing make them light weight
+
+# Getting Started with Docker
+
+Docker is **an open-source platform that allows developers to package, distribute, and run applications using containers**. These containers are lightweight, portable, and self-contained, meaning they include everything an application needs to run, such as code, runtime, libraries, and system tools. Docker simplifies application deployment, scaling, and management, making it easier to build, test, and deploy applications in various environments.
+
+### Difference between Docker Images & Docker Container
+
+**A Docker image is a read-only template containing instructions for building a container, including the application code, runtime, system tools, libraries, and settings.**
+
+**A Docker container, on the other hand, is a runtime instance of a Docker image, running the application and its components in an isolated environment**. 
+
+Think of an image as the blueprint and a container as the built structure, where multiple containers can be created from the same image.
+
+Here's a more detailed breakdown:
+
+**Docker Image:**
+
+- **Template:** It's a read-only template that defines the environment for a container.
+- **Immutable:** Images are designed to be immutable, meaning they cannot be directly modified after creation. To make changes, a new image must be built from a modified Dockerfile.
+- **Foundation:** It acts as the foundation for creating and running containers.
+- **Distribution:** Images are designed to be shared, stored in registries, and transported between systems.
+
+**Docker Container:**
+
+- **Runtime Instance:** A container is a running instance of an image.
+- **Isolated Environment:** Each container provides an isolated environment for the application, separating it from the host system and other containers.
+- **Mutable:** Containers are mutable, meaning changes can be made to them during runtime (e.g., adding files, modifying code).
+- **Ephemeral:** Containers are generally ephemeral, meaning their state (changes made during runtime) is lost when the container is stopped or deleted.
+- **Lifecycle:** Containers have a lifecycle (running, stopped, paused, etc.) and can be created, destroyed, and managed using the Docker API or CLI.
+
+In essence, a Docker image is the recipe, while a container is a running instance of that recipe. You can create multiple containers from the same image, but each container will have its own data and state, according to Stack Overflow
+
+Images are like blueprint, somebody has already created docker container and its configuration we can just pull the image and start running it, we can also create our own images using the docker file so that others can also use it
+
+Docker Images are pre made containers 
+
+### Docker Hub
+
+Docker Hub is **a public online repository where you can find, share, and manage Docker images, which are like templates for your applications**. Think of it as a cloud-based library where developers can easily access pre-built images or upload their own. This allows for easy distribution and reuse of containerized applications
+
+It is pre defined set of images
+
+```docker
+docker pull node -> pulls node
+docker run -it --rm node
+```
+
+-it → opens interactive terminal
+
+ --rm → automatically removes the copntainer when we exit
+
+```docker
+docker ps
+```
+
+lists the docker containers
+
+```docker
+docker kill <container_id>
+```
+
+kills the docker with the container id
+
+```docker
+docker image prune
+```
+
+any image that is not being used will be deleted
+
+```docker
+docker run -it alpine ls
+```
+
+-it → runs the docker in interactive mode
+
+helps in running the code → ls
+
+```docker
+/ # cat /etc/issue
+```
+
+The command cat /etc/issue executed within a Docker container displays the content of the /etc/issue file. This file typically contains a text string identifying the operating system distribution running inside the container. It's a common way to quickly check the distribution, such as Ubuntu, Debian, or CentOS, and often includes the version number.
+
+For example, if a container is running Ubuntu 20.04, the output of cat /etc/issue
+
+might look like this:
+
+```docker
+Ubuntu 20.04 LTS \n \l
+```
+
+The `ps aux` command, when executed within a Docker container, provides a snapshot of the processes running inside that container. It displays detailed information about each process, including the user ID (UID), process ID (PID), CPU usage (%CPU), memory usage (%MEM), virtual memory size (VSZ), resident set size (RSS), terminal (TTY), status (STAT), start time (START), and the command being executed (COMMAND)
+
+If we dont write `-it` in `docker run -it alpine` then it will execute but in exited state
+
+to go inside the container:
+
+```docker
+docker attach <container_id>
+```
+
+The `docker attach <container_id>` command **attaches your terminal's standard input, output, and error streams to the running container**, allowing you to view its output or interact with it as if it were running directly in your terminal. This means you can see the container's logs and, if the container is running a shell, enter commands directly into the container's terminal.  
+
+`docker attach` provides a way to directly interact with a running container's process output and potentially control it, depending on the container's entry point. 
+
+The `docker detach <container_id>` command doesn't directly detach you from a running container to access its shell. Instead, it's used to **start a container in the background, detaching it from the terminal**. If you want to access a container's shell, you'll need to use `docker exec -it <container_id> bash`
+
+**Explanation:**
+
+- **`docker detach <container_id>` (or `d`):**
+    
+    This command tells Docker to run the container in the background without attaching it to your terminal. You'll see the container ID printed to your terminal, but you'll be returned to your command prompt.
+    
+
+```docker
+docker rm <name of the container> 
+```
+
+to delete the container
+
+to setup a custom name
+
+```docker
+docker run -it --detach --name custom-node
+```
+
+to combine both -it & --detach → we can use -dit
+
+```docker
+docker run -dit  --name custom-node
+```
+
+```docker
+docker run -it node bash
+```
+
+goes inside the bash terminal
+
+```docker
+cat /etc/issue
+```
+
+to check which linux it is
