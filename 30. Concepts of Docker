@@ -170,3 +170,307 @@ cat /etc/issue
 ```
 
 to check which linux it is
+
+```docker
+Docker inspect <name_of_the_img>
+```
+
+Gives bunch of info about that img
+
+```docker
+docker pause <container_id>
+```
+
+pauses the particular container
+
+```docker
+docker unpause <container_id>
+```
+
+unpauses the particular container
+
+```docker
+docker kill <container_id>
+```
+
+to kill a container
+
+```docker
+docker run --detach -it ubuntu
+```
+
+- **`docker run`**: Create and start a new container.
+- **`-detach` (`d`)**: Run the container in the **background**.
+- **`it` (`-i -t`)**: Make it **interactive** and give it a **terminal** for later access.
+- **`ubuntu`**: Use the **Ubuntu operating system image**.
+
+We use this to run a background Ubuntu environment that we can still connect to and work with later, which is great for running services and debugging.
+
+```docker
+docker exec -it rhgbebsvbbedbbeinvnejibhvbheabvjnjdfjnnregiberb bash
+```
+
+- **`docker exec`**: Execute a command inside a *running* Docker container.
+- **`it` (`-i -t`)**: This makes the execution **interactive** and allocates a **pseudo-TTY** (terminal). This is crucial for getting a proper shell prompt and interacting with it.
+- **`rhgbebsvbbedbbeinvnejibhvbheabvjnjdfjnnregiberb`**: This is the **ID or name of the specific running Docker container** you want to execute the command inside. Docker uses these unique identifiers to distinguish between containers.
+- **`bash`**: This is the **command** you want to run *inside* the container. In this case, `bash` opens a Bash shell, giving you a command-line interface within that running container.
+
+In simple terms, this command lets you **get an interactive command-line interface (like opening a terminal) inside a Docker container that is already running**, identified by its unique ID. This is extremely useful for debugging, inspecting, or performing administrative tasks within a container without stopping and restarting it.
+
+Difference between docker run & docker exec
+
+- **`docker run`**: **Starts a *new* container** from an image. (Think: "boot up a new machine")
+- **`docker exec`**: **Runs a command *inside* an *already running* container.** (Think: "open a program on a running machine")
+
+```docker
+docker inspect
+```
+
+`docker inspect` is a powerful command-line tool that provides **low-level, detailed information about Docker objects**. It's like a magnifying glass for your Docker environment, revealing the intricate configurations and runtime data of various components.
+
+Here's a breakdown of what it does and why it's so useful, especially for a DevOps aspirant:
+
+**What it inspects:**
+
+`docker inspect` can be used to gather information about a variety of Docker objects, including:
+
+- **Containers:** This is one of its most common uses. You can inspect running or stopped containers to get details about their state, configuration, network settings, mounted volumes, environment variables, exposed ports, process IDs, and more.
+- **Images:** It provides information about Docker images, such as their layers, size, creation date, build history, and any metadata or labels associated with them.
+- **Networks:** You can inspect Docker networks to see their configuration, including subnets, gateways, connected containers, and IP address management (IPAM) details.
+- **Volumes:** It shows information about Docker volumes, such as their mount point, driver, labels, and usage.
+- **Other objects:** Depending on your Docker setup, it can also inspect nodes, secrets, services, tasks, and plugins in a Docker Swarm or other orchestration environments.
+
+`docker inspect` is like a **magnifying glass** for Docker. When you use it on a Docker object (like a container, image, or network), it shows you **all the hidden details and settings** of that object in a very organized way.
+
+Imagine you have a new toy. `docker inspect` is like getting the instruction manual and a detailed blueprint for that toy, telling you exactly:
+
+- What it's made of
+- How it's put together
+- What its functions are
+- Where its power source is located
+
+For Docker, it tells you things like:
+
+- **For a container:** Its IP address, what folders are shared with your computer, what settings it started with, if it's running, and where its logs are.
+- **For an image:** All the different pieces it's built from, its size, and what it's set up to do when it runs.
+- **For a network:** Which IP addresses are available, and which containers are connected to it.
+
+It's super useful for **troubleshooting** when something isn't working right, or just to **understand exactly** how your Docker setup is configured.
+
+In docker run you mention the name of the image
+
+in docker exec you mention the name of the container bcz docker exec already runs on the existing containers
+
+to create our img create a docker file
+
+every time we want to set a container we need to add some base container
+
+docker file is case sensitive
+
+```docker
+FROM node 
+#taking base container as node
+#cant have multiple CMD terms
+CMD ["node", "-e", "console.log(100)"]
+```
+
+to build a docker container → `docker  build .`
+
+docker rmi <img_id> → removes an img
+
+docker rm <container_id> → removes container
+
+to give a tag
+
+```docker
+docker build -t <name-of-basic-tag> .
+```
+
+to control the server from the host machine only use --init
+
+```docker
+docker run -it --init my-server:latest
+```
+
+to publish and expose the server in the host machine
+
+```docker
+docker run -it --init --publish 3001:3000 my-server:latest
+```
+
+3001 → to be used in the browser which port of the machoine to be exposed
+
+3000 → which port of the container to be exposed
+
+apt_get → `apt-get` is **a command-line utility used for managing software packages on Debian-based Linux distributions, such as Ubuntu**
+
+`RUN` executes commands during the image build process, committing the results to a new image layer
+
+`CMD` specifies the default command to be executed when a container is launched from that image, which can be overridden by arguments provided during container execution
+
+```docker
+FROM node
+
+WORKDIR /developer/nodejs/app_from_github
+
+RUN apt-get update && apt-get install -y git
+
+RUN git clone https://github.com/singhsanket143/Dockerizing_node_project.git .
+
+ENV PORT=3000
+
+EXPOSE 3000
+
+RUN npm ci
+
+CMD ["npm", "start"]
+```
+
+### Explanation of the `Dockerfile`
+
+1. **`FROM node`**
+    - **Purpose:** This is the foundational instruction. It specifies the base image for your Docker image.
+    - **Explanation:** You're starting your build process from an official Node.js image (likely `node:latest` by default if no tag is specified). This base image already contains Node.js and npm (Node Package Manager), providing a ready-to-use environment for a Node.js application.
+2. **`WORKDIR /developer/nodejs/app_from_github`**
+    - **Purpose:** Sets the working directory inside the Docker image for all subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions.
+    - **Explanation:** This creates and navigates into the `/developer/nodejs/app_from_github` directory within the container. All commands that follow (like `git clone` or `npm ci`) will be executed relative to this directory. It's a best practice to define a `WORKDIR` to keep your file system organized within the image.
+3. **`RUN apt-get update && apt-get install -y git`**
+    - **Purpose:** Executes commands to update package lists and install `git` within the image.
+    - **Explanation:**
+        - `apt-get update`: Updates the package lists for upgrades and new package installations. This is crucial before installing any new software to ensure you get the latest versions and avoid dependency issues.
+        - `apt-get install -y git`: Installs the `git` command-line tool. The `y` flag automatically answers "yes" to any prompts, making the installation non-interactive. `git` is needed because the next step involves cloning a Git repository.
+4. **`RUN git clone https://github.com/singhsanket143/Dockerizing_node_project.git .`**
+    - **Purpose:** Clones a Git repository into the current working directory.
+    - **Explanation:** This command downloads the source code of the Node.js project from the specified GitHub URL into the `/developer/nodejs/app_from_github` directory (because of the `WORKDIR` instruction). The `.` at the end means "clone into the current directory," so the contents of the repository will be directly in `app_from_github`, not in a subfolder named `Dockerizing_node_project`.
+5. **`ENV PORT=3000`**
+    - **Purpose:** Sets an environment variable named `PORT` with the value `3000` inside the Docker image.
+    - **Explanation:** Environment variables are often used by applications to configure their behavior. Many web applications, including Node.js apps, listen for incoming connections on a specific port defined by an environment variable like `PORT`. By setting this here, the Node.js application, once running, will know to listen on port 3000.
+6. **`EXPOSE 3000`**
+    - **Purpose:** Informs Docker that the container will listen on the specified network ports at runtime.
+    - **Explanation:** This instruction is documentation. It tells anyone using this image that the application inside is designed to listen on port 3000. It *does not* actually publish the port to the host system. To make the port accessible from outside the container, you need to use the `p` or `-publish` flag with `docker run` (e.g., `docker run -p 3001:3000`).
+7. **`RUN npm ci`**
+    - **Purpose:** Installs Node.js dependencies.
+    - **Explanation:** `npm ci` (clean install) is a more robust alternative to `npm install` for automated environments like Docker builds. It installs dependencies strictly based on `package-lock.json` (or `npm-shrinkwrap.json`), ensuring consistent builds by avoiding potential discrepancies that `npm install` might introduce if `package.json` and `package-lock.json` are out of sync. This command ensures all necessary Node.js modules for the cloned application are installed.
+8. **`CMD ["npm", "start"]`**
+    - **Purpose:** Provides the default command to execute when a container is started from this image.
+    - **Explanation:** This defines the command that will be run when the container is launched without a specific command. In this case, it tells the container to execute `npm start`. This is a common command for Node.js applications to begin their execution, usually specified in the `package.json` file's "scripts" section.
+
+### Commented-out `docker` Commands:
+
+The image also shows some commented-out `docker` commands, which are useful for building and running a container from this Dockerfile:
+
+- **`# docker build -t app-from-github-with-env .`**
+    - **Purpose:** This command would build a Docker image from the `Dockerfile` in the current directory.
+    - **Explanation:**
+        - `docker build`: The command to build a Docker image.
+        - `t app-from-github-with-env`: Tags the image with the name `app-from-github-with-env`. This makes it easier to reference the image later.
+        - `.`: Specifies the build context (the current directory), meaning Docker will look for the `Dockerfile` and any related files in the current directory.
+- **`# docker run --init --publish 3001:3000 app-from-github-with-env:latest`**
+    - **Purpose:** This command would run a container from the `app-from-github-with-env` image.
+    - **Explanation:**
+        - `docker run`: The command to run a container.
+        - `-init`: Runs an `init` process inside the container. This is useful for handling signal forwarding and reaping zombie processes, which is good practice for production containers.
+        - `-publish 3001:3000` (or `p 3001:3000`): Maps port 3000 inside the container to port 3001 on the host machine. This means you can access the Node.js application by navigating to `http://localhost:3001` (or `http://your_host_ip:3001`) from your browser.
+        - `app-from-github-with-env:latest`: Specifies the image to run (the one you just built and tagged). `:latest` is the default tag if not specified.
+
+![image.png](attachment:2bcd2598-b2ff-4023-aca2-0e577cf0fdff:image.png)
+
+- **`# docker build -t app-from-github-with-env .`**
+    - **What it is:** A commented-out `docker build` command.
+    - **Purpose:** It's an example of how you would build the Docker image defined by the `Dockerfile` above it. It's provided for convenience and clarity, so anyone using this Dockerfile knows the common command to get started. By commenting it out, it prevents the command from being accidentally run if the entire text block is copied and pasted into a script or terminal.
+- **`# docker run --init --publish 3001:3000 app-from-github-with-env:latest`**
+    - **What it is:** A commented-out `docker run` command.
+    - **Purpose:** This shows an example of how to run a container from the image built in the previous step, specifically demonstrating how to map container port 3000 to host port 3001. Again, it's for documentation and ease of use.
+- **`# docker run --init -p 3001:3000 app-from-github-with-env:latest`**
+    - **What it is:** Another commented-out `docker run` command.
+    - **Purpose:** This is functionally identical to the previous line, just using the shorthand `p` instead of `-publish`. It offers an alternative syntax for the same port mapping.
+- **`# docker run --init -P app-from-github-with-env:latest`**
+    - **What it is:** A third commented-out `docker run` command.
+    - **Purpose:** This demonstrates using the `P` (capital P) flag, which automatically publishes all *exposed* ports. As noted previously, in *this specific `Dockerfile`* where `EXPOSE 3000` is commented out, this command alone wouldn't actually map any ports, as there are no exposed ports declared in the image's metadata. This line serves as an example of a common `docker run` option, though its effectiveness is dependent on the `EXPOSE` instruction in the `Dockerfile`.
+
+[`github.com/singhsanket143/Containers/tree/master`](http://github.com/singhsanket143/Containers/tree/master) → to see the modules
+
+for basic node server → dockerizing node project
+
+### BIND MOUND
+
+```bash
+# Clean up the whole system and delete every image container etc:
+
+docker system prune -a
+
+# Build a dockerfile and create an image
+# (execute the below command either from the directory where dockerfile is present, or replace . with path to dockerfile)
+
+docker build -t <tag_name> .
+
+# Run a container from an image
+
+docker run --init -p <host_port>::<container_port> <image_name>
+
+# Bind mount project with docker container
+
+docker run --init -p 3002:3000 -v "$(pwd)":/developer/nodejs/node-bind-mound-project app-bind-mount-node:latest
+```
+
+### 1. Clean up the whole system and delete every image container etc:
+
+**Command:** `docker system prune -a`
+
+- **Purpose:** This command is used to clean up unused Docker objects on your system. It's a very powerful and useful command, especially for developers or in environments where you frequently create, stop, and remove Docker containers and images, as it helps free up disk space.
+- **Breakdown:**
+    - `docker system`: Refers to the Docker system-wide commands.
+    - `prune`: The action to remove unused objects.
+    - `a` or `-all`: This flag signifies a more aggressive pruning. It removes:
+        - All stopped containers.
+        - All dangling (not associated with any container) networks.
+        - All dangling images (images that are not tagged or referenced by any container).
+        - All **unused** images (images that are not associated with any running container, even if they have tags).
+        - All build cache.
+- **Warning:** Be careful when using `docker system prune -a` as it will remove all images that are not actively used by a running container, even if you explicitly tagged them. It's generally good practice to stop all containers you want to keep before running this command, or specify what you want to prune more precisely (e.g., `docker image prune` for just images).
+
+### 2. Build a dockerfile and create an image
+
+**Command:** `docker build -t <tag_name> .`
+
+- **Purpose:** This command takes a `Dockerfile` and builds a Docker image from it.
+- **Breakdown:**
+    - `docker build`: The main command to initiate an image build.
+    - `t <tag_name>` or `-tag <tag_name>`: This flag assigns a name and optional tag to your image.
+        - `<tag_name>`: This is a placeholder. You would replace it with a meaningful name for your image, typically in the format `repository/image_name:tag`. For example, `my-app:1.0` or `myusername/nodejs-app:latest`. If you don't specify a tag (e.g., `my-app`), it defaults to `:latest`.
+    - `.`: This indicates the "build context."
+        - The `.` means "the current directory." Docker will look for a file named `Dockerfile` in the current directory and use all files and folders in that directory as part of the build context. It's crucial because any `COPY` or `ADD` instructions in your `Dockerfile` will refer to paths relative to this build context.
+        - **Note from the comment:** The comment correctly states that you can either execute this from the directory where the `Dockerfile` resides, or replace `.` with the path to the directory containing your `Dockerfile` (e.g., `docker build -t my-app /path/to/my/app/dockerfile/directory`).
+
+### 3. Run a container from an image
+
+**Command (General Template):** `docker run --init -p <host_port>::<container_port> <image_name>`
+
+- **Purpose:** This is the fundamental command to start a new container from a Docker image.
+- **Breakdown:**
+    - `docker run`: The command to create and start a new container.
+    - `-init`: Runs an `init` process inside the container. This `init` process is essential for properly handling OS signals (like `SIGTERM` when stopping a container) and for reaping "zombie" processes (processes that have terminated but whose parent hasn't collected their exit status). It makes your containers more robust and behaves more like a standard Linux process.
+    - `p <host_port>:<container_port>` or `-publish <host_port>:<container_port>`: This flag maps a port from your host machine to a port inside the Docker container.
+        - `<host_port>`: The port number on *your local machine* (the host) that you want to use to access the service running inside the container.
+        - `<container_port>`: The port number *inside the container* that the application is listening on (e.g., if your Node.js app listens on port 3000 inside the container, this would be 3000).
+        - `::`: The image shows `::` which is a typo or specific notation. The correct syntax for port mapping is always a single colon `:` (e.g., `p 8080:80`).
+    - `<image_name>`: The name (and optionally tag) of the Docker image you want to run (e.g., `nginx:latest`, `my-app:1.0`).
+
+### 4. Bind mount project with docker container
+
+**Command (Specific Example):** `docker run --init -p 3002:3000 -v "$(pwd)":/developer/nodejs/node-bind-mound-project app-bind-mount-node:latest`
+
+- **Purpose:** This command runs a container, but critically, it uses a **bind mount** to synchronize a local directory on your host machine with a directory inside the container. This is extremely powerful for development workflows.
+- **Breakdown:**
+    - `docker run --init -p 3002:3000`: These parts are the same as explained above: start a container with `init` process and map host port `3002` to container port `3000`.
+    - `v "$(pwd)":/developer/nodejs/node-bind-mound-project` or `-volume "$(pwd)":/developer/nodejs/node-bind-mound-project`: This is the bind mount instruction.
+        - `v`: The flag for creating a volume mount.
+        - `"$(pwd)"`: This is a shell command substitution.
+            - `pwd` stands for "print working directory." When executed, it returns the absolute path of your current directory on the host machine.
+            - `$()` captures the output of `pwd`. So, if you are in `/home/user/my-node-app` on your host, this part resolves to `/home/user/my-node-app`.
+        - `:`: Separates the host path from the container path.
+        - `/developer/nodejs/node-bind-mound-project`: This is the absolute path inside the container where the contents of `$(pwd)` (your host directory) will be mounted.
+        - **What it does:** It establishes a real-time, two-way synchronization between your host directory (where your project source code is) and the specified directory inside the container. Any changes you make to files in your local project directory will instantly be reflected inside the running container, and vice-versa. This is incredibly useful for development because you can edit your code on your host machine using your favorite IDE and see the changes take effect in the container without rebuilding the image or restarting the container (if your application has hot-reloading).
+    - `app-bind-mount-node:latest`: The name and tag of the image to run. This suggests an image specifically built to use bind mounts, perhaps one that doesn't have the application source code baked into it, or one that expects to run with external source code mounted.
+
+This set of commands covers essential Docker operations, from cleaning up your system to building images and running containers with advanced features like port mapping and bind mounts, which are foundational for a DevOps workflow.
